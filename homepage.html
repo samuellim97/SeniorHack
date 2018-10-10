@@ -1,57 +1,387 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Senior Hack</title>
-  <link rel="icon" href="SHfavicon.PNG" type="image" sizes="16x16">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
+  <meta charset="utf-8">
+  <link rel="icon" href="logoPolygon.png" type="image">
+  <meta name="viewport" content="width=device-width, intial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <title>SeniorHack</title>
+
+<style>
   body{
     height:100%;
     width:100%;
     margin:0;
   }
-  .banner {
-        background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(banner1.PNG);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: fixed;
-        width:100%;
-        height:100%;
-        opacity: 0.8;
-        filter: alpha(opacity=20);
-      }
-        
-  .text{
-    text-align:center;
-    position:absolute;
-    top:40%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    color:white;
+
+  .view{
+    height:100%;
   }
-         
-    h1{
-      font-size:80px;
-      font-family:"Georgia",serif;
+
+  @font-face {
+    font-family: "uni sans thin";
+    src: url("css/fonts/uni_sans_thin.eot");
+    src:
+    url("css/fonts/uni_sans_thin.woff") format("woff"),
+    url("css/fonts/uni_sans_thin.otf") format("opentype"),
+    url("css/fonts/uni_sans_thin.svg#filename") format("svg");
+  }
+
+  @media (max-width: 991px) {
+    html,
+    body{
+      height: 200px;
     }
 
-    button{ border-radius:15px;
-            background-color:#fff;
-            height:40px;
-            width:200px;
-            font-family:"Georgia",serif;
-            opacity:0.7;
-      }
-  </style>
+    .container-fluid{
+      margin:0;
+      padding:0;
+      display:block;
+    }
+
+    .view {
+      width: 100%;
+      height: 400px;
+      background-image: url('banner1.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      z-index: -1;
+    }
+    .something img{
+      margin: 30px 0 0 30px;
+    }
+
+    .something h3{
+      text-align:left;
+      margin-top:140px;
+      margin-left:30px;
+      margin-bottom: 0;
+      font-size: 50px;
+      font-style:"Georgia", sans-serif;
+    }
+
+    .something p{
+      text-align:left;
+      margin-left:30px;
+      color:white;
+    }
+
+    .something h3, p{
+      color:white;
+    }
+
+    .something input{
+      text-align:center;
+      border:2px solid red;
+      width:200px;
+      background-color:red;
+      float:left;
+      margin-left:30px;
+    }
+
+    /*Css for intro to seniorhack*/
+    .intro{
+      margin-top:150px;
+      margin-left:50px;
+      max-width:950;
+      margin-right: 50px;
+
+    }
+
+    .text p{text-align: left;
+    color:black;
+    max-width:950px;
+    }
+
+    .the-form{
+      margin-left:10px;
+      max-width: 500px;
+      margin-bottom:100px;
+    }
+
+    /*CSS for why choose seniorHack*/
+    .why{
+      margin-left:30px;
+      margin-right:30px;
+      margin-top:400px;
+      position:relative;
+      width:90%;
+      text-align:center;
+      font-family:"uni sans thin",Arial,sans-serif;
+      color: black;
+      max-width:800px;
+    }
+    .text1 h3, p{
+      text-align:center;
+      font-family:"uni sans thin",sans-serif;
+      color: black;
+    }
+    .row{
+      text-align:center;
+      display:"inline-block"
+    }
+
+  }
+  @media (min-width: 992px) and (max-width: 1170px) {
+    html,
+    body{
+      height:300px;
+    }
+    .container-fluid{
+      margin:0;
+      padding:0;
+    }
+
+    .view {
+      width: 100%;
+      height: 300px;
+      background-image: url('banner1.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .something img{
+      margin: 50px 0 0 100px;
+    }
+
+    .something h3{
+      text-align:right;
+      margin-top:35px;
+      margin-right:100px;
+      margin-bottom: 0;
+      font-size: 50px;
+      font-style:"Georgia", sans-serif;
+    }
+
+    .something p{
+      text-align:right;
+      margin-right:100px;
+      color:white;
+    }
+
+    .something h3, p{
+      color:white;
+    }
+
+    .something input{
+      text-align:center;
+      border:2px solid red;
+      width:200px;
+      background-color:red;
+      float:right;
+      margin-right:100px;
+    }
+
+    /*Css for intro to seniorhack*/
+    .intro{
+      margin-top:150px;
+      margin-left:70px;
+    }
+
+    .text p{text-align: left;
+    color:black;
+    max-width:550px;
+    margin-right:0;
+    padding-right:0;
+    }
+
+    .the-form{
+      margin-left:10px;
+      max-width: 500px;
+    }
+
+    /*CSS for why choose seniorHack*/
+    .why{
+      margin-left:60px;
+      margin-top:300px;
+      position:absolute;
+      width:90%;
+      text-align:center;
+      font-family:"uni sans thin",Arial,sans-serif;
+      color: black;
+
+    }
+    .text1 h3, p{
+      text-align:center;
+      font-family:"uni sans thin",sans-serif;
+      color: black;
+    }
+    .row{
+      text-align:center;
+      display:"inline-block"
+    }
+
+  }
+  @media(min-width: 1170px){
+
+    html,
+    body{
+      height: 500px;
+    }
+    .container-fluid{
+      margin:0;
+      padding:0;
+    }
+
+    .view {
+      width: 100%;
+      height: 500px;
+      background-image: url('banner1.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .something img{
+      margin: 50px 0 0 100px;
+    }
+
+    .something h3{
+      text-align:right;
+      margin-top:170px;
+      margin-right:100px;
+      margin-bottom: 0;
+      font-size: 80px;
+      font-style:"Georgia", sans-serif;
+    }
+
+    .something p{
+      text-align:right;
+      margin-right:100px;
+    }
+
+    .something h3, p{
+      color:white;
+    }
+
+    .something input{
+      text-align:center;
+      border:2px solid red;
+      width:200px;
+      background-color:red;
+      float:right;
+      margin-right:100px;
+    }
+
+    /*Css for intro to seniorhack*/
+    .intro{
+      margin-top:150px;
+      margin-left:70px;
+    }
+
+    .text p{text-align: left;}
+
+    .the-form{
+      margin-left:70px;
+    }
+
+
+
+    /*CSS for why choose seniorHack*/
+    .why{
+      margin-left:60px;
+      margin-top:300px;
+      position:absolute;
+      width:90%;
+      text-align:center;
+      font-family:"uni sans thin",Arial,sans-serif;
+      color: black;
+    }
+    .text1 h3, p{
+      text-align:center;
+      font-family:"uni sans thin",sans-serif;
+      color: black;
+    }
+    .row{
+      text-align:center;
+      display:"inline-block"
+    }
+  }
+</style>
 </head>
-  <body>
-  <div class=banner>
-    <div class=text>
-      <h1>SENIOR HACK</h1>
-        <p><i>Life Made Easier</i></p>
-        <button><b>SIGN UP</b></button>
-    </div>
-  </div>
+<body>
+  <div class="container-fluid">
+      <div class="view"></div>
+      <div class="something">
+
+          <a href="home.html"><img src="logoSquare.png" height="80px" width="80px" alt="Home"></a>
+
+          <h3>Senior Hack</h3>
+          <p>Bringing convenience and comfort to your doorstep</p>
+          <input type="button" name="button1" value="Sign in">
+        </div>
+
+        <!--Introduction to Seniorhack-->
+        <div class="intro">
+          <div class="col-xs-12 col-md-7">
+            <div class="text">
+              <p>Aging comes with many challenges, loss of independence is just part of the process.
+                Paying for doctor visits, grocery shopping, or even running small errands like cleaning the house may
+                turn out to be difficult for senior citizens. They may even need daily assistance or homecare
+                providers to help them with daily tasks like meal preparation. Furthermore, finding good help can
+                be a challenge, and help does not always come free.<br><br>
+
+                Hence, we developed a system to allow individual volunteers or non profit
+                organizations to provide home care services to the elderly. The seniors will be
+                able to find drivers, or other homecare providers for light household cleaning,
+                meal preparation or even simple companionship via our SeniorHack</p>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-5">
+            <div class="the-form">
+              <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Log in</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!--Why choose seniorhack-->
+        <div class="why">
+          <div class="text1">
+            <h1>Why Choose SeniorHack</h1>
+          </div>
+          <div class="row" >
+            <div class="col-xs-12 col-md-4" >
+              <h3>Convenient</h3>
+              <p>SeniorHack brings your services right to your doorstep, without needing
+              you to step out of your home at all.</p>
+            </div>
+            <div class="col-xs-12 col-md-4">
+              <h3>Time-Saving</h3>
+              <p>From booking home cleaning services to ordering your food, you can get it
+                all with SeniorHack from the comfort of your home.</p>
+            </div>
+            <div class="col-xs-12 col-md-4">
+              <h3>Top-class Services</h3>
+              <p>To ensure that you get top of the line services, you are entitled to the best
+                of servicers based on reviews given by our client base.
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap/min.js"></script>
 </body>
 </html>
