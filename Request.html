@@ -150,16 +150,28 @@ tr:hover{
 	width:100%;}
 
 .tbl {
-	width:45%; 
+  background-color:white;
+	width:45%;
 	float:left;
 	margin-left:3%;
 	border: 1px solid black;
 	margin-bottom:3%}
-
-.status {
-	background-color:red; 
-	color:white; 
+.statusPending {
+	background-color:#e03b24;
+	color:white;
 	padding: 3px 6px;}
+.statusAccepted {
+  background-color:#64a338;
+  color:white;
+  padding: 3px 6px;}
+.statusCancelled {
+  background-color:#777777;
+  color:white;
+  padding: 3px 6px;}
+.statusCompleted {
+  background-color:#3865a3;
+  color:white;
+  padding: 3px 6px;}
 
 .bottom-info {
 	padding-top:2px;
@@ -270,7 +282,7 @@ tr:hover{
 	<tr>
 		<td>
 		<a href="#" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="status">pending</span>
+		<p style="margin:8px 13px"><span class="statusPending">pending</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
@@ -285,7 +297,7 @@ tr:hover{
 	<tr>
 		<td>
 		<a href="#" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="status">pending</span>
+		<p style="margin:8px 13px"><span class="statusPending">pending</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
@@ -300,7 +312,7 @@ tr:hover{
 	<tr>
 		<td>
 		<a href="#" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="status">pending</span>
+		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
@@ -315,7 +327,7 @@ tr:hover{
 	<tr>
 		<td>
 		<a href="#" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="status">pending</span>
+		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
@@ -329,7 +341,7 @@ tr:hover{
 	<tr>
 		<td>
 		<a href="#" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="status">pending</span>
+		<p style="margin:8px 13px"><span class="statusCancelled">cancelled</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
@@ -344,7 +356,7 @@ tr:hover{
 	<tr>
 		<td>
 		<a href="#" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="status">pending</span>
+		<p style="margin:8px 13px"><span class="statusCompleted">completed</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
