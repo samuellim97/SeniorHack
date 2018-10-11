@@ -21,6 +21,17 @@
     height:100%;
   }
 
+  #loginbtn a{
+    text-decoration:none;
+    color:white;
+
+  }
+
+  #registerbtn a{
+    text-decoration:none;
+    color:white;
+  }
+
   @font-face {
     font-family: "uni sans thin";
     src: url("css/fonts/uni_sans_thin.eot");
@@ -39,7 +50,6 @@
     .container-fluid{
       margin:0;
       padding:0;
-      display:block;
     }
 
     .view {
@@ -101,14 +111,14 @@
     .the-form{
       margin-left:10px;
       max-width: 500px;
-      margin-bottom:100px;
+      text-align:left;
     }
 
     /*CSS for why choose seniorHack*/
     .why{
       margin-left:30px;
       margin-right:30px;
-      margin-top:400px;
+      margin-top:100px;
       position:relative;
       width:90%;
       text-align:center;
@@ -196,12 +206,14 @@
     .the-form{
       margin-left:10px;
       max-width: 500px;
+      text-align:left;
+      margin-right:50px;
     }
 
     /*CSS for why choose seniorHack*/
     .why{
       margin-left:60px;
-      margin-top:300px;
+      margin-top:100px;
       position:absolute;
       width:90%;
       text-align:center;
@@ -258,6 +270,7 @@
     .something p{
       text-align:right;
       margin-right:100px;
+      color:white;
     }
 
     .something h3, p{
@@ -283,14 +296,14 @@
 
     .the-form{
       margin-left:70px;
+      margin-right:50px;
+      text-align:left;
     }
-
-
 
     /*CSS for why choose seniorHack*/
     .why{
       margin-left:60px;
-      margin-top:300px;
+      margin-top:10   0px;
       position:absolute;
       width:90%;
       text-align:center;
@@ -314,16 +327,16 @@
       <div class="view"></div>
       <div class="something">
 
-          <a href="home.html"><img src="logoSquare.png" height="80px" width="80px" alt="Home"></a>
+          <a href="home.html"><img src="logoSquare.png" height="120px" width="120px" alt="Home"></a>
 
           <h3>Senior Hack</h3>
           <p>Bringing convenience and comfort to your doorstep</p>
-          <input type="button" name="button1" value="Sign in">
         </div>
 
         <!--Introduction to Seniorhack-->
         <div class="intro">
-          <div class="col-xs-12 col-md-7">
+          <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-7">
             <div class="text">
               <p>Aging comes with many challenges, loss of independence is just part of the process.
                 Paying for doctor visits, grocery shopping, or even running small errands like cleaning the house may
@@ -337,7 +350,7 @@
                 meal preparation or even simple companionship via our SeniorHack</p>
             </div>
           </div>
-          <div class="col-xs-12 col-md-5">
+          <div class="col-xs-12 col-sm-6 col-md-5">
             <div class="the-form">
               <form>
                 <div class="form-group">
@@ -349,10 +362,12 @@
                   <label for="exampleInputPassword1">Password</label>
                   <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Log in</button>
+                <button type="submit" class="btn btn-primary" id="loginbtn"><a href="#">Log in</a></button>
+                <button type="submit" class="btn btn-danger" id="registerbtn"><a href="#">Register</a></button>
               </form>
             </div>
           </div>
+        </div>
         </div>
 
         <!--Why choose seniorhack-->
@@ -361,17 +376,17 @@
             <h1>Why Choose SeniorHack</h1>
           </div>
           <div class="row" >
-            <div class="col-xs-12 col-md-4" >
+            <div class="col-xs-12 col-sm-6 col-md-4" >
               <h3>Convenient</h3>
               <p>SeniorHack brings your services right to your doorstep, without needing
               you to step out of your home at all.</p>
             </div>
-            <div class="col-xs-12 col-md-4">
+            <div class="col-xs-12 col-sm-6 col-md-4">
               <h3>Time-Saving</h3>
               <p>From booking home cleaning services to ordering your food, you can get it
                 all with SeniorHack from the comfort of your home.</p>
             </div>
-            <div class="col-xs-12 col-md-4">
+            <div class="col-xs-12 col-sm-6 col-md-4">
               <h3>Top-class Services</h3>
               <p>To ensure that you get top of the line services, you are entitled to the best
                 of servicers based on reviews given by our client base.
@@ -385,3 +400,4 @@
     <script src="js/bootstrap/min.js"></script>
 </body>
 </html>
+
