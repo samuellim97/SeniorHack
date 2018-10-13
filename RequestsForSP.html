@@ -179,6 +179,11 @@ tr:hover{
   .modal-footer {
     background-color: #f9f9f9;
   }
+  .edit {
+  float:right;
+  padding:1% 5%;
+  color:black;
+  text-decoration:underline;}
 </style>
 </head>
 <!-- Navigation bar-->
@@ -230,6 +235,16 @@ tr:hover{
 <!--Pending Requests Tab-->
     <div id="pending" class="tab-pane fade in active ">
       <div class="col-md-10 col-md-offset-1">
+<br>
+<div style="text-align:center">
+<h5><b>Sort by:</b></h5><form>
+    <label class="radio-inline">
+      <input type="radio" name="optradio" checked>Service ID
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="optradio">Date
+    </label>
+  </form></div>
       	<div style="color:black">
       	<br>
       	<br>
@@ -333,6 +348,16 @@ tr:hover{
 <!--Upcoming Requests Tab-->
 <div id="upcoming" class="tab-pane fade">
 <div class="col-md-10 col-md-offset-1">
+<br>
+<div style="text-align:center">
+<h5><b>Sort by:</b></h5><form>
+    <label class="radio-inline">
+      <input type="radio" name="optradio" checked>Service ID
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="optradio">Date
+    </label>
+  </form></div>
 	<div style="color:black">
 	<br>
 	<br>
@@ -434,6 +459,16 @@ tr:hover{
 <!--Requests History Tab-->
 <div id="history" class="tab-pane fade">
 <div class="col-md-10 col-md-offset-1">
+<br>
+<div style="text-align:center">
+<h5><b>Sort by:</b></h5><form>
+    <label class="radio-inline">
+      <input type="radio" name="optradio" checked>Service ID
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="optradio">Date
+    </label>
+  </form></div>
 	<div style="color:black">
 	<br>
 	<br>
@@ -546,10 +581,10 @@ tr:hover{
       <div style="padding: 1% 5%; background-color: #AAAAAA;">
         Request ID S0001
       </div>
+      <p><span style="float:left;padding:1% 5%;">Service Provider</span><a href="" class="edit">edit</a></p>
       <div class="modal-body">
 
         <div class="container">
-          <p>Service Provider</p>
           <div class="row" style="padding-top:10px; padding-bottom: 20px;">
             <div class="col-md-1 col-xs-2">
               <image style="height:64px; width:64px;" src="profile_pic.png"></image>
