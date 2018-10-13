@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Help Centre</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  body{background-color:#f0f3f5;}
+
+  .container{text-align:center;
+  max-width:900px;}
+
+  .container h1{text-align:center;
+  font-family:'Verdana', sans-serif;}
+
+  .accordion {
+   background-color: #0B7A75;
+   color: #ffffff;
+   cursor: pointer;
+   padding: 18px;
+   width: 100%;
+   border: none;
+   text-align: left;
+   outline: none;
+   font-size: 15px;
+   transition: 0.4s;
+  }
+
+  .active, .accordion:hover {
+     background-color: #35a39a;
+  }
+
+  .accordion:after {
+     content: '\002B';
+     color: white;
+     font-weight: bold;
+     float: right;
+     margin-left: 5px;
+  }
+
+  .active:after {
+     content: "\2212";
+  }
+
+  .panel {
+     padding: 0 18px;
+     background-color: white;
+     max-height: 0;
+     overflow: hidden;
+     transition: max-height 0.2s ease-out;
+     border-top-radius:0;
+     font-family:'Verdana', 'Arial', sans-serif;
+  }
+
+    @media (min-width: 768px) {
+      .navbar-nav.navbar-center {
+        position: absolute;
+        left: 47%;
+        transform: translatex(-50%);
+      }
+    }
+
+    .button_style {
+      background-color: limegreen;
+      color: white;
+      border-color: limegreen;}
+
+    .overall-grid{
+      height:100%;
+      width:100%;
+      position: fixed;
+      overflow-x:hidden;
+      margin: 0;
+      padding: 0;
+      max-width:2000px;}
+
+    #footer-bg {
+      background-color: #d7c9aa;
+      margin-top: 2%;
+      background-size:cover;
+      height:100%;
+      width:100%;
+      font-size: 15px;}
+
+    .footer_mid {
+      text-align:center;
+      margin-top:4%;}
+
+    .footer-left {
+      margin-top:4%;
+      text-align:left;
+      margin-left:10%;}
+
+    .footer-right {
+      margin-top:3%;
+      float: right;
+      text-align:right;
+      margin-right:10%;}
+
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color:white;
+        background-color:#0B7A75;}
+
+    .nav_style {
+      background-color:#0B7A75;}
+
+    .topnav li a{
+      text-align:center;
+      color:white !important;
+      padding-right: 35px;
+      padding-left: 35px;}
+    </style>
+</head>
+
+
+  <body>
+  <!-- Navigation bar-->
+  <header>
+  <nav class="navbar navbar-default nav_style" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+          <li><a href="#">Logo</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-center topnav">
+          <li><a href="#"></a></li>
+          <li><a href="#">Service Providers</a></li>
+  		<li><a href="#"id="defaultSelected"> Requests</a></li>
+  		<li><a href="#">Contact Us</a></li>
+  		<li><a href="#">Help</a></li>
+      </ul>
+
+
+
+
+	   <!--Log Out-->
+      <div class="collapse navbar-collapse" id="cl-mainNavbar">
+		   <a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right">Log Out</a>
+	    </div>
+      </div>
+    </nav>
+    </header>
+
+    <!--Content-->
+    <div class="container">
+      <h1>Help Centre</h1>
+      <h4>FREQUENTLY ASKED QUESTIONS:</h4>
+        <button class="accordion">Section 1</button>
+        <div class="panel">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+
+        <button class="accordion">Section 2</button>
+        <div class="panel">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+
+        <button class="accordion">Section 3</button>
+        <div class="panel">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+
+        <button class="accordion">Section 4</button>
+        <div class="panel">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+
+        <button class="accordion">Section 5</button>
+        <div class="panel">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+            nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+    </div>
+
+
+
+
+
+  <footer id="footer-bg" class="footer">
+    <div class="container-fluid">
+      <div class="row">
+
+        <!--Contact No-->
+        <div class="col-sm-4 pull-left1">
+          <p class="footer-left" style="text-indent:10px">Contact Us At <br><span style="font-size:18px;font-weight:bold;"> 1300-88-2525</span></p>
+        </div>
+
+        <div class="col-sm-4 dropup">
+          <p class="footer_mid">&copy;Copyright SeniorHack 2018 <br>All rights reserved</p>
+        </div>
+
+        <!--Links to Social Media-->
+        <div class="col-sm-4">
+          <ul class="social-network social-circle footer-right ">
+    	     <a style="color:black">Join Us At </a> <br>
+           <a href="https://facebook.com/"><i class="fa fa-facebook-square" style="font-size:2em;color:black;margin-right:18%"></i></a>
+    		   <a href="https://twitter.com/"><i class="fa fa-twitter" style="font-size:2em;color:black"></i></a>
+          </ul>
+       </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <!--Accordion-->
+  <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight){
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    }
+  </script>
+
+  <!--Request anchor and New Request Tab are selected by default-->
+  <script>
+    document.getElementById("defaultSelected").focus();
+    document.getElementById("defaultOpen").click();
+    <!--function to make sure that no element will lose focus unless other button is chosen-->
+    $('.button').click(function() {
+        $('button').removeClass('active');
+        $(this).addClass('active');
+    })
+    $('#defaultSelected').on('blur',function () {
+        var blurEl = $(this);
+        setTimeout(function() {
+            blurEl.focus()
+        }, 10);
+    });
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="js/bootstrap/min.js"></script>
+</body>
+</html>
