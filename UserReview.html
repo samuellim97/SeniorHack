@@ -137,8 +137,31 @@ body{background-color:#f0f3f5;}
 	width:100%;
   opacity: 0.8;}
 
-#user_profile {
+#profile {
+  background-color:white;
+  height:110px;
   max-width:300px;
+  border:1px solid black;
+}
+
+#ratings {
+  background-color:white;
+  height:500px;
+  float:left;
+  text-align: left;
+  margin-left: 3%;
+  border:1px solid black;}
+
+.tb1 {
+  background-color:white;
+  height:500px;
+  float:left;
+	margin-left:3%;
+  border: 1px solid black;
+  margin-bottom:3%; }
+
+td{
+  border: 1px solid black;
 }
 
 /* Ratings widget */
@@ -221,29 +244,26 @@ label:hover ~ input:checked ~ label { color: #A6E72D;  }
 <div class="container"  style="margin-top:3%">
   <h2 style="width:46%; padding-right: 5%" >User Reviews</h2>
 <br>
-<div id="user_reviews" class="row">
+<div id="user_reviews">
 <!--View User Reviews-->
-    <div id="user_profile" class="col-md-3 col-sm-6 col-xs-12" style="height: 100px; border: 1px solid grey;">
+    <div id="profile">
       <div class="row">
-        <div class="col-md-4 col-xs-4">
-          <image style="height:64px; width:64px; padding-top:20%; padding-left:10%"
+        <div class="col-md-4 col-xs-2">
+          <image style="height:100px; width:100px; padding: 10px"
           src="profile_pic.png"></image>
         </div>
-        <div class="col-md-8 col-xs-8">
+        <div class="col-md-8 col-xs-4" style="margin-top: 5%; padding-top: 10px";>
           Adam
           <br>012-3456789
           <br>4.5 stars
         </div>
       </div>
     </div>
-    <div class="col-md-9 col-sm-6 col-xs-12">
-      <div class="card" style="width: 500px;">
+    <divstyle="margin-left:3%;">
         <form action="#">
           <div class="form-group">
             <label for="rating"></label>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <fieldset class="rate">Rating:
+                  <fieldset class="rate">Rate:
                     <input type="radio" id="rating10" name="rating" value="10" /><label for="rating10" title="5 stars"></label>
                     <input type="radio" id="rating9" name="rating" value="9" /><label class="half" for="rating9" title="4 1/2 stars"></label>
                     <input type="radio" id="rating8" name="rating" value="8" /><label for="rating8" title="4 stars"></label>
@@ -256,25 +276,114 @@ label:hover ~ input:checked ~ label { color: #A6E72D;  }
                     <input type="radio" id="rating1" name="rating" value="1" /><label class="half" for="rating1" title="1/2 star"></label>
                     <input type="radio" id="rating0" name="rating" value="0" /><label for="rating0" title="No star"></label>
                   </fieldset>
-                </li>
               </div>
               <div class="form-group">
                 <label for="comment"></label>
-                <li class="list-group-item">
                   <input type="text" class="form-control" id="comment" placeholder="What do you think?">
-                </li>
+
               </div>
-              </ul>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-          </div>
     </div>
     </div>
 <br>
 <br>
 <br>
-    </div>
+<div class="container">
+<div id="user_reviews2" class="row">
+  <div id="ratings" class="col-md-2 col-sm-2">
+          <h5>Service Provider Ratings</h5>
+          <h1>3.8 / 5</h1>
+          <span style="font-size: 11px">based on 38 user reviews</span>
+  </div>
+  <div class="col-md-10 col-sm-10" style="height:500px; overflow:auto">
+    <br>
+    <br>
+  <table id="reviewsTable" class="tb1">
+    <tr>
+      <td>
+      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
+      <span style="float:right;">3 stars</span>
+      <br><br>Thank you for your professional follow up and follow through on
+      services rendered at my home. I highly recommend your services to
+      friends and family.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
+      <span style="float:right;">3 stars</span>
+      <br><br>Thank you for your professional follow up and follow through on
+      services rendered at my home. I highly recommend your services to
+      friends and family.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
+      <span style="float:right;">3 stars</span>
+      <br><br>Thank you for your professional follow up and follow through on
+      services rendered at my home. I highly recommend your services to
+      friends and family.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
+      <span style="float:right;">3 stars</span>
+      <br><br>Thank you for your professional follow up and follow through on
+      services rendered at my home. I highly recommend your services to
+      friends and family.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
+      <span style="float:right;">3 stars</span>
+      <br><br>Thank you for your professional follow up and follow through on
+      services rendered at my home. I highly recommend your services to
+      friends and family.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
+      <span style="float:right;">3 stars</span>
+      <br><br>Thank you for your professional follow up and follow through on
+      services rendered at my home. I highly recommend your services to
+      friends and family.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
+      <span style="float:right;">3 stars</span>
+      <br><br>Thank you for your professional follow up and follow through on
+      services rendered at my home. I highly recommend your services to
+      friends and family.
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
+      <span style="float:right;">3 stars</span>
+      <br><br>Thank you for your professional follow up and follow through on
+      services rendered at my home. I highly recommend your services to
+      friends and family.
+      </p>
+      </td>
+    </tr>
+  </table>
+</div>
 	</div>
+</div>
 <!--End of View User Reviews-->
 <footer id="footer-bg" class="footer">
 <div class="container-fluid">
@@ -311,4 +420,5 @@ $('.button').click(function() {
 })
 </script>
 </body>
+</html>
 </html>
