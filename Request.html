@@ -184,6 +184,23 @@ tr:hover{
 	text-decoration:underline;
 	padding: 2px 10px;
 	color:black}
+.modal-header, h4, .close {
+    background-color: #0b7a75;
+    color:white !important;
+    text-align: center;
+    font-size: 15px;
+  }
+  .modal-footer {
+    background-color: #f9f9f9;
+  }
+  #edit {
+  float:right;
+  padding:1% 5%;
+  color:black;
+  text-decoration:underline;}
+  .btn-xs{
+  margin-top:1%;
+  }
 </style>
 </head>
 <!-- Navigation bar-->
@@ -294,7 +311,7 @@ tr:hover{
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusPending">pending</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
@@ -384,7 +401,93 @@ tr:hover{
 </div>
 
     </div>
-  
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding:10px 35px;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <p class="modal-title"><span class="statusPending" style="float:left;margin-top:1%;">pending</span><p style="float:initial;margin-top:1.5%;">1/9/18, 12:00PM</p></</p>
+      </div>
+      <div style="padding: 1% 5%; background-color: #AAAAAA;">
+        Request ID S0001
+      </div>
+      <p><span style="float:left;padding:1% 5%;">Service Provider</span><a href="#detailsModal" data-target="#detailsModal" id="edit">edit</a></p>
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row" style="padding-top:10px; padding-bottom: 20px;">
+            <div class="col-md-1 col-xs-2">
+              <image style="height:64px; width:64px;" src="profile_pic.png"></image>
+            </div>
+            <div class="col-md-4 col-xs-4">
+              <b>Adam</b>
+              <br>012-3456789
+              <br>4.5 stars
+            </div>
+          </div>
+          <div style="padding-bottom: 20px;">
+            notes: pick me up at Entrance A
+          </div>
+        </div>
+      <div class="modal-footer" style="text-Align: left;">
+        Type: Cleaning
+        <button type="button" class="btn btn-default" style="float: right;"
+        data-dismiss="modal">Close</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Edit Details Model-->
+<div class="modal fade" id="detailsModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Edit Details Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding:10px 35px;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <p class="modal-title"><span class="statusPending" style="float:left;margin-top:1%;">pending</span><p style="float:initial;margin-top:1.5%;">1/9/18, 12:00PM</p></</p>
+      </div>
+      <div style="padding: 1% 5%; background-color: #AAAAAA;">
+        Request ID S0001
+      </div>
+      <p><span style="float:left;padding:1% 5%;">Service Provider</span></p>
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row" style="padding-top:10px; padding-bottom: 20px;">
+            <div class="col-md-1 col-xs-1">
+              <image style="height:64px; width:64px;" src="profile_pic.png"></image>
+            </div>
+            <div class="col-md-4 col-xs-4">
+              <b>Adam</b>
+              <br>012-3456789
+              <br><button type="button" class="btn btn-primary btn-xs">View Rating</button>
+            </div>
+          </div>
+          <div >
+            <label for="notes">notes: </label> <br>
+			<textarea name="notes" rows="4" cols="40" ></textarea>
+          </div>
+        </div>
+		
+      <div class="modal-footer" style="text-Align: left;">
+        Type: Cleaning<br>
+        <button type="button" class="btn btn-default" style="float: right; background-color:#e03b24;color:white"
+        >Cancelled</button>
+		<button type="button" class="btn btn-default" style="float: right;background-color:#64a338;color:white"
+        >Completed</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 </div>
 
@@ -431,6 +534,11 @@ jQuery(document).ready(function($) {
         window.location = $(this).data("href");
     });
 })
+
+$('#edit').on('click', function(){
+    $('#myModal').modal('hide'); // hides modal with id myModal
+    $('#detailsModal').modal('show'); // display modal with id detailsModal
+});
 </script>
 </body>
 </html>
