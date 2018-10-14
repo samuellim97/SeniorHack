@@ -4,6 +4,8 @@
   <title>Requests</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="Request.css">
+  <link rel="stylesheet" href="SeniorHack.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -11,210 +13,88 @@
 
 <style>
 body{background-color:#f0f3f5;}
-.button_style {
-	background-color: limegreen;
-	color: white;
-	border-color: limegreen;}
-
-.overall-grid{
-	height:100%;
-	width:100%;
-	position: fixed;
-	overflow-x:hidden;
-	margin: 0;
-	padding: 0;
-	max-width:2000px;}
-
-#footer-bg {
-	background-color: #d7c9aa;
-	margin-top: 2%;
-	background-size:cover;
-	height:100%;
-	width:100%;
-	font-size: 15px;}
-.footer_mid {
-	text-align:center;
-	margin-top:4%;}
-.footer-left {
-	margin-top:4%;
-	text-align:left;
-	margin-left:10%;}
-.footer-right {
-    margin-top:3%;
-	float: right;
-	text-align:right;
-	margin-right:10%;}
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-    color:white;
-    background-color:#0B7A75;}
+   color:white;
+   background-color:#0B7A75;}
 
 .nav_style {
-	background-color:#0B7A75;
-	border:none;}
+ background-color:#0B7A75;
+ border:none;}
 
 .topnav li a{
-	text-align:center;
-	color:white !important;
-	padding-right: 35px;
-	padding-left: 35px;}
+ text-align:center;
+ color:white !important;
+ padding-right: 35px;
+ padding-left: 35px;}
 
-@media (min-width: 768px) {
-  .navbar-nav.navbar-center {
-    position: absolute;
-    left: 47%;
-    transform: translatex(-50%);
-  }
-}
-.topnav li a:active{
-	background-color:#19535f !important;}
-.topnav li a:hover{
-	background-color:grey !important;}
-
-.va_input{
-	margin-top:5%;
-	display:flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center}
-
-.va_input input, .va_input label{
-	margin-right:2%;
-	vertical-align: middle;
-	display: inline !important;}
-
-.shadow {
-	background-color:rgba(255,255,255,0.6);
-	margin-top:2%;
-	height:auto;
-	}
-
-.top-btn{
-	margin-left:10%;
-	margin-right:10%;
-	margin-top:5%;
-	}
-.bottom-btn{
-	margin-left:8%;
-	margin-right:5%;
-	margin-top:8%;}
-.button.btn {
-	background-color:#d7c9aa;
-	font-weight:bold;
-	color:black;
-	border:0;}
-
-.button:hover {
-	background-color:#f0f3f5;
-	border: 2px solid black;}
-tr:hover{
-	background-color:#d7c9aa;
-	border: 2px;
-	text-decoration:none;}
-.button:focus {
-	background-color:#7b2d26 !important;
-	color:white;
-	border: 2px solid white;}
+.logo {
+ margin-top:-1%;
+ height:50px;}
 
 .button.active {
-	background-color:#7b2d26 !important;
-	color:white;
-	border: 2px solid white;
+ background-color:#7b2d26 !important;
+ color:white;
+ border: 2px solid white;
 }
 
-#defaultSelected {
-	background-color:#19535f !important;}
-#banner {
-	background:url(banner9.png) no-repeat top center fixed;
-	background-size:cover;
-  opacity:0.8;
-	height:500px;
-	width:100%;}
+@media only screen and (max-width: 750px)
+ {.log-out { margin:auto;
+ display:block;
+ width:25%;
+ }}
+
+@media only screen and (min-width: 750px){
+.log-out {
+ margin-right:2%;
+ }
+ }
+
 .tbl {
-  background-color:white;
 	width:45%;
-	float:left;
-	margin-left:3%;
-	border: 1px solid black;
-	margin-bottom:3%}
+	float:left;}
 
-.statusPending {
-	background-color:#e03b24;
-	color:white;
-	padding: 3px 6px;}
 
-.statusAccepted {
-  background-color:#64a338;
-  color:white;
-  padding: 3px 6px;}
-
-.statusCancelled {
-  background-color:#777777;
-  color:white;
-  padding: 3px 6px;}
-
-.statusCompleted {
-  background-color:#3865a3;
-  color:white;
-  padding: 3px 6px;}
-
-.bottom-info {
-	padding-top:2px;
-	margin-left:13px;
-	margin-right:13px;}
-
-.view-info{
-	font-size:12px;
-	float:right;
-	text-decoration:underline;
-	padding: 2px 10px;
-	color:black}
-
-  .modal-header, h4, .close {
-    background-color: #0b7a75;
-    color:white !important;
-    text-align: center;
-    font-size: 15px;
-  }
-  .modal-footer {
-    background-color: #f9f9f9;
-  }
-  .edit {
-  float:right;
-  padding:1% 5%;
-  color:black;
-  text-decoration:underline;}
 </style>
 </head>
 <!-- Navigation bar-->
 <header>
-<div id="banner">
-<nav class="navbar navbar-default nav_style" role="navigation">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-  </div>
-  <div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav">
-        <li><a href="#">Logo</a></li>
+  <div id="banner">
+  <nav class="navbar navbar-default nav_style navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav logo">
+          <li><a href="#"><img src="logo.png" alt="SeniorHack Logo" class="logo"></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-center topnav">
+          <li><a href="#">Service Providers</a></li>
+  		<li><a href="#" id="defaultSelected"> Requests</a></li>
+  		<li><a href="#">Contact Us</a></li>
+  		<li><a href="#">Help</a></li>
     </ul>
-    <ul class="nav navbar-nav navbar-center topnav">
-        <li><a href="#"></a></li>
-        <li><a href="#">Service Providers</a></li>
-		<li><a href="#" id="defaultSelected"> Requests</a></li>
-		<li><a href="#">Contact Us</a></li>
-		<li><a href="#">Help</a></li>
-    </ul>
-	<!--Log Out-->
-   <div class="collapse navbar-collapse" id="cl-mainNavbar">
-		<a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right" >Log Out</a>
-	</div>
-  </div>
-</nav>
+    <!--Log Out-->
+     <div class="collapse navbar-collapse" id="cl-mainNavbar">
+      <a href="" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+    </div>
+    </div>
+  </nav>
+<div class="container">
+<div class="row"><br><br><br>
+<div class="banner-title col-lg-9 col-md-9 col-sm-10"><p>We Give Seniors The Love </p><p style="margin-top:-3%">They Deserve</p></div>
+
+<div class="banner-description col-lg-5 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-7 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+<p>SeniorHack ameliorates the living standards of senior citizens by providing a platform
+of service providers which will bring about convenience and comfort in their lives.</p><br>
+<a href="#" class="btn btn-info" role="button">Request a Service Now</a></div>
 </div>
+</div>
+
 </header>
 
 <body>
@@ -581,7 +461,7 @@ tr:hover{
       <div style="padding: 1% 5%; background-color: #AAAAAA;">
         Request ID S0001
       </div>
-      <p><span style="float:left;padding:1% 5%;">Service Provider</span><a href="" class="edit">edit</a></p>
+      <p><span style="float:left;padding:1% 5%;">Service Provider</span><a href="#detailsModal" data-target="#detailsModal" id="edit">edit</a></p>
       <div class="modal-body">
 
         <div class="container">
@@ -589,7 +469,7 @@ tr:hover{
             <div class="col-md-1 col-xs-2">
               <image style="height:64px; width:64px;" src="profile_pic.png"></image>
             </div>
-            <div class="col-md-4 col-xs-4">
+            <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-1">
               <b>Adam</b>
               <br>012-3456789
               <br>4.5 stars
@@ -602,7 +482,9 @@ tr:hover{
       <div class="modal-footer" style="text-Align: left;">
         Type: Cleaning
         <button type="button" class="btn btn-default" style="float: right;"
-        data-dismiss="modal">Close</button>
+        data-dismiss="modal">Reject</button>
+        <button type="button" class="btn btn-default" style="float: right;"
+        data-dismiss="modal">Accept</button>
       </div>
       </div>
     </div>
@@ -610,23 +492,72 @@ tr:hover{
 </div>
 </div>
 </div>
+</div>
+
+<!--Edit Details Model-->
+<div class="modal fade" id="detailsModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Edit Details Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding:10px 35px;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <p class="modal-title"><span class="statusPending" style="float:left;margin-top:1%;">pending</span><p style="float:initial;margin-top:1.5%;">1/9/18, 12:00PM</p></</p>
+      </div>
+      <div style="padding: 1% 5%; background-color: #AAAAAA;">
+        Request ID S0001
+      </div>
+      <p><span style="float:left;padding:1% 5%;">Service Provider</span></p>
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row" style="padding-top:10px; padding-bottom: 20px;">
+            <div class="col-md-1 col-xs-12">
+              <image style="height:64px; width:64px;" src="profile_pic.png"></image>
+            </div>
+            <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-0">
+              <b>Adam</b>
+              <br><p>012-3456789
+              <br><button type="button" class="btn btn-primary btn-xs" >View Rating</button></p>
+			  </div>
+			  <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3 col-xs-offset-4" style="margin-top:0%;margin-left:-5%;float-right;text-align:center">
+			  <button type="button" class="btn btn-info btn-xs" style="margin-top:25%;padding-left:22%;padding-right:22%">Cancel Service</button><br>
+			  <button type="button" class="btn btn-warning btn-xs" style="margin-top:5%">Service Completed</button></div>
+
+			</div>
+          </div>
+          <div style="margin-left:3%" >
+            <label for="notes">notes: </label> <br>
+			<textarea name="notes" rows="3" cols="30" ></textarea>
+          </div>
+        </div>
+
+      <div class="modal-footer" style="text-Align: left;width:100%">
+        Type: Cleaning
+        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal" style="float: right"
+        >Save</button>
+      </div>
+      </div>
+    </div>
+  </div>
 
 
-<footer id="footer-bg" class="footer">
-<div class="container-fluid">
+<footer id="footer-bg" class="footer" style="width:100%">
+<div class="container">
 <div class="row">
 
 <!--Contact No-->
-  <div class="col-sm-4 pull-left1">
+  <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-4">
       <p class="footer-left" style="text-indent:10px">Contact Us At <br><span style="font-size:18px;font-weight:bold;"> 1300-88-2525</span></p>
       </div>
 
-    <div class="col-sm-4 dropup">
+    <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 ">
       <p class="footer_mid">&copy;Copyright SeniorHack 2018 <br>All rights reserved</p>
     </div>
 
 <!--Links to Social Media-->
-    <div class="col-sm-4">
+    <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-1 ">
     <ul class="social-network social-circle footer-right ">
 	<a style="color:black">Join Us At </a> <br>
        <a href="https://facebook.com/"><i class="fa fa-facebook-square" style="font-size:2em;color:black;margin-right:18%"></i></a>
@@ -645,12 +576,21 @@ $('.button').click(function() {
     $('button').removeClass('active');
     $(this).addClass('active');
 })
+
+
 jQuery(document).ready(function($) {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
 })
+$("#edit").on("click", function(){
+    $("#myModal").modal("hide");
+    $("#myModal").on("hidden.bs.modal",function(){
+    $("#detailsModal").modal("show");
+    });
+});
+
+
 </script>
 </body>
 </html>
-
