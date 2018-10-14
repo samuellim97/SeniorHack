@@ -4,53 +4,16 @@
   <title>Manage Requests</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="Request.css">
+  <link rel="stylesheet" href="SeniorHack.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-<style>
-
-body{background-color:#f0f3f5;}
-
-.button_style {
-	background-color: limegreen;
-	color: white;
-	border-color: limegreen;}
-	
-.overall-grid{
-	height:100%;
-	width:100%;
-	position: fixed;
-	overflow-x:hidden;
-	margin: 0;
-	padding: 0;
-	max-width:2000px;}
-	
-#footer-bg {
-	background-color: #d7c9aa;
-	margin-top: 2%;
-	background-size:cover;
-	height:100%;	
-	width:100%;
-	font-size: 15px;}
-
-.footer_mid {
-	text-align:center;
-	margin-top:4%;}
-
-.footer-left {
-	margin-top:4%; 
-	text-align:left;
-	margin-left:10%;}
-
-.footer-right {
-    margin-top:3%;
-	float: right;
-	text-align:right;
-	margin-right:10%;}
-	
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+ <style>
+ body{background-color:#f0f3f5;}
+ 
+ .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     color:white;
     background-color:#0B7A75;}
 	
@@ -58,155 +21,40 @@ body{background-color:#f0f3f5;}
 	background-color:#0B7A75;
 	border:none;}
 	
-.topnav li a{
+ .topnav li a{
 	text-align:center;
 	color:white !important; 
 	padding-right: 35px;
 	padding-left: 35px;}
-	
-@media (min-width: 768px) {
-  .navbar-nav.navbar-center {
-    position: absolute;
-    left: 47%;
-    transform: translatex(-50%);
-  }
-}
 
-.topnav li a:active{
-	background-color:#19535f !important;}
-
-.topnav li a:hover{
-	background-color:grey !important;}
-	
-.va_input{
-	margin-top:5%;
-	display:flex; 
-	flex-direction: row; 
-	justify-content: center; 
-	align-items: center}
-	
-.va_input input, .va_input label{
-	margin-right:2%;
-	vertical-align: middle;
-	display: inline !important;}
-
-.form-group{
-	text-align:center;}
-
-.shadow {
-	background-color:rgba(255,255,255,0.6);
-	margin-top:2%;
-	height:auto;
-	}
-
-.form-control {
-	text-align:center;
-}
-
-.top-btn{
-	margin-left:10%;
-	margin-right:10%;
-	margin-top:5%;
-	}
-
-.bottom-btn{
-	margin-left:8%;
-	margin-right:5%;
-	margin-top:8%;}
-
-.button.btn {
-	background-color:#d7c9aa;
-	font-weight:bold;
-	color:black;
-	border:0;}	
-	
-.button:hover {
-	background-color:#f0f3f5;
-	border: 2px solid black;}
-tr:hover{
-	background-color:#d7c9aa;
-	border: 2px;
-	text-decoration:none;}	
-
-.button:focus {
-	background-color:#7b2d26 !important;
-	color:white;
-	border: 2px solid white;}
-	
-.button.active {
+.logo {
+  margin-top:-1%;
+  height:50px;}
+  
+ .button.active {
 	background-color:#7b2d26 !important;
 	color:white;
 	border: 2px solid white;    
 }
 
+@media only screen and (max-width: 750px) 
+  {.log-out { margin:auto; 
+  display:block; 
+  width:25%;
+  }}
+
+@media only screen and (min-width: 750px){
+ .log-out {
+  margin-right:2%;
+  }
+  }
 	
-#defaultSelected {
-	background-color:#19535f !important;}
-
-#banner {
-	background:url(banner1.jpg) no-repeat top center fixed;
-	background-size:cover;
-	height:500px;
-	width:100%;}
-
-.tbl {
-  background-color:white;
-	width:45%;
-	float:left;
-	margin-left:3%;
-	border: 1px solid black;
-	margin-bottom:3%}
-.statusPending {
-	background-color:#e03b24;
-	color:white;
-	padding: 3px 6px;}
-.statusAccepted {
-  background-color:#64a338;
-  color:white;
-  padding: 3px 6px;}
-.statusCancelled {
-  background-color:#777777;
-  color:white;
-  padding: 3px 6px;}
-.statusCompleted {
-  background-color:#3865a3;
-  color:white;
-  padding: 3px 6px;}
-
-.bottom-info {
-	padding-top:2px;
-	margin-left:13px;
-	margin-right:13px;}
-	
-.view-info{
-	font-size:12px;
-	float:right;
-	text-decoration:underline;
-	padding: 2px 10px;
-	color:black}
-.modal-header, h4, .close {
-    background-color: #0b7a75;
-    color:white !important;
-    text-align: center;
-    font-size: 15px;
-  }
-  .modal-footer {
-    background-color: #f9f9f9;
-  }
-  #edit {
-  float:right;
-  padding:1% 5%;
-  color:black;
-  text-decoration:underline;}
-  .btn-xs{
-  margin-top:1%;
-  }
-</style>
+ </style>
 </head>
 <!-- Navigation bar-->
 <header>
 <div id="banner">
-<nav class="navbar navbar-default nav_style" role="navigation">
+<nav class="navbar navbar-default nav_style navbar-fixed-top" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="icon-bar"></span>
@@ -215,11 +63,10 @@ tr:hover{
     </button>    
   </div>
   <div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav">
-        <li><a href="#">Logo</a></li>
+    <ul class="nav navbar-nav logo">
+        <li><a href="#"><img src="SeniorHackLogo.png" alt="SeniorHack Logo" class="logo"></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-center topnav">
-        <li><a href="#"></a></li>
         <li><a href="#">Service Providers</a></li>
 		<li><a href="#" id="defaultSelected"> Requests</a></li>
 		<li><a href="#">Contact Us</a></li>
@@ -227,17 +74,27 @@ tr:hover{
     </ul>
 	<!--Log Out-->
    <div class="collapse navbar-collapse" id="cl-mainNavbar">
-		<a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right" >Log Out</a>
+		<a href="" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
 	</div>
   </div>
 </nav>
+<div class="container">
+<div class="row"><br><br><br>
+<div class="banner-title col-lg-9 col-md-9 col-sm-10"><p>We Give Seniors The Love </p><p style="margin-top:-3%">They Deserve</p></div>
+
+<div class="banner-description col-lg-5 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-7 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+<p>SeniorHack ameliorates the living standards of senior citizens by providing a platform
+of service providers which will bring about convenience and comfort in their lives.</p><br>
+<a href="#" class="btn btn-info" role="button">Request a Service Now</a></div>
 </div>
+</div>
+
 </header>
 
 <body>
 <div class="container"  style="margin-top:3%">
   <div class="row">
-<div class="col-md-4 col-md-offset-4">
+<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
 <!--New Request and View Requests Tabs-->
   <ul class="tab nav nav-pills">
   
@@ -251,8 +108,8 @@ tr:hover{
 <div class="tab-content">
 <!--Make New Request Tab-->
     <div id="new_request" class="tab-pane fade in active ">
-	<div class="col-md-6 col-md-offset-3 shadow">
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 shadow col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
 <br>
 <form action="#">
 	
@@ -291,7 +148,7 @@ tr:hover{
 <!--End of New Request-->
 
 <div id="view_requests" class="tab-pane fade">
-<div class="col-md-10 col-md-offset-1">
+<div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
 	<br>
 	<div style="text-align:center">
 <h5><b>Sort by:</b></h5><form>
@@ -308,7 +165,8 @@ tr:hover{
 	<div style="color:black">
 	<br>
 	<br>
-<table id="tblOne"class="tbl">
+<div class="col-lg-6 col-md-6 col-sm-6" >
+<table id="tblOne" class="tbl ">
 	<tr>
 		<td>
 		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
@@ -323,7 +181,9 @@ tr:hover{
 		</td>
 	</tr>
 </table>
-<table id="tblOne"class="tbl">
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6">
+<table id="tblOne"class="tbl ">
 	<tr>
 		<td>
 		<a href="#" style="color:black;text-decoration:none">
@@ -338,6 +198,26 @@ tr:hover{
 		</td>
 	</tr>
 </table>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6">
+<table id="tblOne"class="tbl">
+	<tr>
+		<td>
+		<a href="#" style="color:black;text-decoration:none">
+		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
+		
+<span style="float:right">1/9/18, 12:00pm</span>
+		<br><span style="font-size:12px">Request ID S0001</span>
+		<br>Service Provider:Adam
+		<div class="bottom-info">
+		<span style="font-size:12px">Cleaning</span>
+		<p class="view-info">view</p></div></p>
+		</a>
+		</td>
+	</tr>
+</table>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6" >
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
@@ -353,21 +233,9 @@ tr:hover{
 		</td>
 	</tr>
 </table>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6" >
 <table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Service Provider:Adam
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table><table id="tblOne"class="tbl">
 	<tr>
 		<td>
 		<a href="#" style="color:black;text-decoration:none">
@@ -382,6 +250,8 @@ tr:hover{
 		</td>
 	</tr>
 </table>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6" >
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
@@ -399,9 +269,11 @@ tr:hover{
 </table>
 </div>
 </div>
+</div>
 
     </div>
-  <!-- Modal -->
+<!--End of View Requests-->
+<!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
 
@@ -423,7 +295,7 @@ tr:hover{
             <div class="col-md-1 col-xs-2">
               <image style="height:64px; width:64px;" src="profile_pic.png"></image>
             </div>
-            <div class="col-md-4 col-xs-4">
+            <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-1">
               <b>Adam</b>
               <br>012-3456789
               <br>4.5 stars
@@ -462,53 +334,57 @@ tr:hover{
 
         <div class="container">
           <div class="row" style="padding-top:10px; padding-bottom: 20px;">
-            <div class="col-md-1 col-xs-1">
+            <div class="col-md-1 col-xs-12">
               <image style="height:64px; width:64px;" src="profile_pic.png"></image>
             </div>
-            <div class="col-md-4 col-xs-4">
+            <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-0">
               <b>Adam</b>
-              <br>012-3456789
-              <br><button type="button" class="btn btn-primary btn-xs">View Rating</button>
-            </div>
+              <br><p>012-3456789
+              <br><button type="button" class="btn btn-primary btn-xs" >View Rating</button></p>
+			  </div>
+			  <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3 col-xs-offset-4" style="margin-top:0%;margin-left:-5%;float-right;text-align:center">
+			  <button type="button" class="btn btn-info btn-xs" style="margin-top:25%;padding-left:22%;padding-right:22%">Cancel Service</button><br>
+			  <button type="button" class="btn btn-warning btn-xs" style="margin-top:5%">Service Completed</button></div>
+            
+			</div>
           </div>
-          <div >
+          <div style="margin-left:3%" >
             <label for="notes">notes: </label> <br>
-			<textarea name="notes" rows="4" cols="40" ></textarea>
+			<textarea name="notes" rows="3" cols="30" ></textarea>
           </div>
         </div>
 		
-      <div class="modal-footer" style="text-Align: left;">
-        Type: Cleaning<br>
-        <button type="button" class="btn btn-default" style="float: right; background-color:#e03b24;color:white"
-        >Cancelled</button>
-		<button type="button" class="btn btn-default" style="float: right;background-color:#64a338;color:white"
-        >Completed</button>
+      <div class="modal-footer" style="text-Align: left;width:100%">
+        Type: Cleaning
+        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal" style="float: right"
+        >Save</button>
       </div>
       </div>
     </div>
   </div>
 </div>
+  
 </div>
 </div>
 
 </div>
 </div>
 </div>
-<footer id="footer-bg" class="footer">
-<div class="container-fluid">
+<footer id="footer-bg" class="footer" style="width:100%">
+<div class="container">
 <div class="row">
 
 <!--Contact No-->
-  <div class="col-sm-4 pull-left1">
+  <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-4">
       <p class="footer-left" style="text-indent:10px">Contact Us At <br><span style="font-size:18px;font-weight:bold;"> 1300-88-2525</span></p>
       </div>
 
-    <div class="col-sm-4 dropup">
+    <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 ">
       <p class="footer_mid">&copy;Copyright SeniorHack 2018 <br>All rights reserved</p>
     </div>
 	
 <!--Links to Social Media-->
-    <div class="col-sm-4">
+    <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-1 ">
     <ul class="social-network social-circle footer-right ">
 	<a style="color:black">Join Us At </a> <br>
        <a href="https://facebook.com/"><i class="fa fa-facebook-square" style="font-size:2em;color:black;margin-right:18%"></i></a>
@@ -534,11 +410,14 @@ jQuery(document).ready(function($) {
         window.location = $(this).data("href");
     });
 })
-
-$('#edit').on('click', function(){
-    $('#myModal').modal('hide'); // hides modal with id myModal
-    $('#detailsModal').modal('show'); // display modal with id detailsModal
+$("#edit").on("click", function(){
+    $("#myModal").modal("hide");
+    $("#myModal").on("hidden.bs.modal",function(){
+    $("#detailsModal").modal("show");
+    });
 });
+
+
 </script>
 </body>
 </html>
