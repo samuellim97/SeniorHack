@@ -31,11 +31,10 @@
   margin-top:-1%;
   height:50px;}
 
- .button.active {
+.button.active {
 	background-color:#7b2d26 !important;
 	color:white;
-	border: 2px solid white;
-}
+	border: 2px solid white;}
 
 @media only screen and (max-width: 750px)
   {.log-out { margin:auto;
@@ -46,10 +45,9 @@
 @media only screen and (min-width: 750px){
  .log-out {
   margin-right:2%;
-  }
-  }
+  }}
 
- </style>
+</style>
 </head>
 <!-- Navigation bar-->
 <header>
@@ -64,28 +62,29 @@
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav logo">
-        <li><a href="#"><img src="logo.png" alt="SeniorHack Logo" class="logo"></a></li>
+        <li><a href=""><img src="logo.png" alt="SeniorHack Logo" class="logo"></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-center topnav">
-        <li><a href="#">Service Providers</a></li>
+        <li><a href="findServiceProvider210.html">Service Providers</a></li>
 		<li><a href="#" id="defaultSelected"> Requests</a></li>
 		<li><a href="#">Contact Us</a></li>
-		<li><a href="#">Help</a></li>
+		<li><a href="HelpCentre.html">Help</a></li>
     </ul>
 	<!--Log Out-->
    <div class="collapse navbar-collapse" id="cl-mainNavbar">
-		<a href="" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+		<a href="homepage.html" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
 	</div>
   </div>
 </nav>
 <div class="container">
+<!--Banner title and description-->
 <div class="row"><br><br><br>
 <div class="banner-title col-lg-9 col-md-9 col-sm-10"><p>We Give Seniors The Love </p><p style="margin-top:-3%">They Deserve</p></div>
 
 <div class="banner-description col-lg-5 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-7 col-sm-offset-0 col-xs-10 col-xs-offset-1">
 <p>SeniorHack ameliorates the living standards of senior citizens by providing a platform
 of service providers which will bring about convenience and comfort in their lives.</p><br>
-<a href="#new_request" class="btn btn-info" role="button">Request a Service Now</a></div>
+<a href="#new_request" class="btn btn-info" id="next" role="button">Request a Service Now</a></div>
 </div>
 </div>
 
@@ -105,14 +104,16 @@ of service providers which will bring about convenience and comfort in their liv
   </ul>
 </div>
 <br>
-<div class="tab-content">
+
+<div class="tab-content" id="open">
 <!--Make New Request Tab-->
+	
     <div id="new_request" class="tab-pane fade in active ">
 	<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 shadow col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
 <br>
 <form action="#">
-
+<div id="open">
   <div class="form-group">
     <label for="type">Service Type</label>
 	<br>
@@ -145,8 +146,9 @@ of service providers which will bring about convenience and comfort in their liv
     </div>
 </div>
 </div>
+</div>
 <!--End of New Request-->
-
+<!--View Request Tab-->
 <div id="view_requests" class="tab-pane fade">
 <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
 	<br>
@@ -165,6 +167,7 @@ of service providers which will bring about convenience and comfort in their liv
 	<div style="color:black">
 	<br>
 	<br>
+<!--Requests info displayed in notes form-->
 <div class="col-lg-6 col-md-6 col-sm-6" >
 <table id="tblOne" class="tbl ">
 	<tr>
@@ -186,7 +189,7 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl ">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusPending">pending</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
@@ -203,7 +206,7 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
 
 <span style="float:right">1/9/18, 12:00pm</span>
@@ -221,7 +224,7 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
@@ -238,7 +241,7 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusCancelled">cancelled</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
@@ -255,7 +258,7 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusCompleted">completed</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
@@ -273,7 +276,7 @@ of service providers which will bring about convenience and comfort in their liv
 
     </div>
 <!--End of View Requests-->
-<!-- Modal -->
+<!-- Modal that shows the details of requests made -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
 
@@ -340,7 +343,7 @@ of service providers which will bring about convenience and comfort in their liv
             <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-0">
               <b>Adam</b>
               <br><p>012-3456789
-              <br><button type="button" class="btn btn-primary btn-xs" >View Rating</button></p>
+              <br><button onclick="window.location.href='userreview.html'" type="button" class="btn btn-primary btn-xs" >View Rating</button></p>
 			  </div>
 			  <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3 col-xs-offset-4" style="margin-top:0%;margin-left:-5%;float-right;text-align:center">
 			  <button type="button" class="btn btn-info btn-xs" style="margin-top:25%;padding-left:22%;padding-right:22%">Cancel Service</button><br>
@@ -395,8 +398,8 @@ of service providers which will bring about convenience and comfort in their liv
 </div>
 </footer>
 
-<!--Request anchor and New Request Tab are selected by default-->
 <script>
+<!--Request anchor and New Request Tab are selected by default-->
 document.getElementById("defaultOpen").click();
 <!--function to make sure that no element will lose focus unless other button is chosen-->
 $('.button').click(function() {
@@ -410,6 +413,14 @@ jQuery(document).ready(function($) {
         window.location = $(this).data("href");
     });
 })
+
+<!--Open New Request Tab and Scroll to New Request Form upon clicking 'request now' button-->
+$("#next").on("click", function(){
+    $('#defaultOpen[href="#new_request"]').tab('show');
+	document.getElementById("open").scrollIntoView();
+});
+
+<!--show second pop up window after closing the first pop up window-->
 $("#edit").on("click", function(){
     $("#myModal").modal("hide");
     $("#myModal").on("hidden.bs.modal",function(){
