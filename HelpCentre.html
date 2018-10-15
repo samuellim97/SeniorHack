@@ -4,36 +4,57 @@
   <title>Help Centre</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/SeniorHack.css">
+  <link rel="stylesheet" href="seniorhack.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-  body{background-color:#f0f3f5;}
+  body{background-color:#f0f3f5;
+  }
 
-  
-  .container{text-align:center;
-  max-width:850px;}
+  #banner {
+  	background:url(banner10.jpg) no-repeat top center fixed;
+  	background-size:cover;
+  	height:500px;
+  	width:100%;
+    opacity:0.6;}
+
+  .banner-title {
+    text-align:center;
+    font-family:serif;
+    color:black;
+    font-size:130px;
+    margin-top:7%;
+  }
+
+  .banner-description p{
+    text-align:center;
+    font-family:serif;
+    color:black;
+    font-size:20px;
+  }
 
 
-  .container h1{text-align:center;
-  font-family:'Verdana', sans-serif;
-  margin-bottom:100px;
-  margin-top:50px;
-  font-size:70px;}
+  #content{
+    text-align:center;
+    max-width:850px;
+    margin-top:70px;
+  }
+
+
   .accordion {
-   background-color: #0B7A75;
-   color: #ffffff;
-   cursor: pointer;
-   padding: 18px;
-   width: 100%;
-   border: none;
-   text-align: left;
-   outline: none;
-   font-size: 15px;
-   transition: 0.4s;
-   height:80px;
+     background-color: #0B7A75;
+     color: #ffffff;
+     cursor: pointer;
+     padding: 18px;
+     width: 100%;
+     border: none;
+     text-align: left;
+     outline: none;
+     font-size: 15px;
+     transition: 0.4s;
+     height:80px;
   }
   .active, .accordion:hover {
      background-color: #35a39a;
@@ -49,7 +70,7 @@
      content: "\2212";
   }
   .panel {
-     padding: 0 18px;
+     padding: 0 25px;
      background-color: white;
      max-height: 0;
      overflow: hidden;
@@ -71,6 +92,26 @@
       background-color: limegreen;
       color: white;
       border-color: limegreen;}
+
+    @media(min-width: 900px){
+      .banner-title {
+      text-align:right;
+      font-family:serif;
+      color:black;
+      font-size:100px;
+      margin-top:70px;
+      margin-right:0;
+      padding-right:0;
+    }
+
+      .banner-description p{
+        text-align:right;
+        font-family:serif;
+        color:black;
+        font-size:20px;
+      }
+    }
+
     .overall-grid{
       height:100%;
       width:100%;
@@ -78,7 +119,8 @@
       overflow-x:hidden;
       margin: 0;
       padding: 0;
-      max-width:2000px;}
+      max-width:2000px;
+    }
 
       nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
          color:white;
@@ -109,6 +151,17 @@
        margin-right:2%;
        }
        }
+
+       .footer-left {
+       	margin-top:4%;
+       	text-align:left;
+       	margin-left:10%;}
+
+       .footer-right {
+         margin-top:3%;
+       	float: right;
+       	text-align:right;
+       	margin-right:10%;}
     </style>
 </head>
 
@@ -116,7 +169,8 @@
   <body>
   <!-- Navigation bar-->
   <header>
-  <nav class="navbar navbar-default nav_style" role="navigation">
+
+  <nav class="navbar navbar-default nav_style navbar-fixed-top" role="navigation">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="icon-bar"></span>
@@ -125,71 +179,72 @@
       </button>
     </div>
     <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav logo">
           <li><a href=""><img src="img/logo.png" alt="SeniorHack Logo" class="logo"></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-center topnav">
-          <li><a href="#"></a></li>
-          <li><a href="findserviceprovider210.html">Service Providers</a></li>
-  		<li><a href="request.html"> Requests</a></li>
+          <li><a href="#">Service Providers</a></li>
+  		<li><a href="#" id="defaultSelected"> Requests</a></li>
   		<li><a href="#">Contact Us</a></li>
-  		<li><a href="#" id="defaultSelected">Help</a></li>
+  		<li><a href="#">Help</a></li>
       </ul>
-
-
-
-
-	   <!--Log Out-->
-      <div class="collapse navbar-collapse" id="cl-mainNavbar">
-		   <a href="homepage.html" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right">Log Out</a>
-	    </div>
-      </div>
-    </nav>
-    </header>
+  	<!--Log Out-->
+     <div class="collapse navbar-collapse" id="cl-mainNavbar">
+  		<a href="" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+  	</div>
+    </div>
+  </nav>
+  <div id="banner">
+  <div class="container">
+  <div class="row"><br><br><br>
+  <div class="banner-title"><p style="margin-top:-3%">Help Center<br></p></div>
+  <div class="banner-description"><p>Simple Guidelines to Using SeniorHack</p></div>
+  </div>
+  </div>
+  </div>
+  </header>
 
     <!--Content-->
-    <div class="container">
-      <h1>Help Centre</h1>
+    <div class="container" id="content">
       <h4>FREQUENTLY ASKED QUESTIONS:</h4>
 	  <br>
-        <button class="accordion">Section 1</button>
+        <button class="accordion">How do I create a new request?</button>
         <div class="panel">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat.</p>
+          <p>
+          <br>A few simple steps:<br>
+          1. Go to the Service Request page.<br>
+          2. You can see that 'New Request' has been selected by default.<br>
+          3. Choose the type of service you wish to request for, fill in the date,
+          time and any additional notes you may want the servicer to take note of.<br>
+          4. Click the submit button and you're good to go!<br><br></p>
         </div>
 
-        <button class="accordion">Section 2</button>
+        <button class="accordion">Where can I view my list of request? </button>
         <div class="panel">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat.</p>
+          <p><br>At the Service Request page, select 'View Request' and a list of all
+          pending, accepted, cancelled and completed request will be displayed.<br><br></p>
         </div>
 
-        <button class="accordion">Section 3</button>
+        <button class="accordion">How do I find service providers around me?</button>
         <div class="panel">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat.</p>
+          <p><br>Few simple steps:<br>
+          1. Go to the Service Provider page<br>
+          2. Scroll down and you'll see a list of service providers with their ratings<br>
+          3. You can sort by the type of service by clicking on the types of services button.<br>
+          4. Clicking on the Service provider's profile will direct you to the new Request page if you
+          wish to create new requests.<br>
+          </p>
         </div>
 
-        <button class="accordion">Section 4</button>
+        <button class="accordion">How many types of services can I have per request?</button>
         <div class="panel">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat.</p>
+          <p><br>Only one type of service per request.<br><br></p>
         </div>
 
-        <button class="accordion">Section 5</button>
+        <button class="accordion">What happens to my request if nobody accepts it?</button>
         <div class="panel">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-            nisi ut aliquip ex ea commodo consequat.</p>
+          <p><br>Your request will automatically be cancelled if it's not accepted within 7 days,
+            you will then have to make another request for service after cancellation.<br><br></p>
         </div>
     </div>
 
@@ -261,3 +316,4 @@
   <script src="js/bootstrap/min.js"></script>
 </body>
 </html>
+
