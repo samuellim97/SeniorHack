@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <link rel="icon" href="logoPolygon.png" type="image">
   <meta name="viewport" content="width=device-width, intial-scale=1">
+  <link rel="stylesheet" href="SeniorHack.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -70,20 +71,7 @@
   	font-size: 15px;
     bottom:0;}
 
-  .footer_mid {
-  	text-align:center;
-  	margin-top:4%;}
-
-  .footer-left {
-  	margin-top:4%;
-  	text-align:left;
-  	margin-left:10%;}
-
-  .footer-right {
-    margin-top:3%;
-  	float: right;
-  	text-align:right;
-  	margin-right:10%;}
+ 
 
   @font-face {
     font-family: "uni_sans_thin";
@@ -145,7 +133,7 @@
 
     /*Css for intro to seniorhack*/
     .intro{
-      margin-top:150px;
+      margin-top:20%;
       margin-left:50px;
       max-width:950;
       margin-right: 50px;
@@ -161,13 +149,14 @@
       margin-left:10px;
       max-width: 500px;
       text-align:left;
+	  margin-top:25%;
     }
 
     /*CSS for why choose seniorHack*/
     .why{
       margin-left:30px;
       margin-right:30px;
-      margin-top:100px;
+      margin-top:10%;
       position:relative;
       width:90%;
       text-align:center;
@@ -289,7 +278,7 @@
     .view {
       width: 100%;
       height: 500px;
-      background-image: url('banner1.jpg');
+      background-image: url('banner1.png');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
@@ -332,7 +321,7 @@
 
     /*Css for intro to seniorhack*/
     .intro{
-      margin-top:150px;
+      margin-top:8%;
       margin-left:70px;
     }
 
@@ -381,7 +370,7 @@
         <div class="intro">
           <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-7">
-            <div class="text">
+            <div class="text resize">
               <p style="font-size:35px;">Our background</p>
               <p>Aging comes with many challenges, loss of independence is just part of the process.
                 Paying for doctor visits, grocery shopping, or even running small errands like cleaning the house may
@@ -407,8 +396,8 @@
                   <label for="exampleInputPassword1">Password</label>
                   <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary" id="loginbtn"><a href="#">Log in</a></button>
-                <button type="submit" class="btn btn-danger" id="registerbtn"><a href="#">Register</a></button>
+                <button type="submit" class="btn btn-primary" id="loginbtn"><a href="request.html">Log in</a></button>
+                <button type="submit" class="btn btn-danger" id="registerbtn"><a href="signup.html">Register</a></button>
               </form>
             </div>
           </div>
@@ -418,7 +407,6 @@
         <!--Why choose seniorhack-->
         <div class="why">
           <div class="text1">
-            <hr class="style-two">
             <br>
             <h1>Why Choose SeniorHack</h1>
           </div>
@@ -436,7 +424,7 @@
             <div class="col-xs-12 col-sm-6 col-md-4">
               <h3>Top-class Services</h3>
               <p>To ensure that you get top of the line services, you are entitled to the best
-                of servicers based on reviews given by our client base.
+                of servicers based on reviews given by our client base.</p>
             </div>
           </div>
         </div>
@@ -445,30 +433,30 @@
 
 
 
-    <footer id="footer-bg" class="footer">
-      <div class="container-fluid">
-      <div class="row">
+    <footer id="footer-bg" class="footer" style="width:100%">
+<div class="container">
+<div class="row">
 
-        <!--Contact No-->
-        <div class="col-sm-4 pull-left1">
-          <p class="footer-left" style="text-indent:10px">Contact Us At <br><span style="font-size:18px;font-weight:bold;"> 1300-88-2525</span></p>
-        </div>
+<!--Contact No-->
+  <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-4">
+      <p class="footer-left" style="text-indent:10px">Contact Us At <br><span style="font-size:18px;font-weight:bold;"> 1300-88-2525</span></p>
+      </div>
 
-        <div class="col-sm-4 dropup">
-          <p class="footer_mid">&copy;Copyright SeniorHack 2018 <br>All rights reserved</p>
-        </div>
+    <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 ">
+      <p class="footer_mid">&copy;Copyright SeniorHack 2018 <br>All rights reserved</p>
+    </div>
 
-        <!--Links to Social Media-->
-        <div class="col-sm-4">
-          <ul class="social-network social-circle footer-right ">
-  	         <a style="color:black">Join Us At </a> <br>
-             <a href="https://facebook.com/"><i class="fa fa-facebook-square" style="font-size:2em;color:black;margin-right:18%"></i></a>
-  		       <a href="https://twitter.com/"><i class="fa fa-twitter" style="font-size:2em;color:black"></i></a>
-           </ul>
-         </div>
-       </div>
-     </div>
-   </footer>
+<!--Links to Social Media-->
+    <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-1 ">
+    <ul class="social-network social-circle footer-right ">
+	<a style="color:black">Join Us At </a> <br>
+       <a href="https://facebook.com/"><i class="fa fa-facebook-square" style="font-size:2em;color:black;margin-right:18%"></i></a>
+		<a href="https://twitter.com/"><i class="fa fa-twitter" style="font-size:2em;color:black"></i></a>
+     </ul>
+  </div>
+</div>
+</div>
+</footer>
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
    <script src="js/bootstrap/min.js"></script>
