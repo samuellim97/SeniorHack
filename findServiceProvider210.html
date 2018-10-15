@@ -4,7 +4,8 @@
   <title>Manage Requests</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="SeniorHack.css">
+  <link rel="stylesheet" href="seniorhack.css">
+  <link rel="stylesheet" href="findserviceprovider.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -41,52 +42,11 @@
   margin-right:2%;
   }
   }
-
-  #tab .btn{
-    background-color:white;
-    color:black;
-    border-color:silver;
-    width:140px;
-  }
-
-  #tab .btn.active{
-    background-color: silver;
-    color:white;
-  }
-
-  #theContainer{
-    width:80%;
-    text-align:center;
-  }
-
-  #idcard {
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-      transition: 0.3s;
-      width: 70%;
-      margin-bottom:40px;
-      border-radius: 5px;
-  }
-
-  #idcard:hover {
-      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-
-  #idcard img {
-      border-radius: 5px 5px 0 0;
-  }
-
-  #card-content {
-      padding: 2px 16px;
-  }
-
-  #providers{
-    margin-top:100px;
-    margin-left:90px;
-  }
-
-  .checked {
-    color: orange;
-}
+  #banner{
+ background:url(findsp-banner.png) no-repeat top center fixed;
+ background-size:cover;
+	height:500px;
+	width:100%;}
  </style>
 </head>
 
@@ -107,14 +67,14 @@
         <li><a href="#"><img src="logo.png" alt="SeniorHack Logo" class="logo"></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-center topnav">
-        <li><a href="#">Service Providers</a></li>
-		<li><a href="#" id="defaultSelected"> Requests</a></li>
+        <li><a href="findserviceprovider210" id="defaultSelected">Service Providers</a></li>
+		<li><a href="request.html" > Requests</a></li>
 		<li><a href="#">Contact Us</a></li>
-		<li><a href="#">Help</a></li>
+		<li><a href="helpcentre.html">Help</a></li>
     </ul>
 	<!--Log Out-->
    <div class="collapse navbar-collapse" id="cl-mainNavbar">
-		<a href="" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+		<a href="homepage.html" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
 	</div>
   </div>
 </nav>
