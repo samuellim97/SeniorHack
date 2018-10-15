@@ -50,6 +50,25 @@ body{background-color:#f0f3f5;}
  }
  }
 
+ #banner{
+ background:url(sp-banner.png) no-repeat top center fixed;
+ background-size:cover;
+	height:450px;
+	width:100%;}
+	
+.banner-title{
+	margin-top:8%;
+	font-family:sans-serif;
+	text-align:right;
+	font-size:38px;
+	}
+@media only screen and (max-width: 1200px) 
+  {.banner-title { 
+  text-align:center;
+  position:relative;
+  font-size:31px;
+  margin-top:15%;
+  }}
 </style>
 </head>
 <!-- Navigation bar-->
@@ -68,26 +87,22 @@ body{background-color:#f0f3f5;}
           <li><a href="#"><img src="logo.png" alt="SeniorHack Logo" class="logo"></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-center topnav">
-          <li><a href="#">Service Providers</a></li>
   		<li><a href="#" id="defaultSelected"> Requests</a></li>
   		<li><a href="#">Contact Us</a></li>
-  		<li><a href="#">Help</a></li>
+  		<li><a href="helpcentre.html">Help</a></li>
     </ul>
     <!--Log Out-->
      <div class="collapse navbar-collapse" id="cl-mainNavbar">
-      <a href="" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+      <a href="homepage.html" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
     </div>
     </div>
   </nav>
 <div class="container">
 <div class="row"><br><br><br>
-<div class="banner-title col-lg-9 col-md-9 col-sm-10"><p>We Give Seniors The Love </p><p style="margin-top:-3%">They Deserve</p></div>
+<div class="banner-title col-lg-9 col-lg-offset-3 col-md-9 col-sm-10"><p>WE CANT HELP EVERYONE, </p><p style="margin-top:-2%">BUT EVERYONE CAN HELP</p>
+<p style="margin-top:-2%">SOMEONE</p>
+<a href="#pending" class="btn btn-info" id="next" role="button" style="margin-top:-2%">Review Requests</a></div></div>
 
-<div class="banner-description col-lg-5 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-7 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-<p>SeniorHack ameliorates the living standards of senior citizens by providing a platform
-of service providers which will bring about convenience and comfort in their lives.</p><br>
-<a href="#" class="btn btn-info" role="button">Request a Service Now</a></div>
-</div>
 </div>
 
 </header>
@@ -95,19 +110,20 @@ of service providers which will bring about convenience and comfort in their liv
 <body>
 <div class="container"  style="margin-top:3%">
   <div class="row">
-<div class="col-lg-8 col-md-8 col-sm-12">
-<!--Pending, Upcoming and History Tabs-->
+<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+<!--New Request and View Requests Tabs-->
   <ul class="tab nav nav-pills">
 
-    <li style="width:30%; padding-right: 3%" ><a class="btn btn-lg btn-default" id="defaultOpen" data-toggle="tab" href="#pending">Pending</a></li>
-    <li style="width:30%; padding-right: 3%" ><a class="btn btn-lg btn-default" data-toggle="tab" href="#upcoming">Upcoming</a></li>
-    <li style="width:30%;"><a class="btn btn-lg btn-default" data-toggle="tab" href="#history">History</a></li>
+    <li style="width:30%; padding-right: 2%" ><a class="btn btn-lg btn-default" id="defaultOpen" data-toggle="tab" href="#pending">Pending</a></li>
+	<li style="width:34%; padding-right: 2%"><a class="btn btn-lg btn-default" data-toggle="tab" href="#upcoming">Upcoming</a></li>
+    <li style="width:28%; padding-right: 2%"><a class="btn btn-lg btn-default" data-toggle="tab" href="#history">History</a></li>
 
   </ul>
 </div>
 <br>
-<div class="tab-content">
+<div class="tab-content" id="open">
 <!--Pending Requests Tab-->
+
 <div id="pending" class="tab-pane fade in active ">
 <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
 <br>
@@ -135,7 +151,7 @@ of service providers which will bring about convenience and comfort in their liv
       		<br>Service Provider:Adam
       		<div class="bottom-info">
       		<span style="font-size:12px">Cleaning</span>
-      		<a class="view-info">view</a></div></p>
+      		<p class="view-info">view</p></div></p>
       		</a>
       		</td>
       	</tr>
@@ -145,7 +161,7 @@ of service providers which will bring about convenience and comfort in their liv
     <table id="tblOne"class="tbl ">
       <tr>
         <td>
-        <a href="#" style="color:black;text-decoration:none">
+        <a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
         <p style="margin:8px 13px"><span class="statusPending">pending</span>
         <span style="float:right">1/9/18, 12:00pm</span>
         <br><span style="font-size:12px">Request ID S0001</span>
@@ -162,7 +178,7 @@ of service providers which will bring about convenience and comfort in their liv
     <table id="tblOne"class="tbl ">
       <tr>
         <td>
-        <a href="#" style="color:black;text-decoration:none">
+        <a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
         <p style="margin:8px 13px"><span class="statusPending">pending</span>
         <span style="float:right">1/9/18, 12:00pm</span>
         <br><span style="font-size:12px">Request ID S0001</span>
@@ -179,7 +195,7 @@ of service providers which will bring about convenience and comfort in their liv
     <table id="tblOne"class="tbl ">
       <tr>
         <td>
-        <a href="#" style="color:black;text-decoration:none">
+        <a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
         <p style="margin:8px 13px"><span class="statusPending">pending</span>
         <span style="float:right">1/9/18, 12:00pm</span>
         <br><span style="font-size:12px">Request ID S0001</span>
@@ -196,7 +212,7 @@ of service providers which will bring about convenience and comfort in their liv
     <table id="tblOne"class="tbl ">
       <tr>
         <td>
-        <a href="#" style="color:black;text-decoration:none">
+        <a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
         <p style="margin:8px 13px"><span class="statusPending">pending</span>
         <span style="float:right">1/9/18, 12:00pm</span>
         <br><span style="font-size:12px">Request ID S0001</span>
@@ -213,7 +229,7 @@ of service providers which will bring about convenience and comfort in their liv
     <table id="tblOne"class="tbl ">
     	<tr>
     		<td>
-    		<a href="#" style="color:black;text-decoration:none">
+    		<a href="#myModal" data-toggle="modal" data-target="#myModal"style="color:black;text-decoration:none">
     		<p style="margin:8px 13px"><span class="statusPending">pending</span>
     		<span style="float:right">1/9/18, 12:00pm</span>
     		<br><span style="font-size:12px">Request ID S0001</span>
@@ -252,14 +268,14 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
 		<div class="bottom-info">
 		<span style="font-size:12px">Cleaning</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
@@ -269,14 +285,14 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
 		<div class="bottom-info">
 		<span style="font-size:12px">Cleaning</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
@@ -286,47 +302,48 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
 		<div class="bottom-info">
 		<span style="font-size:12px">Cleaning</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
 </table>
 </div>
 <div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
+</table><table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
 		<div class="bottom-info">
 		<span style="font-size:12px">Cleaning</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
-  </div>
+</table>
+</div>
   <div class="col-lg-6 col-md-6 col-sm-6" >
 </table><table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
 		<div class="bottom-info">
 		<span style="font-size:12px">Cleaning</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
@@ -336,14 +353,14 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
 		<span style="float:right">1/9/18, 12:00pm</span>
 		<br><span style="font-size:12px">Request ID S0001</span>
 		<br>Service Provider:Adam
 		<div class="bottom-info">
 		<span style="font-size:12px">Cleaning</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
@@ -374,14 +391,14 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusCancelled">cancelled</span>
 		<span style="float:right">20/5/18, 8:00pm</span>
 		<br><span style="font-size:12px">Request ID S0005</span>
 		<br>Service Provider:Jenny
 		<div class="bottom-info">
 		<span style="font-size:12px">Driver</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
@@ -391,14 +408,14 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
     <p style="margin:8px 13px"><span class="statusCancelled">cancelled</span>
   	<span style="float:right">20/5/18, 8:00pm</span>
   	<br><span style="font-size:12px">Request ID S0005</span>
   	<br>Service Provider:Jenny
   	<div class="bottom-info">
   	<span style="font-size:12px">Driver</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
@@ -408,14 +425,14 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusCompleted">completed</span>
 		<span style="float:right">30/5/18, 3:00pm</span>
 		<br><span style="font-size:12px">Request ID S0004</span>
 		<br>Service Provider:Colin
 		<div class="bottom-info">
 		<span style="font-size:12px">Companion</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
@@ -425,14 +442,14 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
     <p style="margin:8px 13px"><span class="statusCompleted">completed</span>
   	<span style="float:right">30/5/18, 3:00pm</span>
   	<br><span style="font-size:12px">Request ID S0004</span>
   	<br>Service Provider:Colin
   	<div class="bottom-info">
   	<span style="font-size:12px">Companion</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
@@ -442,14 +459,14 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
     <p style="margin:8px 13px"><span class="statusCompleted">completed</span>
   	<span style="float:right">30/5/18, 3:00pm</span>
   	<br><span style="font-size:12px">Request ID S0004</span>
   	<br>Service Provider:Colin
   	<div class="bottom-info">
   	<span style="font-size:12px">Companion</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
@@ -459,14 +476,14 @@ of service providers which will bring about convenience and comfort in their liv
 <table id="tblOne"class="tbl">
 	<tr>
 		<td>
-		<a href="#" style="color:black;text-decoration:none">
+		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
     <p style="margin:8px 13px"><span class="statusCompleted">completed</span>
   	<span style="float:right">30/5/18, 3:00pm</span>
   	<br><span style="font-size:12px">Request ID S0004</span>
   	<br>Service Provider:Colin
   	<div class="bottom-info">
   	<span style="font-size:12px">Companion</span>
-		<a class="view-info">view</a></div></p>
+		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
@@ -550,7 +567,7 @@ of service providers which will bring about convenience and comfort in their liv
             <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-0">
               <b>Adam</b>
               <br><p>012-3456789
-              <br><button type="button" class="btn btn-primary btn-xs" >View Rating</button></p>
+              <br><button type="button" onclick="window.location.href='userreview.html'" class="btn btn-primary btn-xs" >View Rating</button></p>
 			  </div>
 			  <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3 col-xs-offset-4" style="margin-top:0%;margin-left:-5%;float-right;text-align:center">
 			  <button type="button" class="btn btn-info btn-xs" style="margin-top:25%;padding-left:22%;padding-right:22%">Cancel Service</button><br>
@@ -620,7 +637,10 @@ $("#edit").on("click", function(){
     $("#detailsModal").modal("show");
     });
 });
-
+$("#next").on("click", function(){
+    $('#defaultOpen[href="#new_request"]').tab('show');
+	document.getElementById("open").scrollIntoView();
+});
 
 </script>
 </body>
