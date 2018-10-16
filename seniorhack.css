@@ -35,7 +35,8 @@
     transform: translatex(-50%);
   }
 }
-
+#defaultSelected {
+	background-color:#19535f !important;}
 
 .topnav li a:active{
 	background-color:#19535f !important;}
