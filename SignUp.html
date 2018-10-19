@@ -124,7 +124,7 @@
 	<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 shadow col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
 <br>
-<form action="#" method="post" onsubmit="return seniorValidation();">
+<form action="#" method="post" onsubmit="return seniorValidation()">
 <div id="open">
   <div class="form-group">
    <div class="form-group">
@@ -154,7 +154,7 @@
 
 
 <br/>
-<a href="request.html" onclick="seniorValidation(this)" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> Submit </a>
+<a href="request.html" onclick="seniorValidation(this)" id="senior_submit" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> Submit </a>
 </form>
 
     </div>
@@ -167,36 +167,37 @@
 <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 shadow col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
 <br>
-<form action="#">
+<form action="#" method="post" onsubmit="return spValidation()">
 <div id="open">
   <div class="form-group">
    <div class="form-group">
     <label for="UserName">Username</label>
-    <input type="text" class="form-control" id="username">
+    <input type="text" class="form-control" id="sp_username" name="sp_username">
   </div>
 
   <div class="form-group">
     <label for="pwd">Password</label>
-    <input type="password" class="form-control" id="pwd">
+    <input type="password" class="form-control" id="sp_pwd" name="sp_password">
   </div>
 
   <div class="form-group">
     <label for="FullName">Full Name</label>
-    <input type="text" class="form-control" id="name">
+    <input type="text" class="form-control" id="sp_name" name="sp_name">
   </div>
 
   <div class="form-group">
     <label for="ContactNo">Contact No</label>
-    <input type="text" class="form-control" id="contact">
+    <input type="text" class="form-control" id="sp_contact" name="sp_contact">
   </div>
 
   <div class="form-group">
     <label for="Address">Address</label>
-	<textarea name="Address" rows="3" cols="21" class="form-control" id="address"></textarea>
+	<textarea name="Address" rows="3" cols="21" class="form-control" id="sp_address" name="sp_address"></textarea>
   </div>
   <label>Services to Provide</label>
   <br><br>
  <!--Checkboxes for Service Offered-->
+ <div id="checkboxes">
  <div class="form-group" style="text-align:center">
 	<div class="btn-group " data-toggle="buttons">
 		<label class="btn btn-primary active ">
@@ -222,10 +223,10 @@
 		</label>
 	</div>
  </div>
-</form>
+</div>
 <br/>
-<a href="requestsforsp.html" type="submit" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> Submit </a>
-
+<a href="requestsforsp.html" onclick="spValidation(this)" id="sp_submit" type="submit" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> Submit </a>
+</form>
 
     </div>
 </div>
@@ -316,6 +317,61 @@ function seniorValidation() {
 		return true;
 		}
 	}//end of function validateForm
+	
+	
+//service provider sign up form validation	
+function spValidation() {
+	var checked = $('#checkboxes').find(':checked').length;
+	var pwd =document.getElementById("sp_pwd");
+	//value of phone No is stored inside a var becasue it will be called several times
+	var phoneNo = document.getElementById("sp_contact");
+	//values to be compared with a valid phone No
+	var numbers =/^\d+(-\d+)*$/;
+	if (document.getElementById("sp_username").value=="") {
+		alert("Username field cannot be empty.");
+		event.preventDefault();
+		return false;
+	} //end if
+	if(pwd.value=="") {
+		alert("Password cannot be empty.");
+		event.preventDefault();
+		return false;
+		}
+	if(pwd.value.length < 6) {
+		alert("Password must be 6 characters.");
+		event.preventDefault();
+		return false;
+		}
+		
+	if(document.getElementById("sp_name").value=="") {
+		alert("Name field cannot be empty.");
+		event.preventDefault();
+		return false;
+		}//end if
+	if(phoneNo.value=="") {
+		alert("Contact number cannot be empty.");
+		event.preventDefault();
+		return false;
+		}
+	if(!phoneNo.value.match(numbers) || phoneNo.value.length < 10) {
+		alert("Invalid phone number.");
+		event.preventDefault();
+		return false;
+		}
+	if(document.getElementById("sp_address").value=="") {
+		alert("Address cannot be empty.");
+		event.preventDefault();
+		return false;
+		}
+	if (!checked){
+		alert("Please select at least one service type to offer");
+		event.preventDefault();
+		return false;
+		}//end if
+		{
+		return true;
+		}
+	}
 </script>
 
 </body>
