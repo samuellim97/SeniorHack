@@ -124,38 +124,38 @@
 	<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 shadow col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
 <br>
-<form action="#">
+<form action="#" method="post" onsubmit="return seniorValidation();">
 <div id="open">
   <div class="form-group">
    <div class="form-group">
     <label for="UserName">Username</label>
-    <input type="text" class="form-control" id="username">
+    <input type="text" class="form-control" id="username" name="username">
   </div>
 
   <div class="form-group">
     <label for="pwd">Password</label>
-    <input type="password" class="form-control" id="pwd">
+    <input type="password" class="form-control" id="pwd" name="password">
   </div>
 
   <div class="form-group">
     <label for="FullName">Full Name</label>
-    <input type="text" class="form-control" id="name">
+    <input type="text" class="form-control" id="name" name="name">
   </div>
 
   <div class="form-group">
     <label for="ContactNo">Contact No</label>
-    <input type="text" class="form-control" id="contact">
+    <input type="text" class="form-control" id="contact" name="contact">
   </div>
 
   <div class="form-group">
     <label for="Address">Address</label>
-	<textarea name="Address" rows="3" cols="21" class="form-control" id="address"></textarea>
+	<textarea name="Address" rows="3" cols="21" class="form-control" id="address" name="address"></textarea>
   </div>
 
-</form>
-<br/>
-<a href="request.html" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> Submit </a>
 
+<br/>
+<a href="request.html" onclick="seniorValidation(this)" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> Submit </a>
+</form>
 
     </div>
 </div>
@@ -224,7 +224,7 @@
  </div>
 </form>
 <br/>
-<a href="requestsforsp.html" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> Submit </a>
+<a href="requestsforsp.html" type="submit" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> Submit </a>
 
 
     </div>
@@ -270,6 +270,52 @@ document.getElementById("defaultOpen").click();
 $("#next").on("click", function(){
 	document.getElementById("open").scrollIntoView();
 });
+
+//validate senior sign up form
+function seniorValidation() {
+	//value of phone No is stored inside a var becasue it will be called several times
+	var phoneNo = document.forms[0].contact.value;
+	//values to be compared with a valid phone No
+	var numbers =/^\d+(-\d+)*$/;
+	if (document.forms[0].username.value=="") {
+		alert("Username field cannot be empty.");
+		event.preventDefault();
+		return false;
+	} //end if
+	if(document.forms[0].password.value=="") {
+		alert("Password cannot be empty.");
+		event.preventDefault();
+		return false;
+		}//end if
+	if(document.forms[0].password.value.length < 6) {
+		alert("Password must be at least 6 characters.");
+		event.preventDefault();
+		return false;
+		}//end if
+	if(document.forms[0].name.value=="") {
+		alert("Name field cannot be empty.");
+		event.preventDefault();
+		return false;
+		}//end if
+	if(phoneNo=="") {
+		alert("Contact number cannot be empty.");
+		event.preventDefault();
+		return false;
+		}
+	if(!phoneNo.match(numbers) || phoneNo.length < 10) {
+		alert("Invalid phone number.");
+		event.preventDefault();
+		return false;
+		}
+	if(document.forms[0].address.value=="") {
+		alert("Address cannot be empty.");
+		event.preventDefault();
+		return false;
+		}//end if
+		{
+		return true;
+		}
+	}//end of function validateForm
 </script>
 
 </body>
