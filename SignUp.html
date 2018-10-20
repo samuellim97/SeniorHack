@@ -103,7 +103,6 @@
 <body>
 <div class="container"  style="margin-top:2%;text-align:center">
   <div class="row">
-<?php include 'SignUp.php';?>
   
   
   <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0">
@@ -127,7 +126,7 @@
 	<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 shadow col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
 <br>
-<form action="SignUp.php" method="post" >
+<form action="SeniorSignUp.php" method="post" id="s_form">
 <div id="open">
   <div class="form-group">
    <div class="form-group">
@@ -152,7 +151,7 @@
 
   <div class="form-group">
     <label for="Address">Address</label>
-	<textarea name="Address" rows="3" cols="21" class="form-control" id="s_address" name="s_address"></textarea>
+	<textarea method="post" rows="3" cols="21" class="form-control" wrap="hard" id="s_address" name="s_address" form="s_form"></textarea>
   </div>
 
 
@@ -170,7 +169,7 @@
 <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 shadow col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
 <br>
-<form action="#" method="post" onsubmit="return spValidation()">
+<form action="SP_SignUp.php" method="post" id="sp_form">
 <div id="open">
   <div class="form-group">
    <div class="form-group">
@@ -195,7 +194,7 @@
 
   <div class="form-group">
     <label for="Address">Address</label>
-	<textarea name="Address" rows="3" cols="21" class="form-control" id="sp_address" name="sp_address"></textarea>
+	<textarea method="post" rows="3" cols="21" class="form-control" wrap="hard" id="sp_address" name="sp_address" form="sp_form"></textarea>
   </div>
   <label>Services to Provide</label>
   <br><br>
@@ -204,11 +203,11 @@
  <div class="form-group" style="text-align:center">
 	<div class="btn-group " data-toggle="buttons">
 		<label class="btn btn-primary active ">
-			<input type="checkbox" checked>Driver
+			<input type="checkbox" checked name="servicetype[]" value="Driver">Driver
 			<span class="fa fa-check"></span>
 		</label>
 		<label class="btn btn-primary" >
-			<input type="checkbox"> Cleaning
+			<input type="checkbox" name="servicetype[]" value="Cleaning"> Cleaning
 			<span class="fa fa-check"></span>
 		</label>
 	</div>
@@ -217,18 +216,18 @@
 	<div class="form-group" style="text-align:center">
 	<div class="btn-group " data-toggle="buttons">
 		<label class="btn btn-primary">
-			<input type="checkbox"> Companion
+			<input type="checkbox" name="servicetype[]" value="Companion"> Companion
 			<span class="fa fa-check"></span>
 		</label>
 		<label class="btn btn-primary" style="text-align:center">
-			<input type="checkbox"> Meal Preparation
+			<input type="checkbox" name="servicetype[]" value="Meal Preparation"> Meal Preparation
 			<span class="fa fa-check"></span>
 		</label>
 	</div>
  </div>
 </div>
 <br/>
-<input type="submit" onclick="spValidation(this)" id="sp_submit" type="submit" class="pull-right btn btn-block btn-success" style="margin-bottom:10%">
+<input type="submit" onclick="spValidation(this)" id="sp_submit" class="pull-right btn btn-block btn-success" style="margin-bottom:10%">
 </form>
 
     </div>
