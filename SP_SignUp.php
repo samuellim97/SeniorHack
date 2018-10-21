@@ -32,8 +32,11 @@ session_start();
 		$last_id = mysqli_insert_id($con);
 	}	 
  	foreach($_POST["servicetype"] as $servicetype){
-	  mysqli_query($con,"INSERT INTO service (description,spID) values ('$servicetype','$last_id')");
-  }	  
+	  $service_fk = mysqli_query($con,"SELECT * FROM service where description = '$servicetype'");
+	  $row = $service_fk->fetch_array();
+	  $service_info = $row['service_type'];
+	  mysqli_query($con,"INSERT INTO spinfo (userID,service_type) values ('$last_id','$service_info')");
+	}	  
 	 
 		  $message = "Account Registered!";
          echo "<script type='text/javascript'>

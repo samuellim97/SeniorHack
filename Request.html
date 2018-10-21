@@ -116,37 +116,38 @@ of service providers which will bring about convenience and comfort in their liv
 	<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 shadow col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
 <br>
-<form action="#">
+<form action="request.php" method="post" id="request_form">
 <div id="open">
   <div class="form-group">
     <label for="type">Service Type</label>
 	<br>
-    <button type="button" class="btn top-btn button ">Driver</button>
-	<button type="button" class="btn top-btn button">Companion</button>
+    <input type="button" class="btn top-btn button" id="driver"  value="Driver" form="request_form">
+	<input type="text" hidden name="servicetype" id="servicetype" >
+	<input type="button" class="btn top-btn button"  id="companion" value="Companion" name="companion" method="post" form="request_form">
 	<br>
-    <button type="button" class="btn bottom-btn button">Cleaning</button>
-	<button type="button" class="btn bottom-btn button">Meal Preparation</button>
+    <input type="button" class="btn bottom-btn button"  id="cleaning" value="Cleaning" method="post" form="request_form">
+	<input type="button" class="btn bottom-btn button" id="meal" value="Meal Preparation" method="post" form="request_form">
   </div>
   <br>
   <div class="form-group">
-    <label for="date">Date</label>
-    <input type="date" class="form-control" id="date">
+    <label for="date" >Date</label>
+    <input type="date" class="form-control" id="date" name="date" required >
   </div>
 
   <div class="form-group">
     <label for="time">Time</label>
-    <input type="time" class="form-control" id="time">
+    <input type="time" class="form-control" id="time" name="time" required>
   </div>
 
   <div class="form-group">
     <label for="notes">Notes</label>
-	<textarea name="notes" rows="3" cols="21" class="form-control" id="notes"></textarea>
+	<textarea name="notes" method="post" form="request_form" rows="3" cols="21" class="form-control" id="notes"></textarea>
   </div>
 
-</form>
-<br>
-<a href="#" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> Submit </a>
 
+<br>
+<input type="submit" onclick="validations()" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> 
+</form>
     </div>
 </div>
 </div>
@@ -357,7 +358,7 @@ of service providers which will bring about convenience and comfort in their liv
           </div>
           <div style="margin-left:3%" >
             <label for="notes">notes: </label> <br>
-			<textarea name="notes" rows="3" cols="30" ></textarea>
+			<textarea name="notes" rows="3" cols="30" required ></textarea>
           </div>
         </div>
 
@@ -405,9 +406,12 @@ of service providers which will bring about convenience and comfort in their liv
 <script>
 <!--Request anchor and New Request Tab are selected by default-->
 document.getElementById("defaultOpen").click();
+jQuery(function(){
+	$('#driver').click();
+});
 <!--function to make sure that no element will lose focus unless other button is chosen-->
 $('.button').click(function() {
-    $('button').removeClass('active');
+    $('.button').removeClass('active');
     $(this).addClass('active');
 })
 
@@ -433,6 +437,43 @@ $("#edit").on("click", function(){
 });
 
 
+
+document.getElementById('cleaning').onclick = function() {
+   document.getElementById("servicetype").value = "Cleaning"; 
+}
+document.getElementById('companion').onclick = function() {
+   document.getElementById("servicetype").value = "Companion"; 
+}
+document.getElementById('meal').onclick = function() {
+   document.getElementById("servicetype").value = "Meal Prepation"; 
+}
+document.getElementById('driver').onclick = function() {
+   document.getElementById("servicetype").value = "Driver"; 
+}
+
+
+function validations(){
+	var value = document.getElementById("date").value;
+	var mytime = document.getElementById("time").value;
+	var today = new Date();
+	var mydate = new Date(value);
+	var currentdate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	var userdate = mydate.getFullYear()+'-'+(mydate.getMonth()+1)+'-'+mydate.getDate();
+	if (currentdate > userdate){
+		alert("Please enter future date");
+		document.getElementById("date").focus();
+		event.preventDefault();
+		return false;
+	}
+	var currenttime = today.getHours() + ":" + today.getMinutes();
+	if (currentdate == userdate && currenttime > mytime){
+		alert("Please enter future time");
+		document.getElementById("time").focus();
+		event.preventDefault();
+		return false;
+	}
+	
+}
 </script>
 </body>
 </html>
