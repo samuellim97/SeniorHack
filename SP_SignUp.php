@@ -20,7 +20,7 @@ session_start();
 	 $message = "This username is already taken";
          echo "<script type='text/javascript'>
 		 alert('$message');
-		 window.location.href='SignUp.html';
+		 window.location.href='SignUp.php';
         </script>";
 		
  }		

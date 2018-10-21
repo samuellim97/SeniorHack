@@ -37,13 +37,13 @@ session_start();
         }
      }
   }else {
-         $message = "Wrong username";
+         $message = "Username not found";
          echo "<script type='text/javascript'>alert('$message');
 		 window.location.href='homepage.html';
         </script>";
         }
   if ($pwdInvalid){
-         $message = "Wrong password";
+         $message = "Invalid password";
          echo "<script type='text/javascript'>alert('$message');
 		 window.location.href='homepage.html';
         </script>";
