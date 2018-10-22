@@ -28,7 +28,7 @@ if(mysqli_query($con, $sql)){
 		$message = "Request Submitted!";
          echo "<script type='text/javascript'>
 		 alert('$message');
-		 window.location.href='requestsforsp.html';
+		 window.location.href='requestsforsenior.php';
         </script>";
 	}
 

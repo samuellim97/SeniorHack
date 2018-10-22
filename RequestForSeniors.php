@@ -1,3 +1,36 @@
+<?php
+session_start();
+ $servername = "localhost";
+ $username = "root";
+ $password = "";
+ $dbname = "SeniorHack";
+ $con = new mysqli($servername, $username, $password, $dbname);
+
+$username = $_SESSION['username'];
+$sql_select_service = "SELECT requestID, date, time,service_type, sp_ID FROM request WHERE sp_ID =8";
+if ($result_select_service = $con->query($sql_select_service)) {
+	$row_count_select_service =mysqli_num_rows($result_select_service);
+	if ($row_count_select_service>0) {
+		$i = 1;
+		while($row_select_service=mysqli_fetch_assoc($result_select_service)) {
+			$requestID_selected_service[$i] = $row_select_service['requestID'];
+			$date_selected_service[$i] = $row_select_service['date'];
+			$time_selected_service[$i] = $row_select_service['time'];
+			$type_selected_service[$i] = $row_select_service['service_type'];
+			$sp_selected_service[$i] = $row_select_service['sp_ID'];
+			$i++;
+		}
+	}
+} else {
+	$row_count_select_service = 0;
+}
+
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -169,27 +202,47 @@ of service providers which will bring about convenience and comfort in their liv
       <input type="radio" name="optradio">Status
     </label>
   </form></div>
+  
 	<div style="color:black">
 	<br>
 	<br>
 <!--Requests info displayed in notes form-->
-<div class="col-lg-6 col-md-6 col-sm-6" >
+<?php if ($row_count_select_service == 0) {
+					echo "<p>No services have been created yet</p>";
+				}
+				else{
+					for ($i = 1; $i <=$row_count_select_service; $i++) {
+					
+echo'<div class="col-lg-6 col-md-6 col-sm-6" >
+
+
 <table id="tblOne" class="tbl ">
+
 	<tr>
-		<td>
+		<td> 
 		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusPending">pending</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Service Provider:Adam
+		<p style="margin:8px 13px"><span class="statusPending">pending</span> 
+		<span style="float:right">';
+		echo"$date_selected_service[$i],$time_selected_service[$i]";
+		echo'</span>
+		<br><span style="font-size:12px">';
+		echo"Request ID $requestID_selected_service[$i]"; 
+		echo'</span>';
+		echo "<br>Service Provider:$sp_selected_service[$i]"; 
+		echo' 
 		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
+		<span style="font-size:12px">';
+		echo "$type_selected_service[$i]"; 
+		echo'</span>
 		<p class="view-info">view</p></div></p>
 		</a>
 		</td>
 	</tr>
 </table>
-</div>
+</div>'; }}?>
+
+
+
 <div class="col-lg-6 col-md-6 col-sm-6">
 <table id="tblOne"class="tbl ">
 	<tr>
