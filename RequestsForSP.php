@@ -1,5 +1,23 @@
 <?php
   include_once 'dbh.php';
+  $username = $_SESSION['username'];
+$sql_select_service = "SELECT requestID, date, time,servicecode, spID FROM serviceRequest WHERE status ='pending';
+if ($result_select_service = $con->query($sql_select_service)) {
+	$row_count_select_service =mysqli_num_rows($result_select_service);
+	if ($row_count_select_service>0) {
+		$i = 1;
+		while($row_select_service=mysqli_fetch_assoc($result_select_service)) {
+			$requestID_selected_service[$i] = $row_select_service['requestID'];
+			$date_selected_service[$i] = $row_select_service['date'];
+			$time_selected_service[$i] = $row_select_service['time'];
+			$type_selected_service[$i] = $row_select_service['servicecode'];
+			$sp_selected_service[$i] = $row_select_service['spID'];
+			$i++;
+		}
+	}
+} else {
+	$row_count_select_service = 0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -127,26 +145,39 @@ body{background-color:#f0f3f5;}
 <br>
 <div class="tab-content" id="open">
 <!--Pending Requests Tab-->
-<?php
-  $sql = "SELECT * FROM servicerequest WHERE status='pending';";
-  $query = mysqli_query($con, $sql);
-  $count = mysqli_num_rows($query);
+<?php if ($row_count_select_service == 0) {
+					echo "<p>No services have been created yet</p>";
+				}
+				else{
+					for ($i = 1; $i <=$row_count_select_service; $i++) {
+					
+echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 
-  if ($count > 0){
-  while ($row = mysqli_fetch_array($query))
-  {
-    $date1 = strtotime($row['date']);
-    $date2 = date("m/d/y", $date);
-    echo "<div id="req_box" class="col-lg-6 col-md-6 col-sm-6" >";
-    echo "<table id="tblOne"class="tbl"><tr><td>";
-    echo '<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">';
-    echo "<p style="margin:8px 13px"><span class="statusPending">pending</span>";
-    echo "<span style="float:right">.$date2.</span>";
-    echo "<br><span style="font-size:12px">Request ID S".$row['requestID']."</span>";
 
-  }
-  }
-?>
+<table id="tblOne" class="tbl ">
+
+	<tr>
+		<td> 
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
+		<p style="margin:8px 13px"><span class="statusPending">pending</span> 
+		<span style="float:right">';
+		echo"$date_selected_service[$i],$time_selected_service[$i]";
+		echo'</span>
+		<br><span style="font-size:12px">';
+		echo"Request ID $requestID_selected_service[$i]"; 
+		echo'</span>';
+		echo "<br>Service Provider:$sp_selected_service[$i]"; 
+		echo' 
+		<div class="bottom-info">
+		<span style="font-size:12px">';
+		echo "$type_selected_service[$i]"; 
+		echo'</span>
+		<p class="view-info">view</p></div></p>
+		</a>
+		</td>
+	</tr>
+</table>
+</div>'; }}?>
 <div id="pending" class="tab-pane fade in active ">
 <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
 <br>
