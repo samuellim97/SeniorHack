@@ -25,7 +25,7 @@ session_start();
          $_SESSION['address'] = $row['address'];
          $_SESSION['type'] = $row['type'];
          if ($_SESSION['type'] === 'S') {
-           header("location: request.html");
+           header("location: requestforseniors.php#new_request");
          }
          elseif ($_SESSION['type'] === 'SP') {
            header("location: requestsforsp.html");

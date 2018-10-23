@@ -136,7 +136,7 @@ of service providers which will bring about convenience and comfort in their liv
 
     <li style="width:46%; padding-right: 5%" ><a class="btn btn-lg btn-default" id="defaultOpen" data-toggle="tab" href="#new_request">New Request</a></li>
 
-    <li style="width:53%; padding-left: 3%"><a class="btn btn-lg btn-default" data-toggle="tab" href="#view_requests">View Requests</a></li>
+    <li style="width:53%; padding-left: 3%"><a class="btn btn-lg btn-default" id="openView" data-toggle="tab" href="#view_requests">View Requests</a></li>
 
   </ul>
 </div>
@@ -149,7 +149,7 @@ of service providers which will bring about convenience and comfort in their liv
 	<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 shadow col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
 	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
 <br>
-<form action="request.php" method="post" id="request_form">
+<form action="request.php" method="post" id="request_form" >
 <div id="open">
   <div class="form-group">
     <label for="type">Service Type</label>
@@ -187,6 +187,7 @@ of service providers which will bring about convenience and comfort in their liv
 </div>
 <!--End of New Request-->
 <!--View Request Tab-->
+
 <div id="view_requests" class="tab-pane fade">
 <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
 	<br>
@@ -458,7 +459,17 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 
 <script>
 <!--Request anchor and New Request Tab are selected by default-->
-document.getElementById("defaultOpen").click();
+$(document).ready(function() {
+   var hash = window.location.hash;
+   if (hash == '#new_request' || hash == '' ){
+	   $('#defaultOpen').click();
+   }
+   else
+   hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+});
+
+	
+	
 jQuery(function(){
 	$('#driver').click();
 });
@@ -498,7 +509,7 @@ document.getElementById('companion').onclick = function() {
    document.getElementById("servicetype").value = "Companion"; 
 }
 document.getElementById('meal').onclick = function() {
-   document.getElementById("servicetype").value = "Meal Prepation"; 
+   document.getElementById("servicetype").value = "Meal Preparation"; 
 }
 document.getElementById('driver').onclick = function() {
    document.getElementById("servicetype").value = "Driver"; 

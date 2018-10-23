@@ -32,7 +32,7 @@ session_start();
 		 $message = "Account Registered!";
          echo "<script type='text/javascript'>
 		 alert('$message');
-		 window.location.href='request.html';
+		 window.location.href='requestforseniors.php#new_request';
         </script>";
 		mysqli_query($con, $sql);
  }
