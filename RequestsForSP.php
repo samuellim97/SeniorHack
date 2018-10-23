@@ -1,7 +1,13 @@
 <?php
-  include_once 'dbh.php';
-  $username = $_SESSION['username'];
-$sql_select_service = "SELECT requestID, date, time,servicecode, spID FROM serviceRequest WHERE status ='pending';
+session_start();
+ $servername = "localhost";
+ $username = "root";
+ $password = "";
+ $dbname = "SeniorHack";
+ $con = new mysqli($servername, $username, $password, $dbname);
+
+$username = $_SESSION['username'];
+$sql_select_service = "SELECT requestID, date, time,service_type, sp_ID FROM request WHERE sp_ID =8";
 if ($result_select_service = $con->query($sql_select_service)) {
 	$row_count_select_service =mysqli_num_rows($result_select_service);
 	if ($row_count_select_service>0) {
@@ -10,14 +16,15 @@ if ($result_select_service = $con->query($sql_select_service)) {
 			$requestID_selected_service[$i] = $row_select_service['requestID'];
 			$date_selected_service[$i] = $row_select_service['date'];
 			$time_selected_service[$i] = $row_select_service['time'];
-			$type_selected_service[$i] = $row_select_service['servicecode'];
-			$sp_selected_service[$i] = $row_select_service['spID'];
+			$type_selected_service[$i] = $row_select_service['service_type'];
+			$sp_selected_service[$i] = $row_select_service['sp_ID'];
 			$i++;
 		}
 	}
 } else {
 	$row_count_select_service = 0;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +152,20 @@ body{background-color:#f0f3f5;}
 <br>
 <div class="tab-content" id="open">
 <!--Pending Requests Tab-->
-<?php if ($row_count_select_service == 0) {
+
+<div id="pending" class="tab-pane fade in active ">
+<div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
+<br>
+<div style="text-align:center">
+<h5><b>Sort by:</b></h5><form>
+    <label class="radio-inline">
+      <input type="radio" name="optradio" checked>Service ID
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="optradio">Date
+    </label>
+  </form></div>
+      	<?php if ($row_count_select_service == 0) {
 					echo "<p>No services have been created yet</p>";
 				}
 				else{
@@ -178,42 +198,6 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 	</tr>
 </table>
 </div>'; }}?>
-<div id="pending" class="tab-pane fade in active ">
-<div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
-<br>
-<div style="text-align:center">
-<h5><b>Sort by:</b></h5><form>
-    <label class="radio-inline">
-      <input type="radio" name="optradio" checked>Service ID
-    </label>
-    <label class="radio-inline">
-      <input type="radio" name="optradio">Date
-    </label>
-  </form></div>
-      	<div style="color:black">
-      	<br>
-      	<br>
-        <div id="req_box" class="col-lg-6 col-md-6 col-sm-6" >
-      <table id="tblOne"class="tbl">
-      	<tr>
-      		<td>
-      		<a href="#myModal" data-toggle="modal" data-target="#myModal"
-          style="color:black;text-decoration:none">
-      		<p style="margin:8px 13px"><span class="statusPending">pending</span>
-      		<span style="float:right">
-            <?php $date = strtotime($row['requestDate']);
-            echo date("m/d/y H:ia", $date); ?></span>
-      		<br><span style="font-size:12px">Request ID S<?php echo $row['requestID']; ?></span>
-      		<br>Senior: Roy Chan
-      		<div class="bottom-info">
-      		<span style="font-size:12px"><?php echo $row['serviceCode']; ?></span>
-      		<p class="view-info">view</p></div></p>
-      		</a>
-      		</td>
-      	</tr>
-      </table>
-    </div>
-      </div>
     </div>
       </div>
 <br>
