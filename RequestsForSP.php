@@ -122,7 +122,7 @@ body{background-color:#f0f3f5;}
     </ul>
     <!--Log Out-->
      <div class="collapse navbar-collapse" id="cl-mainNavbar">
-      <a href="homepage.html" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+      <a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
     </div>
     </div>
   </nav>

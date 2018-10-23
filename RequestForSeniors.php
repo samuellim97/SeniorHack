@@ -103,13 +103,13 @@ if ($result_select_service = $con->query($sql_select_service)) {
     </ul>
     <ul class="nav navbar-nav navbar-center topnav">
         <li><a href="findServiceProvider210.html">Service Providers</a></li>
-		<li><a href="#" id="defaultSelected"> Requests</a></li>
+		<li><a href="" id="defaultSelected"> Requests</a></li>
 		<li><a href="#">Contact Us</a></li>
 		<li><a href="HelpCentre.html">Help</a></li>
     </ul>
 	<!--Log Out-->
    <div class="collapse navbar-collapse" id="cl-mainNavbar">
-		<a href="homepage.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+		<a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
 	</div>
   </div>
 </nav>

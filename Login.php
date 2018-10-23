@@ -39,13 +39,13 @@ session_start();
   }else {
          $message = "Username not found";
          echo "<script type='text/javascript'>alert('$message');
-		 window.location.href='homepage.html';
+		 window.location.href='homepage.php';
         </script>";
         }
   if ($pwdInvalid){
          $message = "Invalid password";
          echo "<script type='text/javascript'>alert('$message');
-		 window.location.href='homepage.html';
+		 window.location.href='homepage.php';
         </script>";
         }
  
