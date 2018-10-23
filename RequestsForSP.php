@@ -1,30 +1,64 @@
 <?php
-session_start();
- $servername = "localhost";
- $username = "root";
- $password = "";
- $dbname = "SeniorHack";
- $con = new mysqli($servername, $username, $password, $dbname);
-
+include_once 'dbh.php';
 $username = $_SESSION['username'];
-$sql_select_service = "SELECT requestID, date, time,service_type, sp_ID FROM request WHERE sp_ID =8";
-if ($result_select_service = $con->query($sql_select_service)) {
-	$row_count_select_service =mysqli_num_rows($result_select_service);
-	if ($row_count_select_service>0) {
+$p_sql = "SELECT* FROM servicerequest WHERE status = 'pending'";
+if ($p_result = $con->query($p_sql)) {
+	$p_row_count = mysqli_num_rows($p_result);
+	if ($p_row_count>0) {
 		$i = 1;
-		while($row_select_service=mysqli_fetch_assoc($result_select_service)) {
-			$requestID_selected_service[$i] = $row_select_service['requestID'];
-			$date_selected_service[$i] = $row_select_service['date'];
-			$time_selected_service[$i] = $row_select_service['time'];
-			$type_selected_service[$i] = $row_select_service['service_type'];
-			$sp_selected_service[$i] = $row_select_service['sp_ID'];
+		while($p_row=mysqli_fetch_assoc($p_result)) {
+			$p_requestID[$i] = $p_row['requestID'];
+			$date[$i] = strtotime($p_row['date']);
+      $p_date[$i] = date("d/m/y", $date[$i]);
+      $time[$i] = strtotime($p_row['time']);
+      $p_time[$i] = date("H:ia", $time[$i]);
+			$p_serviceCode[$i] = $p_row['serviceCode'];
+			$p_sID[$i] = $p_row['sID'];
 			$i++;
 		}
 	}
 } else {
-	$row_count_select_service = 0;
+	$p_row_count = 0;
 }
-
+$u_sql = "SELECT* FROM servicerequest WHERE status = 'accepted'";
+if ($u_result = $con->query($u_sql)) {
+	$u_row_count = mysqli_num_rows($u_result);
+	if ($u_row_count>0) {
+		$i = 1;
+		while($u_row=mysqli_fetch_assoc($u_result)) {
+			$u_requestID[$i] = $u_row['requestID'];
+			$date[$i] = strtotime($u_row['date']);
+      $u_date[$i] = date("d/m/y", $date[$i]);
+      $time[$i] = strtotime($u_row['time']);
+      $u_time[$i] = date("H:ia", $time[$i]);
+			$u_serviceCode[$i] = $u_row['serviceCode'];
+			$u_sID[$i] = $u_row['sID'];
+			$i++;
+		}
+	}
+} else {
+	$u_row_count = 0;
+}
+$h_sql = "SELECT* FROM servicerequest WHERE status = 'cancelled' OR status = 'completed'";
+if ($h_result = $con->query($h_sql)) {
+	$h_row_count = mysqli_num_rows($h_result);
+	if ($h_row_count>0) {
+		$i = 1;
+		while($h_row=mysqli_fetch_assoc($h_result)) {
+			$h_requestID[$i] = $h_row['requestID'];
+			$date[$i] = strtotime($h_row['date']);
+      $h_date[$i] = date("d/m/y", $date[$i]);
+      $time[$i] = strtotime($h_row['time']);
+      $h_time[$i] = date("H:ia", $time[$i]);
+      $h_status[$i] = $h_row['status'];
+			$h_serviceCode[$i] = $h_row['serviceCode'];
+			$h_sID[$i] = $h_row['sID'];
+			$i++;
+		}
+	}
+} else {
+	$h_row_count = 0;
+}
 ?>
 
 <!DOCTYPE html>
@@ -42,54 +76,44 @@ if ($result_select_service = $con->query($sql_select_service)) {
 
 <style>
 body{background-color:#f0f3f5;}
-
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
    color:white;
    background-color:#0B7A75;}
-
 .nav_style {
  background-color:#0B7A75;
  border:none;}
-
 .topnav li a{
  text-align:center;
  color:white !important;
  padding-right: 35px;
  padding-left: 35px;}
-
 .logo {
  margin-top:-1%;
  height:50px;}
-
 .button.active {
  background-color:#7b2d26 !important;
  color:white;
  border: 2px solid white;
 }
-
 @media only screen and (max-width: 750px)
  {.log-out { margin:auto;
  display:block;
  width:25%;
  }}
-
 @media only screen and (min-width: 750px){
 .log-out {
  margin-right:2%;
  }}
-
  #banner{
  background:url(img/sp-banner.png) no-repeat top center fixed;
  background-size:cover;
 	height:450px;
 	width:100%;}
-
 .banner-title{
 	margin-top:8%;
 	font-family:sans-serif;
 	text-align:right;
 	font-size:38px;}
-
 @media only screen and (max-width: 1200px)
   {.banner-title {
   text-align:center;
@@ -97,7 +121,6 @@ body{background-color:#f0f3f5;}
   font-size:31px;
   margin-top:15%;
   }}
-
 </style>
 </head>
 <!-- Navigation bar-->
@@ -122,7 +145,7 @@ body{background-color:#f0f3f5;}
     </ul>
     <!--Log Out-->
      <div class="collapse navbar-collapse" id="cl-mainNavbar">
-      <a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+      <a href="homepage.html" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
     </div>
     </div>
   </nav>
@@ -130,23 +153,22 @@ body{background-color:#f0f3f5;}
 <div class="row"><br><br><br>
 <div class="banner-title col-lg-9 col-lg-offset-3 col-md-9 col-sm-10"><p>WE CANT HELP EVERYONE, </p><p style="margin-top:-2%">BUT EVERYONE CAN HELP</p>
 <p style="margin-top:-2%">SOMEONE</p>
-<a href="#pending" class="btn btn-info" id="next" role="button" style="margin-top:-2%">Review Requests</a></div></div>
-
+<a href="#pending" class="btn btn-info" id="next" role="button" style="margin-top:-2%">Review Requests</a>
 </div>
-
+</div>
+</div>
+</div>
 </header>
 
 <body>
 <div class="container"  style="margin-top:3%">
   <div class="row">
 <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
-<!--New Request and View Requests Tabs-->
+<!--Pending Requests, Upcoming Requests and History Tabs-->
   <ul class="tab nav nav-pills">
-
     <li style="width:30%; padding-right: 2%" ><a class="btn btn-lg btn-default" id="defaultOpen" data-toggle="tab" href="#pending">Pending</a></li>
-	<li style="width:34%; padding-right: 2%"><a class="btn btn-lg btn-default" data-toggle="tab" href="#upcoming">Upcoming</a></li>
+	  <li style="width:34%; padding-right: 2%"><a class="btn btn-lg btn-default" data-toggle="tab" href="#upcoming">Upcoming</a></li>
     <li style="width:28%; padding-right: 2%"><a class="btn btn-lg btn-default" data-toggle="tab" href="#history">History</a></li>
-
   </ul>
 </div>
 <br>
@@ -165,32 +187,29 @@ body{background-color:#f0f3f5;}
       <input type="radio" name="optradio">Date
     </label>
   </form></div>
-      	<?php if ($row_count_select_service == 0) {
-					echo "<p>No services have been created yet</p>";
+      	<?php if ($p_row_count == 0) {
+					echo "<p style='text-align:center'>No pending requests at the moment</p>";
 				}
-				else{
-					for ($i = 1; $i <=$row_count_select_service; $i++) {
-					
+				else {
+					for ($i = 1; $i <= $p_row_count; $i++) {
+
 echo'<div class="col-lg-6 col-md-6 col-sm-6" >
-
-
 <table id="tblOne" class="tbl ">
-
 	<tr>
-		<td> 
+		<td>
 		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusPending">pending</span> 
+		<p style="margin:8px 13px"><span class="statusPending">pending</span>
 		<span style="float:right">';
-		echo"$date_selected_service[$i],$time_selected_service[$i]";
+		echo"$p_date[$i],$p_time[$i]";
 		echo'</span>
-		<br><span style="font-size:12px">';
-		echo"Request ID $requestID_selected_service[$i]"; 
+		<br><span style="font-size:12px"><br>';
+		echo"Request ID $p_requestID[$i]";
 		echo'</span>';
-		echo "<br>Service Provider:$sp_selected_service[$i]"; 
-		echo' 
+		echo "<br>Senior: $p_sID[$i]";
+		echo'
 		<div class="bottom-info">
 		<span style="font-size:12px">';
-		echo "$type_selected_service[$i]"; 
+		echo "$p_serviceCode[$i]";
 		echo'</span>
 		<p class="view-info">view</p></div></p>
 		</a>
@@ -198,8 +217,8 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 	</tr>
 </table>
 </div>'; }}?>
-    </div>
-      </div>
+</div>
+</div>
 <br>
 
 <!--End of Pending Requests-->
@@ -218,112 +237,41 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 	<div style="color:black">
 	<br>
 	<br>
-  <div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Senior: Roy Chan
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
+  <?php if ($u_row_count == 0) {
+    echo "<p style='text-align:center'>No requests at the moment</p>";
+  }
+  else{
+    for ($i = 1; $i <=$u_row_count; $i++) {
+
+echo'<div class="col-lg-6 col-md-6 col-sm-6" >
+<table id="tblOne" class="tbl ">
+<tr>
+<td>
+<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
+<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
+<span style="float:right">';
+echo"$u_date[$i],$u_time[$i]";
+echo'</span>
+<br><span style="font-size:12px"><br>';
+echo"Request ID $u_requestID[$i]";
+echo'</span>';
+echo "<br>Senior: $u_sID[$i]";
+echo'
+<div class="bottom-info">
+<span style="font-size:12px">';
+echo "$u_serviceCode[$i]";
+echo'</span>
+<p class="view-info">view</p></div></p>
+</a>
+</td>
+</tr>
 </table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Senior: Roy Chan
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Senior: Roy Chan
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-</table><table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Senior: Roy Chan
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-  <div class="col-lg-6 col-md-6 col-sm-6" >
-</table><table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Senior: Roy Chan
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Senior: Roy Chan
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
+</div>'; }}?>
+
 </div>
 </div>
 </div>
 
-</div>
 <!--End of Upcoming Requests-->
 
 <!--Requests History Tab-->
@@ -341,107 +289,41 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 	<div style="color:black">
 	<br>
 	<br>
-  <div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusCancelled">cancelled</span>
-		<span style="float:right">20/5/18, 8:00pm</span>
-		<br><span style="font-size:12px">Request ID S0005</span>
-		<br>Senior: Jenny
-		<div class="bottom-info">
-		<span style="font-size:12px">Driver</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
+  <?php if ($h_row_count == 0) {
+    echo "<p style='text-align:center'>No past requests</p>";
+  }
+  else{
+    for ($i = 1; $i <=$h_row_count; $i++) {
+echo'<div class="col-lg-6 col-md-6 col-sm-6" >
+<table id="tblOne" class="tbl ">
+<tr>
+<td>
+<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
+<p style="margin:8px 13px">';
+if ($h_status[$i] == "completed"){
+  echo '<span class="statusCompleted">';
+} else {
+  echo '<span class="statusCancelled">';
+}
+echo"$h_status[$i]";
+echo'</span>';
+echo'<span style="float:right">';
+echo"$h_date[$i],$h_time[$i]";
+echo'</span>
+<br><span style="font-size:12px"><br>';
+echo"Request ID $h_requestID[$i]";
+echo'</span>';
+echo "<br>Senior: $h_sID[$i]";
+echo'<div class="bottom-info">
+<span style="font-size:12px">';
+echo "$h_serviceCode[$i]";
+echo'</span>
+<p class="view-info">view</p></div></p>
+</a>
+</td>
+</tr>
 </table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-    <p style="margin:8px 13px"><span class="statusCancelled">cancelled</span>
-  	<span style="float:right">20/5/18, 8:00pm</span>
-  	<br><span style="font-size:12px">Request ID S0005</span>
-  	<br>Senior: Jenny
-  	<div class="bottom-info">
-  	<span style="font-size:12px">Driver</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusCompleted">completed</span>
-		<span style="float:right">30/5/18, 3:00pm</span>
-		<br><span style="font-size:12px">Request ID S0004</span>
-		<br>Senior: Colin
-		<div class="bottom-info">
-		<span style="font-size:12px">Companion</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-    <p style="margin:8px 13px"><span class="statusCompleted">completed</span>
-  	<span style="float:right">30/5/18, 3:00pm</span>
-  	<br><span style="font-size:12px">Request ID S0004</span>
-  	<br>Senior: Colin
-  	<div class="bottom-info">
-  	<span style="font-size:12px">Companion</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-    <p style="margin:8px 13px"><span class="statusCompleted">completed</span>
-  	<span style="float:right">30/5/18, 3:00pm</span>
-  	<br><span style="font-size:12px">Request ID S0004</span>
-  	<br>Senior: Colin
-  	<div class="bottom-info">
-  	<span style="font-size:12px">Companion</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-toggle="modal" data-target="#myModal" style="color:black;text-decoration:none">
-    <p style="margin:8px 13px"><span class="statusCompleted">completed</span>
-  	<span style="float:right">30/5/18, 3:00pm</span>
-  	<br><span style="font-size:12px">Request ID S0004</span>
-  	<br>Senior: Colin
-  	<div class="bottom-info">
-  	<span style="font-size:12px">Companion</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
+</div>'; }}?>
 </div>
 </div>
 </div>
@@ -449,7 +331,7 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 </div>
 <!--End of Requests History-->
 
-<!-- Modal -->
+<!-- Service Requests Details Modal -->
 <div class="modal fade" id="myModal" role="dialog">
   <div class="modal-dialog">
 
@@ -458,10 +340,10 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
       <div class="modal-header" style="padding:10px 35px;">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-        <p class="modal-title"><span class="statusPending" style="float:left;margin-top:1%;">pending</span><p style="float:initial;margin-top:1.5%;">1/9/18, 12:00PM</p></</p>
+        <p class="modal-title"><span class="statusPending" style="float:left;margin-top:1%;">pending</span><p style="float:initial;margin-top:1.5%;">01/10/18, 12:30PM</p></</p>
       </div>
       <div style="padding: 1% 5%; background-color: #AAAAAA;">
-        Request ID S0001
+        Request ID 100001
       </div>
       <p><span style="float:left;padding:1% 5%;">Senior</span><a href="#detailsModal" data-target="#detailsModal" id="edit">edit</a></p>
       <div class="modal-body">
@@ -472,13 +354,13 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
               <image style="height:64px; width:64px;" src="img/profile_pic.png"></image>
             </div>
             <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-1">
-              <b>Roy Chan</b>
+              <b>danieltan1</b>
               <br>012-3456789
-              <br>4.5 stars
+              <br><button type="button" onclick="window.location.href='userreview.html'" class="btn btn-primary btn-xs" >View Rating</button></p>
             </div>
           </div>
           <div style="padding-bottom: 20px;">
-            notes: pick me up at Entrance A
+            notes: 	Please be on time yeah
           </div>
         </div>
       <div class="modal-footer" style="text-Align: left;">
@@ -494,44 +376,41 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 </div>
 </div>
 </div>
-</div>
 
 <!--Edit Details Model-->
 <div class="modal fade" id="detailsModal" role="dialog">
   <div class="modal-dialog">
 
-    <!-- Edit Details Modal content-->
+  <!-- Edit Details Modal content-->
     <div class="modal-content">
       <div class="modal-header" style="padding:10px 35px;">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-
-        <p class="modal-title"><span class="statusPending" style="float:left;margin-top:1%;">pending</span><p style="float:initial;margin-top:1.5%;">1/9/18, 12:00PM</p></</p>
+        <p class="modal-title"><span class="statusPending" style="float:left;margin-top:1%;">pending</span><p style="float:initial;margin-top:1.5%;">01/10/18, 12:30PM</p></</p>
       </div>
       <div style="padding: 1% 5%; background-color: #AAAAAA;">
-        Request ID S0001
+      Request ID 100001
       </div>
       <p><span style="float:left;padding:1% 5%;">Senior</span></p>
       <div class="modal-body">
-
         <div class="container">
           <div class="row" style="padding-top:10px; padding-bottom: 20px;">
             <div class="col-md-1 col-xs-12">
               <image style="height:64px; width:64px;" src="img/profile_pic.png"></image>
             </div>
-            <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-0">
-              <b>Roy Chan</b>
-              <br><p>012-3456789
-              <br><button type="button" onclick="window.location.href='userreview.html'" class="btn btn-primary btn-xs" >View Rating</button></p>
-			  </div>
-			  <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3 col-xs-offset-4" style="margin-top:0%;margin-left:-5%;float-right;text-align:center">
-			  <button type="button" class="btn btn-info btn-xs" style="margin-top:25%;padding-left:22%;padding-right:22%">Cancel Service</button><br>
-			  <button type="button" class="btn btn-warning btn-xs" style="margin-top:5%">Service Completed</button></div>
-
-			</div>
-          </div>
+          <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-0">
+            <b>danieltan1</b>
+            <br><p>012-3456789
+            <br><button type="button" onclick="window.location.href='userreview.html'" class="btn btn-primary btn-xs" >View Rating</button></p>
+			    </div>
+			      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3 col-xs-offset-4" style="margin-top:0%;margin-left:-5%;float-right;text-align:center">
+			      <button type="button" class="btn btn-info btn-xs" style="margin-top:25%;padding-left:22%;padding-right:22%">Cancel Service</button><br>
+			      <button type="button" class="btn btn-warning btn-xs" style="margin-top:5%">Service Completed</button>
+            </div>
+			    </div>
+        </div>
           <div style="margin-left:3%" >
             <label for="notes">notes: </label> <br>
-			<textarea name="notes" rows="3" cols="30" ></textarea>
+			      <textarea name="notes" rows="3" cols="30" ></textarea>
           </div>
         </div>
 
@@ -542,7 +421,7 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
       </div>
       </div>
     </div>
-  </div>
+</div>
 
 
 <footer id="footer-bg" class="footer" style="width:100%">
@@ -578,7 +457,6 @@ $('.button').click(function() {
     $('button').removeClass('active');
     $(this).addClass('active');
 })
-
 jQuery(document).ready(function($) {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
@@ -594,7 +472,6 @@ $("#next").on("click", function(){
     $('#defaultOpen[href="#pending"]').tab('show');
 	document.getElementById("open").scrollIntoView();
 });
-
 </script>
 </body>
 </html>
