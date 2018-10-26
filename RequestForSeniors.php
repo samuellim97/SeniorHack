@@ -7,7 +7,7 @@ session_start();
  $con = new mysqli($servername, $username, $password, $dbname);
 
 $username = $_SESSION['username'];
-$sql_select_service = "SELECT requestID, date, time,service_type, sp_ID FROM request WHERE sp_ID =8";
+$sql_select_service = "SELECT requestID, date, time,service_type, sp_ID FROM request WHERE sp_ID =10002";
 if ($result_select_service = $con->query($sql_select_service)) {
 	$row_count_select_service =mysqli_num_rows($result_select_service);
 	if ($row_count_select_service>0) {
@@ -209,7 +209,7 @@ of service providers which will bring about convenience and comfort in their liv
 	<br>
 <!--Requests info displayed in notes form-->
 <?php if ($row_count_select_service == 0) {
-					echo "<p>No services have been created yet</p>";
+					//echo "<p>No services have been created yet</p>";
 				}
 				else{
 					for ($i = 1; $i <=$row_count_select_service; $i++) {
@@ -229,11 +229,11 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 		<br><span style="font-size:12px">';
 		echo"Request ID $requestID_selected_service[$i]"; 
 		echo'</span>';
-		echo "<br>Service Provider:$sp_selected_service[$i]"; 
+		echo "<br>Service Provider:"; 
 		echo' 
 		<div class="bottom-info">
 		<span style="font-size:12px">';
-		echo "$type_selected_service[$i]"; 
+		echo "Driver"; 
 		echo'</span>
 		<p class="view-info">view</p></div></p>
 		</a>
@@ -244,92 +244,7 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 
 
 
-<div class="col-lg-6 col-md-6 col-sm-6">
-<table id="tblOne"class="tbl ">
-	<tr>
-		<td>
-		<a href="myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusPending">pending</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Service Provider:Adam
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6">
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
 
-<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Service Provider:Adam
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Service Provider:Adam
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusCancelled">cancelled</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Service Provider:Adam
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
-<div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblOne"class="tbl">
-	<tr>
-		<td>
-		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusCompleted">completed</span>
-		<span style="float:right">1/9/18, 12:00pm</span>
-		<br><span style="font-size:12px">Request ID S0001</span>
-		<br>Service Provider:Adam
-		<div class="bottom-info">
-		<span style="font-size:12px">Cleaning</span>
-		<p class="view-info">view</p></div></p>
-		</a>
-		</td>
-	</tr>
-</table>
-</div>
 </div>
 </div>
 
