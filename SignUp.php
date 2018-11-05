@@ -135,18 +135,18 @@
   </div>
 
   <div class="form-group">
-    <label for="pwd">Password</label>
-    <input type="password" class="form-control" id="s_pwd" name="s_password">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="s_password" name="s_password">
   </div>
 
   <div class="form-group">
     <label for="FullName">Full Name</label>
-    <input type="text" class="form-control" id="s_name" name="s_name">
+    <input type="text" class="form-control" id="s_fullName" name="s_fullName">
   </div>
 
   <div class="form-group">
     <label for="ContactNo">Contact No</label>
-    <input type="text" class="form-control" id="s_contact" name="s_contact">
+    <input type="text" class="form-control" id="s_mobileNo" name="s_mobileNo">
   </div>
 
   <div class="form-group">
@@ -178,18 +178,18 @@
   </div>
 
   <div class="form-group">
-    <label for="pwd">Password</label>
-    <input type="password" class="form-control" id="sp_pwd" name="sp_password">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="sp_password" name="sp_password">
   </div>
 
   <div class="form-group">
     <label for="FullName">Full Name</label>
-    <input type="text" class="form-control" id="sp_name" name="sp_name">
+    <input type="text" class="form-control" id="sp_fullName" name="sp_fullName">
   </div>
 
   <div class="form-group">
     <label for="ContactNo">Contact No</label>
-    <input type="text" class="form-control" id="sp_contact" name="sp_contact">
+    <input type="text" class="form-control" id="sp_mobileNo" name="sp_mobileNo">
   </div>
 
   <div class="form-group">
@@ -277,8 +277,8 @@ $("#next").on("click", function(){
 //validate senior sign up form
 function seniorValidation() {
 	//value of phone No is stored inside a var becasue it will be called several times
-	var phoneNo = document.getElementById("s_contact");
-	var pwd =document.getElementById("s_pwd");
+	var phoneNo = document.getElementById("s_mobileNo");
+	var password =document.getElementById("s_password");
 	//values to be compared with a valid phone No
 	var numbers =/^\d+(-\d+)*$/;
 	if (document.getElementById("s_username").value=="") {
@@ -287,33 +287,33 @@ function seniorValidation() {
 		event.preventDefault();
 		return false;
 	} //end if
-	if(pwd.value=="") {
+	if(password.value=="") {
 		alert("Password cannot be empty.");
-		document.getElementById("s_pwd").focus();
+		document.getElementById("s_password").focus();
 		event.preventDefault();
 		return false;
 		}
-	if(pwd.value.length < 6) {
+	if(password.value.length < 6) {
 		alert("Password must be 6 characters.");
-		document.getElementById("s_pwd").focus();
+		document.getElementById("s_password").focus();
 		event.preventDefault();
 		return false;
 		}
 
-	if(document.getElementById("s_name").value=="") {
+	if(document.getElementById("s_fullName").value=="") {
 		alert("Name field cannot be empty.");
-		document.getElementById("s_name").focus();
+		document.getElementById("s_fullName").focus();
 		event.preventDefault();
 		return false;
 		}//end if
 	if(phoneNo.value=="") {
 		alert("Contact number cannot be empty.");
-		document.getElementById("s_contact").focus();
+		document.getElementById("s_mobileNo").focus();
 		event.preventDefault();
 		return false;
 		}
 	if(!phoneNo.value.match(numbers) || phoneNo.value.length < 10) {
-		document.getElementById("s_contact").focus();
+		document.getElementById("s_mobileNo").focus();
 		alert("Invalid phone number.");
 		event.preventDefault();
 		return false;
@@ -333,9 +333,9 @@ function seniorValidation() {
 //service provider sign up form validation
 function spValidation() {
 	var checked = $('#checkboxes').find(':checked').length;
-	var pwd =document.getElementById("sp_pwd");
+	var password =document.getElementById("sp_password");
 	//value of phone No is stored inside a var becasue it will be called several times
-	var phoneNo = document.getElementById("sp_contact");
+	var mobileNo = document.getElementById("sp_mobileNo");
 	//values to be compared with a valid phone No
 	var numbers =/^\d+(-\d+)*$/;
 	if (document.getElementById("sp_username").value=="") {
@@ -344,33 +344,33 @@ function spValidation() {
 		event.preventDefault();
 		return false;
 	} //end if
-	if(pwd.value=="") {
+	if(password.value=="") {
 		alert("Password cannot be empty.");
-		document.getElementById("sp_pwd").focus();
+		document.getElementById("sp_password").focus();
 		event.preventDefault();
 		return false;
 		}
-	if(pwd.value.length < 6) {
+	if(password.value.length < 6) {
 		alert("Password must be 6 characters.");
-		document.getElementById("sp_pwd").focus();
+		document.getElementById("sp_password").focus();
 		event.preventDefault();
 		return false;
 		}
 
-	if(document.getElementById("sp_name").value=="") {
+	if(document.getElementById("sp_fullName").value=="") {
 		alert("Name field cannot be empty.");
-		document.getElementById("sp_name").focus();
+		document.getElementById("sp_fullName").focus();
 		event.preventDefault();
 		return false;
 		}//end if
-	if(phoneNo.value=="") {
+	if(mobileNo.value=="") {
 		alert("Contact number cannot be empty.");
-		document.getElementById("sp_contact").focus();
+		document.getElementById("sp_mobileNo").focus();
 		event.preventDefault();
 		return false;
 		}
-	if(!phoneNo.value.match(numbers) || phoneNo.value.length < 10) {
-		document.getElementById("sp_contact").focus();
+	if(!mobileNo.value.match(numbers) || mobileNo.value.length < 10) {
+		document.getElementById("sp_mobileNo").focus();
 		alert("Invalid phone number.");
 		event.preventDefault();
 		return false;
