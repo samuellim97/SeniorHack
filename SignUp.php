@@ -103,8 +103,8 @@
 <body>
 <div class="container"  style="margin-top:2%;text-align:center">
   <div class="row">
-  
-  
+
+
   <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12 col-xs-offset-0">
 <h2>Sign Up</h2>
 <br>
@@ -156,7 +156,7 @@
 
 
 <br/>
-<input type="submit" onclick="seniorValidation(this)" id="senior_submit" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> 
+<input type="submit" onclick="seniorValidation(this)" id="senior_submit" class="pull-right btn btn-block btn-success" style="margin-bottom:10%">
 </form>
 
     </div>
@@ -299,7 +299,7 @@ function seniorValidation() {
 		event.preventDefault();
 		return false;
 		}
-		
+
 	if(document.getElementById("s_name").value=="") {
 		alert("Name field cannot be empty.");
 		document.getElementById("s_name").focus();
@@ -328,9 +328,9 @@ function seniorValidation() {
 		return true;
 		}
 	}//end of function validateForm
-	
-	
-//service provider sign up form validation	
+
+
+//service provider sign up form validation
 function spValidation() {
 	var checked = $('#checkboxes').find(':checked').length;
 	var pwd =document.getElementById("sp_pwd");
@@ -356,7 +356,7 @@ function spValidation() {
 		event.preventDefault();
 		return false;
 		}
-		
+
 	if(document.getElementById("sp_name").value=="") {
 		alert("Name field cannot be empty.");
 		document.getElementById("sp_name").focus();

@@ -1,6 +1,11 @@
 <?php
-include_once 'dbh.php';
-
+session_start();
+$dbservername = "localhost";
+$dbusername = "root";
+$dbpassword = "";
+$dbname = "seniorhack";
+$con = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
+$username = $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>
