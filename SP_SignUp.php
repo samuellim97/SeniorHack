@@ -1,8 +1,8 @@
 <?php
 session_start();
- $servername = "localhost";
- $username = "root";
- $password = "";
+ $dbservername = "localhost";
+ $dbusername = "root";
+ $dbpassword = "";
  $dbname = "SeniorHack";
  $con = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
  $sp_username=$_POST['sp_username'];
