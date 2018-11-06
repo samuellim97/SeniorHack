@@ -1,5 +1,10 @@
 <?php
-include_once 'dbh.php';
+session_start();
+$dbservername = "localhost";
+$dbusername = "root";
+$dbpassword = "";
+$dbname = "seniorhack";
+$con = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
 $username = $_SESSION['username'];
 $p_sql = "SELECT* FROM servicerequest WHERE status = 'pending'";
 if ($p_result = $con->query($p_sql)) {
@@ -145,7 +150,7 @@ body{background-color:#f0f3f5;}
     </ul>
     <!--Log Out-->
      <div class="collapse navbar-collapse" id="cl-mainNavbar">
-      <a href="homepage.html" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+      <a href="homepage.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
     </div>
     </div>
   </nav>
@@ -356,7 +361,7 @@ echo'</span>
             <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-1">
               <b>danieltan1</b>
               <br>012-3456789
-              <br><button type="button" onclick="window.location.href='userreview.html'" class="btn btn-primary btn-xs" >View Rating</button></p>
+              <br><button type="button" onclick="window.location.href='userreview.php'" class="btn btn-primary btn-xs" >View Rating</button></p>
             </div>
           </div>
           <div style="padding-bottom: 20px;">
@@ -400,7 +405,7 @@ echo'</span>
           <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-0">
             <b>danieltan1</b>
             <br><p>012-3456789
-            <br><button type="button" onclick="window.location.href='userreview.html'" class="btn btn-primary btn-xs" >View Rating</button></p>
+            <br><button type="button" onclick="window.location.href='userreview.php'" class="btn btn-primary btn-xs" >View Rating</button></p>
 			    </div>
 			      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3 col-xs-offset-4" style="margin-top:0%;margin-left:-5%;float-right;text-align:center">
 			      <button type="button" class="btn btn-info btn-xs" style="margin-top:25%;padding-left:22%;padding-right:22%">Cancel Service</button><br>

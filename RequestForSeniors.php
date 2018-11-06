@@ -1,13 +1,12 @@
 <?php
 session_start();
- $servername = "localhost";
- $username = "root";
- $password = "";
+ $dbservername = "localhost";
+ $dbusername = "root";
+ $dbpassword = "";
  $dbname = "SeniorHack";
- $con = new mysqli($servername, $username, $password, $dbname);
-
+ $con = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
 $username = $_SESSION['username'];
-$sql_select_service = "SELECT requestID, date, time,service_type, sp_ID FROM request WHERE sp_ID =10002";
+$sql_select_service = "SELECT requestID, date, time, serviceCode, sp_ID FROM servicerequest WHERE sp_ID =10002";
 if ($result_select_service = $con->query($sql_select_service)) {
 	$row_count_select_service =mysqli_num_rows($result_select_service);
 	if ($row_count_select_service>0) {
@@ -16,7 +15,7 @@ if ($result_select_service = $con->query($sql_select_service)) {
 			$requestID_selected_service[$i] = $row_select_service['requestID'];
 			$date_selected_service[$i] = $row_select_service['date'];
 			$time_selected_service[$i] = $row_select_service['time'];
-			$type_selected_service[$i] = $row_select_service['service_type'];
+			$type_selected_service[$i] = $row_select_service['serviceCode'];
 			$sp_selected_service[$i] = $row_select_service['sp_ID'];
 			$i++;
 		}
@@ -24,7 +23,6 @@ if ($result_select_service = $con->query($sql_select_service)) {
 } else {
 	$row_count_select_service = 0;
 }
-
 ?>
 
 
@@ -45,36 +43,29 @@ if ($result_select_service = $con->query($sql_select_service)) {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <style>
  body{background-color:#f0f3f5;}
-
  .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     color:white;
     background-color:#0B7A75;}
-
 .nav_style {
 	background-color:#0B7A75;
 	border:none;}
-
  .topnav li a{
 	text-align:center;
 	color:white !important;
 	padding-right: 35px;
 	padding-left: 35px;}
-
 .logo {
   margin-top:-1%;
   height:50px;}
-
 .button.active {
 	background-color:#7b2d26 !important;
 	color:white;
 	border: 2px solid white;}
-
 @media only screen and (max-width: 750px)
   {.log-out { margin:auto;
   display:block;
   width:25%;
   }}
-
 @media only screen and (min-width: 750px){
  .log-out {
   margin-right:2%;
@@ -179,7 +170,7 @@ of service providers which will bring about convenience and comfort in their liv
 
 
 <br>
-<input type="submit" onclick="validations()" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> 
+<input type="submit" onclick="validations()" class="pull-right btn btn-block btn-success" style="margin-bottom:10%">
 </form>
     </div>
 </div>
@@ -203,7 +194,7 @@ of service providers which will bring about convenience and comfort in their liv
       <input type="radio" name="optradio">Status
     </label>
   </form></div>
-  
+
 	<div style="color:black">
 	<br>
 	<br>
@@ -213,27 +204,24 @@ of service providers which will bring about convenience and comfort in their liv
 				}
 				else{
 					for ($i = 1; $i <=$row_count_select_service; $i++) {
-					
+
 echo'<div class="col-lg-6 col-md-6 col-sm-6" >
-
-
 <table id="tblOne" class="tbl ">
-
 	<tr>
-		<td> 
+		<td>
 		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
-		<p style="margin:8px 13px"><span class="statusPending">pending</span> 
+		<p style="margin:8px 13px"><span class="statusPending">pending</span>
 		<span style="float:right">';
 		echo"$date_selected_service[$i],$time_selected_service[$i]";
 		echo'</span>
 		<br><span style="font-size:12px">';
-		echo"Request ID $requestID_selected_service[$i]"; 
+		echo"Request ID $requestID_selected_service[$i]";
 		echo'</span>';
-		echo "<br>Service Provider:"; 
-		echo' 
+		echo "<br>Service Provider:";
+		echo'
 		<div class="bottom-info">
 		<span style="font-size:12px">';
-		echo "Driver"; 
+		echo "Driver";
 		echo'</span>
 		<p class="view-info">view</p></div></p>
 		</a>
@@ -383,8 +371,7 @@ $(document).ready(function() {
    hash && $('ul.nav a[href="' + hash + '"]').tab('show');
 });
 
-	
-	
+
 jQuery(function(){
 	$('#driver').click();
 });
@@ -393,20 +380,16 @@ $('.button').click(function() {
     $('.button').removeClass('active');
     $(this).addClass('active');
 })
-
-
 jQuery(document).ready(function($) {
     $(".clickable-row").click(function() {
         window.location = $(this).data("href");
     });
 })
-
 <!--Open New Request Tab and Scroll to New Request Form upon clicking 'request now' button-->
 $("#next").on("click", function(){
     $('#defaultOpen[href="#new_request"]').tab('show');
 	document.getElementById("open").scrollIntoView();
 });
-
 <!--show second pop up window after closing the first pop up window-->
 $("#edit").on("click", function(){
     $("#myModal").modal("hide");
@@ -414,23 +397,18 @@ $("#edit").on("click", function(){
     $("#detailsModal").modal("show");
     });
 });
-
-
-
 document.getElementById('cleaning').onclick = function() {
-   document.getElementById("servicetype").value = "Cleaning"; 
+   document.getElementById("servicetype").value = "Cleaning";
 }
 document.getElementById('companion').onclick = function() {
-   document.getElementById("servicetype").value = "Companion"; 
+   document.getElementById("servicetype").value = "Companion";
 }
 document.getElementById('meal').onclick = function() {
-   document.getElementById("servicetype").value = "Meal Preparation"; 
+   document.getElementById("servicetype").value = "Meal Preparation";
 }
 document.getElementById('driver').onclick = function() {
-   document.getElementById("servicetype").value = "Driver"; 
+   document.getElementById("servicetype").value = "Driver";
 }
-
-
 function validations(){
 	var value = document.getElementById("date").value;
 	var mytime = document.getElementById("time").value;
@@ -451,7 +429,7 @@ function validations(){
 		event.preventDefault();
 		return false;
 	}
-	
+
 }
 </script>
 </body>
