@@ -1,0 +1,420 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Request</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/mdb.css" rel="stylesheet">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/Request.css">
+  <link rel="stylesheet" href="css/SeniorHack.css" rel="stylesheet">
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+</body>
+   <style>
+   .topnav {display:inline;}
+ body{background-color:#f0f3f5;}
+ .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color:white;
+    background-color:#0B7A75;}
+.nav_style {
+	background-color:#0B7A75;
+	border:none;}
+ .topnav li a{
+	text-align:center;
+	color:white !important;
+	padding-right: 30px;
+	padding-left: 30px;}
+.logo {
+  margin-top:-1%;
+  height:50px;}
+ .button.active {
+	background-color:#7b2d26 !important;
+	color:white;
+	border: 2px solid white;
+}
+@media only screen and (max-width: 750px)
+  {.log-out{ margin:auto;
+  display:block;
+  width:25%;
+  }}
+@media only screen and (min-width: 750px){
+ .log-out {
+margin-right:2%;
+  }
+  }
+  @media only screen and (min-width: 1000px){
+ .logo {
+margin-right:auto;
+margin-left:auto;
+  }
+  }
+  @media only screen and (max-width: 1000px){
+ .center_btn{
+  text-align:center; 
+  }
+  }
+  html,
+body,
+header,
+#banner {
+overflow-x: hidden;
+    height: 100%;
+}
+ @media only screen and (max-width: 1300px){
+ #banner{
+  width:100%;
+  height:500px;
+  
+  }
+  }
+  @media only screen and (max-width: 1300px){
+ html,body,header{
+  width:100%;
+  height:500px;
+
+  }
+  }
+  #banner{
+ background:url(img/request-banner.png) no-repeat top center fixed;
+    background-size: cover;}
+	
+	.navbar .navbar-toggle .icon-bar {
+}
+#btn-logout {
+	border-color:white ;
+	background:#0B7A75;
+	color:white;
+}
+.navbar .navbar-header{margin-left:86%;}
+.banner-title {
+	margin-top:15%;
+  }
+  @media only screen and (max-width: 700px) 
+  {.banner-title { 
+  margin-top:40%;
+  }}
+  
+.font {font-size:17px;}
+.page-footer{
+background-size:cover;
+	width:100%;
+	text-align:center;
+	background-color:#d7c9aa;}	
+	#defaultOpen{background-color:}
+.card{margin-top:10%;
+text-align:center;}
+.card-title{margin-top:-1%;}
+.form-control,form{text-align:left;}
+#card-hover:hover .dark-overlay {opacity:1;}
+#card-hover:hover .zoomed {
+    -ms-transform: scale(1.1); /* IE 9 */
+    -webkit-transform: scale(1.1); /* Safari 3-8 */
+    transform: scale(1.1);
+}
+.dark-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: rgba(0,0,0,0.5);
+}
+
+ </style>
+</head>
+
+<body>
+<header>
+  <!-- Start your project here-->
+  
+  <nav class="navbar navbar-default nav_style navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav logo">
+        <li><a href="#"><img src="img/logo.png" alt="SeniorHack Logo" class="logo"></a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-center topnav">
+        <li><a href="">Service Providers</a></li>
+		<li><a id="defaultSelected" > Requests</a></li>
+		<li><a href="#">Contact Us</a></li>
+		<li><a href="helpcentre.html">Help</a></li>
+    </ul>
+	<!--Log Out-->
+   <div class="collapse navbar-collapse center_btn" >
+		<button id="btn-logout" class="btn navbar-btn navbar-right log-out" data-toggle="modal" data-target="#modalLoginForm" >Log Out</button>
+	</div>
+  </div>
+</nav>
+<!--Mask-->
+<div id="banner" class="view">
+
+  <div class="mask rgba-black-strong">
+ <!-- Heading -->
+	<div class="container">
+<!--Banner title and description-->
+<div class="row"><br><br><br>
+<div class="banner-title col-lg-9 col-md-9 col-sm-12"><p>We Give Seniors The Love </p><p style="margin-top:-3%">They Deserve</p></div>
+
+<div class="banner-description col-lg-5 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12col-xs-offset-0">
+<p>SeniorHack ameliorates the living standards of senior citizens by providing a platform
+of service providers which will bring about convenience and comfort in their lives.</p><br>
+<a href="#new_request" class="btn btn-info" id="next" role="button">Request a Service Now</a></div>
+</div>
+</div>
+
+  </div>
+
+</div>
+<!--/.Mask-->
+</header>
+<main>
+<br><br>
+<div class="container" >
+  <div class="row justify-content-lg-center">
+<div class="col-lg-6 col-lg-offset-0 col-md-12 col-sm-12">
+<!--New Request and View Requests Tabs-->
+  <ul class="tab nav nav-pills">
+
+    <li style="width:46%; padding-right: 5%" ><a class="btn btn-default" id="defaultOpen" data-toggle="tab" href="#new_request">New Request</a></li>
+
+    <li style="width:53%; padding-left: 3%"><a class="btn btn-default" id="openView" data-toggle="tab" href="#view_requests">View Requests</a></li>
+
+  </ul>
+</div>
+<div class="col-lg-10 col-lg-offset-0 col-md-12 col-sm-12 col-xs-12">
+<!--First Card-->
+<div class="col-lg-6 col-md-12 col-sm-12">
+<!-- Card -->
+<div class="card">
+  <div class="view overlay">
+    <img class="card-img-top" src="img/driver.jpg" alt="Card image cap">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body" >
+
+    <!-- Title -->
+    <h3 class="card-title">Driver</h3>
+    <!-- Text -->
+	<p class="grey-text">To provide secure and timely driving services to transport senior citizen and/or goods.</p>
+    <!-- Button -->
+    <a href="#" class="btn purple-gradient" data-toggle="modal" data-target="#requestForm">Book Now !</a>
+
+  </div>
+
+</div>
+</div>
+<!--First Card-->
+<div class="col-lg-6 col-md-12 col-sm-12">
+<!-- Card -->
+<div class="card">
+  <div class="view overlay">
+    <img class="card-img-top" src="img/companion.jpg" alt="Card image cap">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body">
+
+    <!-- Title -->
+    <h3 class="card-title">Companion</h3>
+    <!-- Text -->
+	<p class="grey-text">Emotional support and companionship for seniors who are at home.</p>
+     <!-- Button -->
+    <a href="#" class="btn purple-gradient">Book Now ! </a>
+
+  </div>
+
+</div>
+
+</div>
+
+<!--First Card-->
+<div class="col-lg-6 col-md-12 col-sm-12">
+<!-- Card -->
+<div class="card">
+  <div class="view overlay">
+    <img class="card-img-top" src="img/meal.jpg" alt="Card image cap">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body">
+
+    <!-- Title -->
+    <h3 class="card-title">Meal Preparation</h3>
+    <!-- Text -->
+	<p class="grey-text">Planning, cooking and packaging of breakfast,lunch and dinner for senior citizen. </p>
+    <!-- Button -->
+    <a href="#" class="btn purple-gradient">Book Now !</a>
+
+  </div>
+
+</div>
+</div>
+<!--First Card-->
+<div class="col-lg-6 col-md-12 col-sm-12">
+<!-- Card -->
+<div class="card">
+  <div class="view overlay">
+    <img class="card-img-top" src="img/cleaning.jpg" alt="Card image cap">
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body">
+
+    <!-- Title -->
+    <h3 class="card-title">Cleaning</h3>
+    <!-- Text -->
+	<p class="grey-text">Cleaning, stocking and supplying designated facility areas for senior citizen. </p>
+   <!-- Button -->
+    <a href="#" class="btn purple-gradient">Book Now !</a>
+
+  </div>
+
+</div>
+</div>
+</div>
+<!-- Card -->
+<div class="modal fade" id="requestForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="width:400px">
+        <div class="modal-content">
+            <div class="modal-header text-center" style="color:white;background-color:#0B7A75">
+                <h3 class="modal-title w-100 font-weight-bold" >New Request</h3>
+                <button type="button" class="close" style="color:white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body mx-3 form-sm mb-5 pb-2">
+                <form>
+  <!-- Material input -->
+  <div class="md-form form-group mt-5" >
+    <input type="date" class="form-control" id="formGroupExampleInputMD" placeholder="Example input" >
+    <label for="formGroupExampleInputMD" style="font-size:12px;margin-top:-5%">Date</label>
+  </div>
+  <!-- Material input -->
+  <div class="md-form form-group mt-5">
+    <input type="time" class="form-control" id="formGroupExampleInput2MD" placeholder="Another input">
+    <label for="formGroupExampleInput2MD" style="font-size:12px;margin-top:-5%">Time</label>
+  </div>
+  <div class="md-form form-group mt-5" style="padding-top:5%" >
+    <input type="text" class="form-control" id="formGroupExampleInput2MD" placeholder="Duration of Service">
+    <label for="formGroupExampleInput2MD" style="font-size:12px;margin-top:3%">Duration</label>
+  </div>
+  <div class="md-form form-group mt-5" style="padding-top:5%" >
+    <input type="text" class="form-control" id="formGroupExampleInput2MD" placeholder="*Optional*">
+    <label for="formGroupExampleInput2MD" style="font-size:12px;margin-top:3%">Notes</label>
+  </div>
+</form>
+
+            </div>
+            <div class="d-flex justify-content-center" style="margin-bottom:5%">
+                <button class="btn btn-default">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-6 col-md-12 col-sm-12">
+
+<!-- Card -->
+<div class="card" style="width:500px">
+<div class="view" id="card-hover" >
+  <img class="card-img-top zoomed " src="img/cleaning.jpg" alt="Card image">
+  <div class="mask flex-center rgba-black-strong">
+  <div class="dark-overlay "></div>
+  <div class="card-img-overlay white-text zoomed " style="margin-top:12%">
+    <h3 class="card-title font-weight-bold">Cleaning</h3>
+	
+	<p style="font-size:12px;margin-top:3%"><span class="card-text" style="background-color:red;padding: 3px 14px">PENDING</span></p>
+	<p style="margin-top:3%" >1/9/18, 12:00PM, 2 hrs</p>
+    <p class="font-weight-bold" style="font-size:20px;margin-top:1%">Aaron Tan</p>
+	
+	</div>
+	<button class="btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
+margin-right:0;
+padding-left:0;
+padding-right:0;">View More</button>
+	</div>
+  
+</div>
+</div>
+<!-- Card -->
+<!-- Card -->
+</div>
+
+</div>
+<br><br>
+</div>
+<!--MODAL-->
+
+<!--End of modal-->
+<!-- Card -->
+
+<!-- Card -->
+</main>
+<!--footer-->
+<!-- Footer -->
+<footer class="page-footer" style="color:black">
+<div class="row">
+
+  <!-- Copyright -->
+  <div class="col-lg-4 col-md-12"  style="margin-top:1%;margin-bottom:1%">Contact Us At <br><span style="font-size:18px;font-weight:bold;"> 1300-88-2525</span>
+  </div>
+  <div class="col-lg-4 col-md-12" style="margin-top:1%;margin-bottom:1%">&copy;Copyright SeniorHack 2018 <br>All rights reserved
+  </div>
+  <div class="col-lg-4 col-md-12 " style="margin-top:1%;margin-bottom:1%"><a>Join Us At </a> <br>
+       <a href="https://facebook.com/"><i class="fa fa-facebook-square" style="font-size:1.5em;color:black;margin-right:5%"></i></a>
+		<a href="https://twitter.com/"><i class="fa fa-twitter" style="font-size:1.5em;color:black"></i></a>
+  </div>
+  <!-- Copyright -->
+</div>
+</footer>
+  <!-- Footer -->
+ <!-- JQuery -->
+  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+</body>
+<script>
+$(document).ready(function () {
+ $('.stepper').mdbStepper();
+})
+</script>
+</html>

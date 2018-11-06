@@ -11,6 +11,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <style>
+ 
  body{background-color:#f0f3f5;}
 
  .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
@@ -62,6 +63,12 @@
 .btn.active span.fa-check {
 	opacity: 1;
 }
+
+#btn-logout {
+	border-color:white;
+	background-color: transparent;
+	color:white;
+}
 </style>
 </head>
 <!-- Navigation bar-->
@@ -81,7 +88,7 @@
     </ul>
 	<!--Sign In-->
    <div class="collapse navbar-collapse" id="cl-mainNavbar">
-		<a href="homepage.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Sign In</a>
+		<a href="homepage.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out">Sign In</a>
 	</div>
   </div>
 </nav>
@@ -101,6 +108,7 @@
 <body>
 <!--Sign Up Form-->
 <body>
+
 <div class="container"  style="margin-top:2%;text-align:center">
   <div class="row">
   
