@@ -1,18 +1,15 @@
 <?php
 session_start();
-$dbservername = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "seniorhack";
-$con = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
-$username = $_SESSION['username'];
+ $dbservername = "localhost";
+ $dbusername = "root";
+ $dbpassword = "";
+ $dbname = "SeniorHack";
+ $con = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
 
-// getting request //
-$requestID = $_GET["requestID"];
-$result = "SELECT* FROM servicerequest WHERE requestID=$requestID;
-
-$request = msqli_fetch_object($result);
-echo json_encode($p_result);
-
-
+if (isset($_GET["requestID"])) {
+  $sql = "SELECT * FROM servicerequests WHERE requestID = '".$_GET["requestID"]."'";
+  $result = mysqli_query($con, $sql);
+  $row = mysqli_fetch_array($result);
+  echo json_encode($row);
+}
 ?>

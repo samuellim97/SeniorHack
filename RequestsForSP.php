@@ -202,10 +202,7 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 <table id="tblOne" class="tbl ">
 	<tr>
 		<td>
-		<a href="#myModal" data-target="#myModal" data-toggle="modal"
-		id=';
-		echo "$p_result->p_requestID[$i]";
-		echo'onclick="showDetails(this)"; style="color:black;text-decoration:none">
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
 		<p style="margin:8px 13px"><span class="statusPending">pending</span>
 		<span style="float:right">';
 		echo"$p_date[$i],$p_time[$i]";
@@ -216,7 +213,7 @@ echo'<div class="col-lg-6 col-md-6 col-sm-6" >
 		echo "<br>Senior: $p_sID[$i]";
 		echo'
 		<div class="bottom-info">
-		<span style="font-size:12px"';
+		<span style="font-size:12px">';
 		echo "$p_serviceCode[$i]";
 		echo'</span>
 		<p class="view-info">view</p></div></p>
@@ -459,22 +456,6 @@ echo'</span>
 
 <!--Request anchor and New Request Tab are selected by default-->
 <script>
-
-function showDetails(a){
-	var requestID = a.id;
-	//AJAX call to get specific request data
-	$.ajax({
-		url: "requestDetails.php",
-		method: "GET",
-		data: {"requestID": requestID},
-		success: function(response) {
-			// Parsing the JSON string to Javascript msqli_fetch_object
-			var request = JSON.parse(response);
-			// Displaying in proper fields
-		}
-	})
-}
-
 document.getElementById("defaultOpen").click();
 <!--function to make sure that no element will lose focus unless other button is chosen-->
 $('.button').click(function() {
