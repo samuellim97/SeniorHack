@@ -159,6 +159,7 @@ background-size:cover;
     <div class="modal-dialog modal-dialog-centered" role="document" style="width:400px">
         <div class="modal-content">
 		<form action="Login.php" method="post">
+		
             <div class="modal-header text-center" style="color:white;background-color:#0B7A75">
                 <h3 class="modal-title w-100 font-weight-bold" >Sign in</h3>
                 <button type="button" class="close" style="color:white" data-dismiss="modal" aria-label="Close">
@@ -169,14 +170,14 @@ background-size:cover;
                 <div class="md-form form-lg" style="margin-top:10%">
 				
                     <i class="fa fa-user prefix grey-text"></i>
-                    <input type="text" id="defaultForm-email" class="form-control " name="login-username">
+                    <input type="text" id="defaultForm-email" class="form-control " name="login-username" required>
                     <label for="defaultForm-email"><p style="font-size:13px">Username</p></label>
 					
                 </div>
 
                 <div class="md-form form-lg" style="margin-top:15%">
                     <i class="fa fa-lock prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control " name="login-password">
+                    <input type="password" id="defaultForm-pass" class="form-control " name="login-password" required>
                     <label for="defaultForm-pass"><p style="font-size:13px">Your password</p></label>
                 </div>
 
@@ -184,6 +185,7 @@ background-size:cover;
             <div class="d-flex justify-content-center" style="margin-bottom:5%">
                 <button class="btn btn-default" id="loginbtn">Login</button>
             </div>
+			</form>
 			</div>
         </div>
     </div>
@@ -212,72 +214,77 @@ background-size:cover;
 			<div class="tab-content" id="open">
 	 <div id="senior_signup" class="tab-pane fade in active ">
             <div class="modal-body mx-3 form-sm mb-5 pb-2">
+			<form action="SeniorSignUp.php" method="post" id="s_form">
                 <div class="md-form" style="margin-top:10%">
 				
                     <i class="fa fa-user-circle prefix grey-text"></i>
-                    <input type="email" id="defaultForm-email" class="form-control ">
+                    <input type="text" id="s_username" name="s_username" class="form-control ">
                     <label for="defaultForm-email"><p style="font-size:13px">Username</p></label>
 					
                 </div>
 
                 <div class="md-form" style="margin-top:10%">
                     <i class="fa fa-lock prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control ">
+                    <input type="password" id="s_pwd" name="s_password" class="form-control ">
                     <label for="defaultForm-pass"><p style="font-size:13px">Your password</p></label>
                 </div>
 				
 				<div class="md-form" style="margin-top:10%">
                     <i class="fa fa-user prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control ">
+                    <input type="text" class="form-control "  id="s_name" name="s_name">
                     <label for="defaultForm-pass"><p style="font-size:13px">Full Name</p></label>
                 </div>
 				
 				<div class="md-form" style="margin-top:10%">
                     <i class="fa fa-phone prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control ">
+                    <input type="text" id="s_contact" name="s_contact" class="form-control ">
                     <label for="defaultForm-pass"><p style="font-size:13px">Contact No</p></label>
                 </div>
 				
 				<div class="md-form" style="margin-top:10%">
                     <i class="fa fa-map-marker prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control ">
+                    <input type="password" id="s_address" name="s_address" form="s_form" class="form-control ">
                     <label for="defaultForm-pass"><p style="font-size:13px">Address</p></label>
                 </div>
-
+				<div class="d-flex justify-content-center" style="margin-bottom:5%" >
+                <button class="btn btn-default" onclick="seniorValidation(this)" id="senior_submit">Sign Up</button>
+            </div>
+			</form>
             </div>
 			</div>
 			
 			 <div id="sp_signup" class="tab-pane fade in active ">
             <div class="modal-body mx-3 form-sm mb-5 pb-2">
+			<form action="SP_SignUp.php" method="post" id="sp_form">
                 <div class="md-form" style="margin-top:10%">
 				
                     <i class="fa fa-user-circle prefix grey-text"></i>
-                    <input type="email" id="defaultForm-email" class="form-control ">
+                    <input type="text" id="sp_username" name="sp_username" class="form-control ">
                     <label for="defaultForm-email"><p style="font-size:13px">Username</p></label>
 					
                 </div>
 
                 <div class="md-form" style="margin-top:10%">
                     <i class="fa fa-lock prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control ">
+                    <input type="password" id="sp_pwd" name="sp_password" class="form-control ">
                     <label for="defaultForm-pass"><p style="font-size:13px">Your password</p></label>
                 </div>
 				
 				<div class="md-form" style="margin-top:10%">
                     <i class="fa fa-user prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control ">
+                    <input type="text" id="sp_name" name="sp_name" class="form-control ">
                     <label for="defaultForm-pass"><p style="font-size:13px">Full Name</p></label>
                 </div>
 				
 				<div class="md-form" style="margin-top:10%">
                     <i class="fa fa-phone prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control ">
+                    <input type="text" id="sp_contact" name="sp_contact" class="form-control ">
                     <label for="defaultForm-pass"><p style="font-size:13px">Contact No</p></label>
                 </div>
 				
 				<div class="md-form" style="margin-top:10%">
                     <i class="fa fa-map-marker prefix grey-text"></i>
-                    <input type="password" id="defaultForm-pass" class="form-control ">
+                    <input type="text" id="sp_address" name="sp_address" class="form-control ">
                     <label for="defaultForm-pass"><p style="font-size:13px">Address</p></label>
                 </div>
 <!-- Default unchecked -->
@@ -288,34 +295,36 @@ background-size:cover;
                 </div><br><br>
 				<!-- Default unchecked -->
 <!-- Default inline 1-->
-<div style="text-align:center">
+<div style="text-align:center" id="checkboxes">
 <div class="custom-control custom-checkbox custom-control-inline">
-  <input type="checkbox" class="custom-control-input" id="defaultInline1" checked>
+  <input type="checkbox" class="custom-control-input" id="defaultInline1" name="servicetype[]" value="Companion" checked>
   <label class="custom-control-label" for="defaultInline1">Companion</label>
 </div>
 
 <!-- Default inline 2-->
 <div class="custom-control custom-checkbox custom-control-inline">
-  <input type="checkbox" class="custom-control-input" id="defaultInline2">
+  <input type="checkbox" class="custom-control-input" id="defaultInline2" name="servicetype[]" value="Driver">
   <label class="custom-control-label" for="defaultInline2">Driver</label>
 </div>
 
 <!-- Default inline 3-->
 <div class="custom-control custom-checkbox custom-control-inline">
-  <input type="checkbox" class="custom-control-input" id="defaultInline3">
+  <input type="checkbox" class="custom-control-input" id="defaultInline3" name="servicetype[]" value="Cleaning">
   <label class="custom-control-label" for="defaultInline3">Cleaning</label>
 </div>
 <div class="custom-control custom-checkbox custom-control-inline">
-  <input type="checkbox" class="custom-control-input" id="defaultInline4">
+  <input type="checkbox" class="custom-control-input" id="defaultInline4" name="servicetype[]" value="Meal Preparation"> 
   <label class="custom-control-label" for="defaultInline4">Meal Preparation</label>
-</div>
-</div>
-			</div>
-			</div>
-			</div>
-            <div class="d-flex justify-content-center" style="margin-bottom:5%">
-                <button class="btn btn-default">Sign Up</button>
+</div><br><br>
+<div class="d-flex justify-content-center" style="margin-bottom:5%">
+                <button class="btn btn-default" onclick="spValidation(this)" id="sp_submit">Sign Up</button>
             </div>
+</div>
+</form>
+			</div>
+			</div>
+			</div>
+            
         </div>
     </div>
 </div>
@@ -500,17 +509,6 @@ our families in so many ways.</p>
 
 
         </section>
-        <!--Section: Gallery-->
-
-        <hr class="my-5">
-
-        <!--Section: Contact-->
-        <section id="contact">
-
-
-
-        </section>
-        <!--Section: Contact-->
 
     </div>
 </main>
@@ -545,5 +543,129 @@ our families in so many ways.</p>
 $(document).ready(function () {
  $('.stepper').mdbStepper();
 })
+<!--Senior Sign Up Tab is opened by default-->
+document.getElementById("defaultOpen").click();
+
+<!--show and scroll to sign up form upon click 'create an account' button-->
+$("#next").on("click", function(){
+	document.getElementById("open").scrollIntoView();
+});
+
+//validate senior sign up form
+function seniorValidation() {
+	//value of phone No is stored inside a var becasue it will be called several times
+	var phoneNo = document.getElementById("s_contact");
+	var pwd =document.getElementById("s_pwd");
+	//values to be compared with a valid phone No
+	var numbers =/^\d+(-\d+)*$/;
+	if (document.getElementById("s_username").value=="") {
+		alert("Username field cannot be empty.");
+		document.getElementById("s_username").focus();
+		event.preventDefault();
+		return false;
+	} //end if
+	if(pwd.value=="") {
+		alert("Password cannot be empty.");
+		document.getElementById("s_pwd").focus();
+		event.preventDefault();
+		return false;
+		}
+	if(pwd.value.length < 6) {
+		alert("Password must be 6 characters.");
+		document.getElementById("s_pwd").focus();
+		event.preventDefault();
+		return false;
+		}
+		
+	if(document.getElementById("s_name").value=="") {
+		alert("Name field cannot be empty.");
+		document.getElementById("s_name").focus();
+		event.preventDefault();
+		return false;
+		}//end if
+	if(phoneNo.value=="") {
+		alert("Contact number cannot be empty.");
+		document.getElementById("s_contact").focus();
+		event.preventDefault();
+		return false;
+		}
+	if(!phoneNo.value.match(numbers) || phoneNo.value.length < 10) {
+		document.getElementById("s_contact").focus();
+		alert("Invalid phone number.");
+		event.preventDefault();
+		return false;
+		}
+	if(document.getElementById("s_address").value=="") {
+		alert("Address cannot be empty.");
+		document.getElementById("s_address").focus();
+		event.preventDefault();
+		return false;
+		}
+		{
+		return true;
+		}
+	}//end of function validateForm
+	
+	
+//service provider sign up form validation	
+function spValidation() {
+	var checked = $('#checkboxes').find(':checked').length;
+	var pwd =document.getElementById("sp_pwd");
+	//value of phone No is stored inside a var becasue it will be called several times
+	var phoneNo = document.getElementById("sp_contact");
+	//values to be compared with a valid phone No
+	var numbers =/^\d+(-\d+)*$/;
+	if (document.getElementById("sp_username").value=="") {
+		alert("Username field cannot be empty.");
+		document.getElementById("sp_username").focus();
+		event.preventDefault();
+		return false;
+	} //end if
+	if(pwd.value=="") {
+		alert("Password cannot be empty.");
+		document.getElementById("sp_pwd").focus();
+		event.preventDefault();
+		return false;
+		}
+	if(pwd.value.length < 6) {
+		alert("Password must be 6 characters.");
+		document.getElementById("sp_pwd").focus();
+		event.preventDefault();
+		return false;
+		}
+		
+	if(document.getElementById("sp_name").value=="") {
+		alert("Name field cannot be empty.");
+		document.getElementById("sp_name").focus();
+		event.preventDefault();
+		return false;
+		}//end if
+	if(phoneNo.value=="") {
+		alert("Contact number cannot be empty.");
+		document.getElementById("sp_contact").focus();
+		event.preventDefault();
+		return false;
+		}
+	if(!phoneNo.value.match(numbers) || phoneNo.value.length < 10) {
+		document.getElementById("sp_contact").focus();
+		alert("Invalid phone number.");
+		event.preventDefault();
+		return false;
+		}
+	if(document.getElementById("sp_address").value=="") {
+		alert("Address cannot be empty.");
+		document.getElementById("sp_address").focus();
+		event.preventDefault();
+		return false;
+		}
+	if (!checked){
+		alert("Please select at least one service type to offer");
+		event.preventDefault();
+		return false;
+		}//end if
+		{
+		return true;
+		}
+	}
 </script>
 </html>
