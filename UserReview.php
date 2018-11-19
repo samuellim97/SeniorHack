@@ -1,12 +1,12 @@
 <?php
 session_start();
-$dbservername = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "seniorhack";
-$con = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
+
+include("dbh.php");
+
 $username = $_SESSION['username'];
-?>
+$username = "seniorTesting1";
+$spID = "spTesting1";
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,47 +22,68 @@ $username = $_SESSION['username'];
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-<style>
-
-body{background-color:#f0f3f5;}
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+ <style>
+ body{background-color:#f0f3f5;}
+ .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     color:white;
     background-color:#0B7A75;}
 .nav_style {
 	background-color:#0B7A75;
 	border:none;}
-.topnav li a{
+ .topnav li a{
 	text-align:center;
 	color:white !important;
 	padding-right: 35px;
 	padding-left: 35px;}
-@media (min-width: 768px) {
-  .navbar-nav.navbar-center {
-    position: absolute;
-    left: 47%;
-    transform: translatex(-50%);
-  }
-}
+.logo {
+  margin-top:-1%;
+  height:50px;}
+.button.active {
+	background-color:#7b2d26 !important;
+	color:white;
+	border: 2px solid white;}
+@media only screen and (max-width: 750px)
+  {.log-out { margin:auto;
+  display:block;
+  width:25%;}}
+@media only screen and (min-width: 750px){
+ .log-out {
+  margin-right:2%;}}
 #btn-logout {
- border-color:white ;
- background:#0B7A75;
- color:white;
-}
+  border-color:white ;
+  background:#0B7A75;
+  color:white;}
 #banner {
 	background:url(img/signup-banner.png) no-repeat top center fixed;
 	background-size:cover;
-	height:500px;
+	overflow-x: hidden;
 	width:100%;}
-
-  .font {font-size:17px;}
-  .page-footer{
+.btn span.fa-check {
+	opacity: 0;}
+.btn.active span.fa-check {
+	opacity: 1;}
+.card {
+    text-align:center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 5px;}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
+#profilePic {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px 5px 0 0;}
+#card-style {
+    padding: 2px 16px;}
+#review_form{
+    margin: 10%;}
+.page-footer{
   background-size:cover;
-  	width:100%;
-  	text-align:center;
-  	background-color:#d7c9aa;}
-  	#defaultOpen{background-color:}
-
+	width:100%;
+	text-align:center;
+	background-color:#d7c9aa;}
+	#defaultOpen{background-color:}
 div.stars {
   width: 270px;
   display: inline-block;}
@@ -86,15 +107,19 @@ label.star:before {
   content: '\f006';
   font-family: FontAwesome;}
 
+thead, tbody {display: block;}
 
-
+tbody {
+    height: 100px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
 </style>
-
 </head>
 <!-- Navigation bar-->
 <header>
 <div id="banner">
-<nav class="navbar navbar-default nav_style" role="navigation">
+<nav class="navbar navbar-default nav_style navbar-fixed-top" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="icon-bar"></span>
@@ -103,8 +128,8 @@ label.star:before {
     </button>
   </div>
   <div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav">
-        <li><image style="height:50px; padding-left: 10%" src="img/logo.png"></image></li>
+    <ul class="nav navbar-nav logo">
+        <li><a href="#"><img src="img/logo.png" alt="SeniorHack Logo" class="logo"></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-center topnav">
         <li><a href="#">Service Providers</a></li>
@@ -112,12 +137,13 @@ label.star:before {
 		<li><a href="#">Contact Us</a></li>
 		<li><a href="helpCentre.html">Help</a></li>
     </ul>
-	<!--Log Out-->
+	<!--Sign In-->
    <div class="collapse navbar-collapse" id="cl-mainNavbar">
 		<a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right" >Log Out</a>
 	</div>
   </div>
 </nav>
+<!--Banner Title and Description-->
 <div class="container">
 <div class="row"><br><br><br>
 <div class="banner-title col-lg-9 col-md-9 col-sm-10"><p>We Give Seniors The Love </p><p style="margin-top:-3%">They Deserve</p></div>
@@ -128,183 +154,73 @@ of service providers which will bring about convenience and comfort in their liv
 </div>
 </div>
 </div>
+
 </div>
+
 </header>
 
 <body>
-<div class="container"  style="margin-top:3%">
-  <h2 style="width:46%; margin-left:3%" >User Reviews</h2>
-<br>
-<div id="user_reviews">
-<!--View User Reviews-->
-    <div id="profile">
-      <div class="row">
-        <div class="col-md-4 col-xs-4">
-          <image style="height:100px; width:100px; padding: 10px"
-          src="img/profile_pic.png"></image>
-        </div>
-        <div class="col-md-8 col-xs-8" style="margin-top: 5%; padding-top: 10px";>
-          Adam
-          <br>012-3456789
-          <br>4.5 stars
+
+  <!-- Profile Card -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-8 col-xs-offset-2">
+        <h2>User Reviews</h2>
+        <br>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-8 col-xs-offset-2">
+      <div class="card">
+        <img id="profilePic" src="img/img_avatar.png" alt="Avatar">
+        <div id="card-style">
+          <h4><b>Adam</b></h4>
+          <p>012-3456789</p>
+          <p>4.5 stars</p>
         </div>
       </div>
     </div>
-    <div>
-    <form action="#">
-    <div class="stars">
-    <div class="form-group" style="margin-top: 5%">
-      Rate:
-      <fieldset class="rate">
-        <span style="margin-top:10px"/>
-        <input class="star star-5" id="star-5" type="radio" name="star"/>
-        <label class="star star-5" for="star-5"></label>
-        <input class="star star-4" id="star-4" type="radio" name="star"/>
-        <label class="star star-4" for="star-4"></label>
-        <input class="star star-3" id="star-3" type="radio" name="star"/>
-        <label class="star star-3" for="star-3"></label>
-        <input class="star star-2" id="star-2" type="radio" name="star"/>
-        <label class="star star-2" for="star-2"></label>
-        <input class="star star-1" id="star-1" type="radio" name="star"/>
-        <label class="star star-1" for="star-1"></label>
-      </fieldset>
-    </div>
-    </div>
-    <div class="form-group">
-        <label for="comment"></label>
-            <input type="text" class="form-control" id="comment" placeholder="What do you think?">
-    </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-    </div>
-<br>
-<br>
-<br>
-</div>
-<!--End of View User Reviews-->
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <br>
+      <!--Review Form-->
+      <form action="addReview.php" method="post" id="review_form"  style="text-align: center">
+        <div class="form-group">
+          <div id ="rating" class="stars">
+         <div class="form-group">
+           <label>Rate:</label>
+           <fieldset class="rating" id="rating" name="rating">
+             <span style="margin-top:10px"/>
+             <input class="star star-5" id="star-5" type="radio" name="star" value="5">
+             <label class="star star-5" for="star-5"></label>
+             <input class="star star-4" id="star-4" type="radio" name="star" value="4">
+             <label class="star star-4" for="star-4"></label>
+             <input class="star star-3" id="star-3" type="radio" name="star" value="3">
+             <label class="star star-3" for="star-3"></label>
+             <input class="star star-2" id="star-2" type="radio" name="star" value="2">
+             <label class="star star-2" for="star-2"></label>
+             <input class="star star-1" id="star-1" type="radio" name="star" value="1">
+             <label class="star star-1" for="star-1"></label>
+           </fieldset>
+        </div>
+        </div>
 
-<!--Testing template-->
-<div class="container" style="margin-left: 6%">
+        <div class="form-group">
+          <label for="comments"></label>
+              <textarea type="textarea" class="form-control" id="comments" name="comments" rows=4 cols="40" placeholder="What do you think?" form="review_form"></textarea>
+        </div>
+          <input type="hidden" name="spID" id="spID">
+      <br/>
+      <input type="submit" onclick="reviewValidation(this)" id="review_submit" class="pull-right btn btn-block btn-success" style="margin-bottom:10%">
+      </form>
 
-		<div class="row">
-			<div class="col-sm-3">
-				<div class="rating-block">
-					<h4>Average user rating</h4>
-					<h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-					<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-					  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-					</button>
-				</div>
-			</div>
-		</div>
+          </div>
+    </div>
 
-		<div class="row" style="margin-bottom:5%">
-			<div class="col-sm-7">
-				<hr/>
-				<div class="review-block">
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="review-block-name"><a href="#">nktailor</a></div>
-							<div class="review-block-date">January 29, 2016</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="review-block-rate">
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-							</div>
-							<div class="review-block-title">this was nice in buy</div>
-							<div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-						</div>
-					</div>
-					<hr/>
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="review-block-name"><a href="#">nktailor</a></div>
-							<div class="review-block-date">January 29, 2016</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="review-block-rate">
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-							</div>
-							<div class="review-block-title">this was nice in buy</div>
-							<div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-						</div>
-					</div>
-					<hr/>
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="review-block-name"><a href="#">nktailor</a></div>
-							<div class="review-block-date">January 29, 2016</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="review-block-rate">
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-								<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-								  <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-								</button>
-							</div>
-							<div class="review-block-title">this was nice in buy</div>
-							<div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
-    </div> <!-- /container -->
 
-<!--End of testing template-->
+  </div>
+  </div>
+
 
 <!-- Footer -->
 <footer class="page-footer" style="color:black">
@@ -322,22 +238,34 @@ of service providers which will bring about convenience and comfort in their liv
   <!-- Copyright -->
 </div>
 </footer>
-  <!-- Footer -->
+<!-- End of footer -->
 
-<!--Request anchor and New Request Tab are selected by default-->
+<!-- JQuery -->
+ <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+ <!-- Bootstrap tooltips -->
+ <script type="text/javascript" src="js/popper.min.js"></script>
+ <!-- Bootstrap core JavaScript -->
+ <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script>
-document.getElementById("defaultOpen").click();
-<!--function to make sure that no element will lose focus unless other button is chosen-->
-$('.button').click(function() {
-    $('button').removeClass('active');
-    $(this).addClass('active');
-})
-
+//service provider sign up form validation
+function reviewValidation() {
+	var checked = $('#rating').find(':checked').length;
+	if (!checked){
+		alert("Please select rating stars");
+		event.preventDefault();
+		return false;
+		}
+  if(document.getElementById("comments").value=="") {
+  	alert("Comments cannot be empty.");
+  	document.getElementById("comments").focus();
+  	event.preventDefault();
+  	return false;
+    }//end if
+		{
+		return true;
+		}
+	}
 </script>
-
-<!-- Bootstrap core JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </body>
 </html>

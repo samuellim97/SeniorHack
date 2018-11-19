@@ -1,25 +1,14 @@
 
-
 #defaultSelected {
 	background-color:#19535f !important;}
-
-#banner {
-	background:url(banner4.jpg) no-repeat top center fixed;
-	background-size:cover;
-	height:500px;
-	width:100%;}
-
 #user_reviews {
   margin-left:3%;}
-
-
 #profile {
   background-color:white;
   height:110px;
   max-width:300px;
   border:1px solid black;
 }
-
 body {
 	padding-top: 70px;}
 .btn-grey{
