@@ -3,10 +3,28 @@ session_start();
 
 include("dbh.php");
 
-$username = $_SESSION['username'];
-$username = "seniorTesting1";
-$spID = "spTesting1";
- ?>
+//$username = $_SESSION['username'];
+$username = "madeline1";
+$spID = "walter1";
+
+$sql = "SELECT * FROM account INNER JOIN review ON account.username = review.spID AND username ='$spID'";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_array($result);
+
+$ratingResult = mysqli_query($con, ("SELECT * FROM review WHERE spID = '$spID'")) or die(mysql_error());
+$ratingArray = array();
+while($row1 = mysqli_fetch_assoc($ratingResult)) {
+     $ratingArray[] = $row1['rating'];
+}
+$total = array_sum($ratingArray);
+if (count($ratingArray) == 0){
+  $avg = 0;
+} else {
+  $avg = $total/count($ratingArray);
+}
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,10 +125,39 @@ label.star:before {
   content: '\f006';
   font-family: FontAwesome;}
 
+.fa_custom {
+  color: #0099CC;}
+.rating-block{
+  background-color:#FAFAFA;
+  border:1px solid #EFEFEF;
+  padding:15px 15px 20px 15px;
+  margin-top: 10%;
+  border-radius:3px;}
+.bold{
+  font-weight:700;}
+.padding-bottom-7{
+  padding-bottom:7px;}
+.review-block{
+  background-color:#FAFAFA;
+  border:1px solid #EFEFEF;
+  padding:15px;
+  border-radius:3px;
+  margin-bottom:15px;}
+.review-block-name{
+  font-size:12px;
+  margin:10px 0;}
+.review-block-date{
+  font-size:12px;}
+.review-block-rate{
+  font-size:13px;
+  margin-bottom:15px;}
+.review-block-description{
+  	font-size:13px;}
+
 thead, tbody {display: block;}
 
 tbody {
-    height: 100px;       /* Just for the demo          */
+    height: 500px;       /* Just for the demo          */
     overflow-y: auto;    /* Trigger vertical scroll    */
     overflow-x: hidden;  /* Hide the horizontal scroll */
 }
@@ -133,13 +180,13 @@ tbody {
     </ul>
     <ul class="nav navbar-nav navbar-center topnav">
         <li><a href="#">Service Providers</a></li>
-		<li><a href="#" id="defaultSelected"> Requests</a></li>
+		<li><a href="#"> Requests</a></li>
 		<li><a href="#">Contact Us</a></li>
 		<li><a href="helpCentre.html">Help</a></li>
     </ul>
-	<!--Sign In-->
+	<!--Log Out-->
    <div class="collapse navbar-collapse" id="cl-mainNavbar">
-		<a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right" >Log Out</a>
+		<a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
 	</div>
   </div>
 </nav>
@@ -161,7 +208,6 @@ of service providers which will bring about convenience and comfort in their liv
 
 <body>
 
-  <!-- Profile Card -->
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-8 col-xs-offset-2">
@@ -170,19 +216,23 @@ of service providers which will bring about convenience and comfort in their liv
       </div>
     </div>
   <div class="row">
+    <!-- Profile Card -->
     <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-8 col-xs-offset-2">
       <div class="card">
         <img id="profilePic" src="img/img_avatar.png" alt="Avatar">
         <div id="card-style">
-          <h4><b>Adam</b></h4>
-          <p>012-3456789</p>
-          <p>4.5 stars</p>
+          <?php
+          if (mysqli_num_rows($result) > 0 ){ ?>
+          <h4><b><?php echo $row["fullName"]; ?></b></h4>
+          <p>(@<?php echo $row["username"]; ?>)</p>
+          <p><?php echo $row["mobileNo"]; ?></p>
+        <?php }?>
         </div>
       </div>
     </div>
+    <!--Review Form-->
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
       <br>
-      <!--Review Form-->
       <form action="addReview.php" method="post" id="review_form"  style="text-align: center">
         <div class="form-group">
           <div id ="rating" class="stars">
@@ -208,18 +258,89 @@ of service providers which will bring about convenience and comfort in their liv
           <label for="comments"></label>
               <textarea type="textarea" class="form-control" id="comments" name="comments" rows=4 cols="40" placeholder="What do you think?" form="review_form"></textarea>
         </div>
-          <input type="hidden" name="spID" id="spID">
+          <input type="hidden" name="spID" id="spID" value="<?php echo $spID; ?>">
       <br/>
       <input type="submit" onclick="reviewValidation(this)" id="review_submit" class="pull-right btn btn-block btn-success" style="margin-bottom:10%">
       </form>
-
-          </div>
+      </div>
     </div>
 
-
-
   </div>
   </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-8 col-xs-offset-2">
+      <div class="rating-block">
+        <h4>Average user rating</h4>
+        <h2 class="bold padding-bottom-7"><?php printf('%.2f', $avg); ?> <small>/ 5</small></h2>
+        <?php
+        for($x=1;$x<=$avg;$x++) {
+        echo '<i class="fa fa-star fa_custom fa-3x"></i>';
+        }
+        if (strpos($avg,'.')) {
+        echo '<i class="fa fa-star-half-full fa_custom fa-3x"></i>';
+        $x++;
+        }
+        while ($x<=5) {
+        echo '<i class="fa fa-star-o fa_custom fa-3x"></i>';
+        $x++;
+        }
+        ?>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row" style="margin-bottom:5%">
+    <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-xs-12">
+    <hr/>
+    <div class="review-block">
+
+        <?php
+        $sql = "SELECT* FROM review WHERE spID = '$spID' ORDER BY date DESC";
+      	if(!$result = mysqli_query($con, $sql)) {
+      	  exit(mysqli_error($con));
+      	}
+      	if(mysqli_num_rows($result) > 0)
+      	{
+      	  $number = 1;
+      	  while($row = mysqli_fetch_assoc($result))
+      	  {
+            ?>
+      					<div class="row">
+      						<div class="col-sm-3">
+      							<div class="review-block-name"><a href="#"><?php echo $row['sID']; ?></a></div>
+      							<div class="review-block-date"><?php echo date("d/m/y", strtotime($row['date'])); ?></div>
+      						</div>
+      						<div class="col-sm-9">
+      							<div class="review-block-rate">
+                      <?php
+                      for($x=1;$x<=$row['rating'];$x++) {
+                      echo '<i class="fa fa-star fa_custom fa-2x"></i>';
+                      }
+                      while ($x<=5) {
+                      echo '<i class="fa fa-star-o fa_custom fa-2x"></i>';
+                      $x++;
+                      }
+                      ?>
+      							</div>
+      							<div class="review-block-description"><?php echo $row['comments']; ?></div>
+      						</div>
+      					</div>
+                <hr/>
+      	  <?php }}
+      	else {
+      	  //records not found
+      	  echo 'No reviews yet!';
+      	}
+
+
+          ?>
+</div>
+</div>
+</div>
+</div>
 
 
 <!-- Footer -->
