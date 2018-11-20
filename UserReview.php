@@ -1,18 +1,37 @@
 <?php
 session_start();
-$dbservername = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "seniorhack";
-$con = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
-$username = $_SESSION['username'];
+
+include("dbh.php");
+
+//$username = $_SESSION['username'];
+$username = "madeline1";
+$spID = "walter1";
+
+$sql = "SELECT * FROM account INNER JOIN review ON account.username = review.spID AND username ='$spID'";
+$result = mysqli_query($con, $sql);
+$row = mysqli_fetch_array($result);
+
+$ratingResult = mysqli_query($con, ("SELECT * FROM review WHERE spID = '$spID'")) or die(mysql_error());
+$ratingArray = array();
+while($row1 = mysqli_fetch_assoc($ratingResult)) {
+     $ratingArray[] = $row1['rating'];
+}
+$total = array_sum($ratingArray);
+if (count($ratingArray) == 0){
+  $avg = 0;
+} else {
+  $avg = $total/count($ratingArray);
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>User Reviews</title>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/SeniorHack.css">
   <link rel="stylesheet" href="css/userReview.css">
@@ -20,47 +39,134 @@ $username = $_SESSION['username'];
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<style>
-
-body{background-color:#f0f3f5;}
-
-
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ <style>
+ body{background-color:#f0f3f5;}
+ .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
     color:white;
     background-color:#0B7A75;}
-
 .nav_style {
 	background-color:#0B7A75;
 	border:none;}
-
-.topnav li a{
+ .topnav li a{
 	text-align:center;
 	color:white !important;
 	padding-right: 35px;
 	padding-left: 35px;}
-
-@media (min-width: 768px) {
-  .navbar-nav.navbar-center {
-    position: absolute;
-    left: 47%;
-    transform: translatex(-50%);
-  }
-}
+.logo {
+  margin-top:-1%;
+  height:50px;}
+.button.active {
+	background-color:#7b2d26 !important;
+	color:white;
+	border: 2px solid white;}
+@media only screen and (max-width: 750px)
+  {.log-out { margin:auto;
+  display:block;
+  width:25%;}}
+@media only screen and (min-width: 750px){
+ .log-out {
+  margin-right:2%;}}
+#btn-logout {
+  border-color:white ;
+  background:#0B7A75;
+  color:white;}
 #banner {
 	background:url(img/signup-banner.png) no-repeat top center fixed;
 	background-size:cover;
-	height:500px;
+	overflow-x: hidden;
 	width:100%;}
+.btn span.fa-check {
+	opacity: 0;}
+.btn.active span.fa-check {
+	opacity: 1;}
+.card {
+    text-align:center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    border-radius: 5px;}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);}
+#profilePic {
+    height: 100%;
+    width: 100%;
+    border-radius: 5px 5px 0 0;}
+#card-style {
+    padding: 2px 16px;}
+#review_form{
+    margin: 10%;}
+.page-footer{
+  background-size:cover;
+	width:100%;
+	text-align:center;
+	background-color:#d7c9aa;}
+	#defaultOpen{background-color:}
+div.stars {
+  width: 270px;
+  display: inline-block;}
+input.star { display: none; }
+label.star {
+    float: right;
+    padding: 10px;
+    font-size: 36px;
+    color: #444;
+    transition: all .2s;}
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;}
+input.star-5:checked ~ label.star:before {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;}
+input.star-1:checked ~ label.star:before { color: #F62; }
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;}
 
+.fa_custom {
+  color: #0099CC;}
+.rating-block{
+  background-color:#FAFAFA;
+  border:1px solid #EFEFEF;
+  padding:15px 15px 20px 15px;
+  margin-top: 10%;
+  border-radius:3px;}
+.bold{
+  font-weight:700;}
+.padding-bottom-7{
+  padding-bottom:7px;}
+.review-block{
+  background-color:#FAFAFA;
+  border:1px solid #EFEFEF;
+  padding:15px;
+  border-radius:3px;
+  margin-bottom:15px;}
+.review-block-name{
+  font-size:12px;
+  margin:10px 0;}
+.review-block-date{
+  font-size:12px;}
+.review-block-rate{
+  font-size:13px;
+  margin-bottom:15px;}
+.review-block-description{
+  	font-size:13px;}
 
+thead, tbody {display: block;}
+
+tbody {
+    height: 500px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
 </style>
-
 </head>
 <!-- Navigation bar-->
 <header>
 <div id="banner">
-<nav class="navbar navbar-default nav_style" role="navigation">
+<nav class="navbar navbar-default nav_style navbar-fixed-top" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="icon-bar"></span>
@@ -69,22 +175,22 @@ body{background-color:#f0f3f5;}
     </button>
   </div>
   <div class="navbar-collapse collapse">
-    <ul class="nav navbar-nav">
-        <li><image style="height:50px; padding-left: 10%" src="img/logo.png"></image></li>
+    <ul class="nav navbar-nav logo">
+        <li><a href="#"><img src="img/logo.png" alt="SeniorHack Logo" class="logo"></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-center topnav">
-        <li><a href="#"></a></li>
         <li><a href="#">Service Providers</a></li>
-		<li><a href="#" id="defaultSelected"> Requests</a></li>
+		<li><a href="#"> Requests</a></li>
 		<li><a href="#">Contact Us</a></li>
-		<li><a href="#">Help</a></li>
+		<li><a href="helpCentre.html">Help</a></li>
     </ul>
 	<!--Log Out-->
    <div class="collapse navbar-collapse" id="cl-mainNavbar">
-		<a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right" >Log Out</a>
+		<a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
 	</div>
   </div>
 </nav>
+<!--Banner Title and Description-->
 <div class="container">
 <div class="row"><br><br><br>
 <div class="banner-title col-lg-9 col-md-9 col-sm-10"><p>We Give Seniors The Love </p><p style="margin-top:-3%">They Deserve</p></div>
@@ -95,204 +201,192 @@ of service providers which will bring about convenience and comfort in their liv
 </div>
 </div>
 </div>
+
 </div>
+
 </header>
 
 <body>
-<div class="container"  style="margin-top:3%">
-  <h2 style="width:46%; margin-left:3%" >User Reviews</h2>
-<br>
-<div id="user_reviews">
-<!--View User Reviews-->
-    <div id="profile">
-      <div class="row">
-        <div class="col-md-4 col-xs-4">
-          <image style="height:100px; width:100px; padding: 10px"
-          src="img/profile_pic.png"></image>
-        </div>
-        <div class="col-md-8 col-xs-8" style="margin-top: 5%; padding-top: 10px";>
-          Adam
-          <br>012-3456789
-          <br>4.5 stars
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-8 col-xs-offset-2">
+        <h2>User Reviews</h2>
+        <br>
+      </div>
+    </div>
+  <div class="row">
+    <!-- Profile Card -->
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-8 col-xs-offset-2">
+      <div class="card">
+        <img id="profilePic" src="img/img_avatar.png" alt="Avatar">
+        <div id="card-style">
+          <?php
+          if (mysqli_num_rows($result) > 0 ){ ?>
+          <h4><b><?php echo $row["fullName"]; ?></b></h4>
+          <p>(@<?php echo $row["username"]; ?>)</p>
+          <p><?php echo $row["mobileNo"]; ?></p>
+        <?php }?>
         </div>
       </div>
     </div>
-    <div>
-        <form action="#">
-          <div class="form-group" style="margin-top: 3%">
-            <label for="rating"></label>
-                  <fieldset class="rate">Rate:
-                    <input type="radio" id="rating10" name="rating" value="10" /><label for="rating10" title="5 stars"></label>
-                    <input type="radio" id="rating9" name="rating" value="9" /><label class="half" for="rating9" title="4 1/2 stars"></label>
-                    <input type="radio" id="rating8" name="rating" value="8" /><label for="rating8" title="4 stars"></label>
-                    <input type="radio" id="rating7" name="rating" value="7" /><label class="half" for="rating7" title="3 1/2 stars"></label>
-                    <input type="radio" id="rating6" name="rating" value="6" /><label for="rating6" title="3 stars"></label>
-                    <input type="radio" id="rating5" name="rating" value="5" /><label class="half" for="rating5" title="2 1/2 stars"></label>
-                    <input type="radio" id="rating4" name="rating" value="4" /><label for="rating4" title="2 stars"></label>
-                    <input type="radio" id="rating3" name="rating" value="3" /><label class="half" for="rating3" title="1 1/2 stars"></label>
-                    <input type="radio" id="rating2" name="rating" value="2" /><label for="rating2" title="1 star"></label>
-                    <input type="radio" id="rating1" name="rating" value="1" /><label class="half" for="rating1" title="1/2 star"></label>
-                    <input type="radio" id="rating0" name="rating" value="0" /><label for="rating0" title="No star"></label>
-                  </fieldset>
-              </div>
-              <div class="form-group">
-                <label for="comment"></label>
-                  <input type="text" class="form-control" id="comment" placeholder="What do you think?">
+    <!--Review Form-->
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+      <br>
+      <form action="addReview.php" method="post" id="review_form"  style="text-align: center">
+        <div class="form-group">
+          <div id ="rating" class="stars">
+         <div class="form-group">
+           <label>Rate:</label>
+           <fieldset class="rating" id="rating" name="rating">
+             <span style="margin-top:10px"/>
+             <input class="star star-5" id="star-5" type="radio" name="star" value="5">
+             <label class="star star-5" for="star-5"></label>
+             <input class="star star-4" id="star-4" type="radio" name="star" value="4">
+             <label class="star star-4" for="star-4"></label>
+             <input class="star star-3" id="star-3" type="radio" name="star" value="3">
+             <label class="star star-3" for="star-3"></label>
+             <input class="star star-2" id="star-2" type="radio" name="star" value="2">
+             <label class="star star-2" for="star-2"></label>
+             <input class="star star-1" id="star-1" type="radio" name="star" value="1">
+             <label class="star star-1" for="star-1"></label>
+           </fieldset>
+        </div>
+        </div>
 
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+        <div class="form-group">
+          <label for="comments"></label>
+              <textarea type="textarea" class="form-control" id="comments" name="comments" rows=4 cols="40" placeholder="What do you think?" form="review_form"></textarea>
+        </div>
+          <input type="hidden" name="spID" id="spID" value="<?php echo $spID; ?>">
+      <br/>
+      <input type="submit" onclick="reviewValidation(this)" id="review_submit" class="pull-right btn btn-block btn-success" style="margin-bottom:10%">
+      </form>
+      </div>
     </div>
-    </div>
-<br>
-<br>
-<br>
-<div class="container">
-<div id="user_reviews2" class="row">
-  <div id="ratings" class="col-lg-2  col-sm-2">
-          <h5>Service Provider Ratings</h5>
-          <h1>3.8 / 5</h1>
-          <span style="font-size: 11px">based on 38 user reviews</span>
+
   </div>
-  <div class="col-lg-8  col-sm-10" style="height:500px; overflow:auto; margin-top:-3%">
-    <br>
-    <br>
-  <table id="reviewsTable" class="tb1">
-    <tr>
-      <td>
-      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
-      <span style="float:right;">3 stars</span>
-      <br><br>Thank you for your professional follow up and follow through on
-      services rendered at my home. I highly recommend your services to
-      friends and family.
-      </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
-      <span style="float:right;">3 stars</span>
-      <br><br>Thank you for your professional follow up and follow through on
-      services rendered at my home. I highly recommend your services to
-      friends and family.
-      </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
-      <span style="float:right;">3 stars</span>
-      <br><br>Thank you for your professional follow up and follow through on
-      services rendered at my home. I highly recommend your services to
-      friends and family.
-      </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
-      <span style="float:right;">3 stars</span>
-      <br><br>Thank you for your professional follow up and follow through on
-      services rendered at my home. I highly recommend your services to
-      friends and family.
-      </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
-      <span style="float:right;">3 stars</span>
-      <br><br>Thank you for your professional follow up and follow through on
-      services rendered at my home. I highly recommend your services to
-      friends and family.
-      </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
-      <span style="float:right;">3 stars</span>
-      <br><br>Thank you for your professional follow up and follow through on
-      services rendered at my home. I highly recommend your services to
-      friends and family.
-      </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
-      <span style="float:right;">3 stars</span>
-      <br><br>Thank you for your professional follow up and follow through on
-      services rendered at my home. I highly recommend your services to
-      friends and family.
-      </p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      <p style="margin:10px 15px; float:left;">21/7/2018, Renee Lim
-      <span style="float:right;">3 stars</span>
-      <br><br>Thank you for your professional follow up and follow through on
-      services rendered at my home. I highly recommend your services to
-      friends and family.
-      </p>
-      </td>
-    </tr>
-  </table>
-</div>
-	</div>
-</div>
-</div>
-<!--End of View User Reviews-->
+  </div>
 
-<footer id="footer-bg" class="footer" style="width:100%">
 <div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-xs-8 col-xs-offset-2">
+      <div class="rating-block">
+        <h4>Average user rating</h4>
+        <h2 class="bold padding-bottom-7"><?php printf('%.2f', $avg); ?> <small>/ 5</small></h2>
+        <?php
+        for($x=1;$x<=$avg;$x++) {
+        echo '<i class="fa fa-star fa_custom fa-3x"></i>';
+        }
+        if (strpos($avg,'.')) {
+        echo '<i class="fa fa-star-half-full fa_custom fa-3x"></i>';
+        $x++;
+        }
+        while ($x<=5) {
+        echo '<i class="fa fa-star-o fa_custom fa-3x"></i>';
+        $x++;
+        }
+        ?>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row" style="margin-bottom:5%">
+    <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-xs-12">
+    <hr/>
+    <div class="review-block">
+
+        <?php
+        $sql = "SELECT* FROM review WHERE spID = '$spID' ORDER BY date DESC";
+      	if(!$result = mysqli_query($con, $sql)) {
+      	  exit(mysqli_error($con));
+      	}
+      	if(mysqli_num_rows($result) > 0)
+      	{
+      	  $number = 1;
+      	  while($row = mysqli_fetch_assoc($result))
+      	  {
+            ?>
+      					<div class="row">
+      						<div class="col-sm-3">
+      							<div class="review-block-name"><a href="#"><?php echo $row['sID']; ?></a></div>
+      							<div class="review-block-date"><?php echo date("d/m/y", strtotime($row['date'])); ?></div>
+      						</div>
+      						<div class="col-sm-9">
+      							<div class="review-block-rate">
+                      <?php
+                      for($x=1;$x<=$row['rating'];$x++) {
+                      echo '<i class="fa fa-star fa_custom fa-2x"></i>';
+                      }
+                      while ($x<=5) {
+                      echo '<i class="fa fa-star-o fa_custom fa-2x"></i>';
+                      $x++;
+                      }
+                      ?>
+      							</div>
+      							<div class="review-block-description"><?php echo $row['comments']; ?></div>
+      						</div>
+      					</div>
+                <hr/>
+      	  <?php }}
+      	else {
+      	  //records not found
+      	  echo 'No reviews yet!';
+      	}
+
+
+          ?>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Footer -->
+<footer class="page-footer" style="color:black">
 <div class="row">
 
-<!--Contact No-->
-  <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-4">
-      <p class="footer-left" style="text-indent:10px">Contact Us At <br><span style="font-size:18px;font-weight:bold;"> 1300-88-2525</span></p>
-      </div>
-
-    <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 ">
-      <p class="footer_mid">&copy;Copyright SeniorHack 2018 <br>All rights reserved</p>
-    </div>
-
-<!--Links to Social Media-->
-    <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-1 ">
-    <ul class="social-network social-circle footer-right ">
-	<a style="color:black">Join Us At </a> <br>
-       <a href="https://facebook.com/"><i class="fa fa-facebook-square" style="font-size:2em;color:black;margin-right:18%"></i></a>
-		<a href="https://twitter.com/"><i class="fa fa-twitter" style="font-size:2em;color:black"></i></a>
-     </ul>
+  <!-- Copyright -->
+  <div class="col-lg-4 col-md-12"  style="margin-top:1%;margin-bottom:1%">Contact Us At <br><span style="font-size:18px;font-weight:bold;"> 1300-88-2525</span>
   </div>
-</div>
+  <div class="col-lg-4 col-md-12" style="margin-top:1%;margin-bottom:1%">&copy;Copyright SeniorHack 2018 <br>All rights reserved
+  </div>
+  <div class="col-lg-4 col-md-12 " style="margin-top:1%;margin-bottom:1%"><a>Join Us At </a> <br>
+       <a href="https://facebook.com/"><i class="fa fa-facebook-square" style="font-size:1.5em;color:black;margin-right:5%"></i></a>
+		<a href="https://twitter.com/"><i class="fa fa-twitter" style="font-size:1.5em;color:black"></i></a>
+  </div>
+  <!-- Copyright -->
 </div>
 </footer>
+<!-- End of footer -->
 
-<!--Request anchor and New Request Tab are selected by default-->
+<!-- JQuery -->
+ <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+ <!-- Bootstrap tooltips -->
+ <script type="text/javascript" src="js/popper.min.js"></script>
+ <!-- Bootstrap core JavaScript -->
+ <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script>
-document.getElementById("defaultOpen").click();
-<!--function to make sure that no element will lose focus unless other button is chosen-->
-$('.button').click(function() {
-    $('button').removeClass('active');
-    $(this).addClass('active');
-})
-
-
-jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-})
-$("#edit").on("click", function(){
-    $("#myModal").modal("hide");
-    $("#myModal").on("hidden.bs.modal",function(){
-    $("#detailsModal").modal("show");
-    });
-});
-
-
+//service provider sign up form validation
+function reviewValidation() {
+	var checked = $('#rating').find(':checked').length;
+	if (!checked){
+		alert("Please select rating stars");
+		event.preventDefault();
+		return false;
+		}
+  if(document.getElementById("comments").value=="") {
+  	alert("Comments cannot be empty.");
+  	document.getElementById("comments").focus();
+  	event.preventDefault();
+  	return false;
+    }//end if
+		{
+		return true;
+		}
+	}
 </script>
+
 </body>
 </html>
