@@ -144,6 +144,20 @@ width:100%;}
   #card-content {
       padding: 2px 16px;
   }
+  #find{
+    height:100px;
+  }
+  #findBtn {
+    float:right;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom:0;
+  }
+
+  #findBtn a{
+    color:white;
+    text-decoration: none;
+  }
 
 </style>
 </head>
@@ -199,16 +213,21 @@ width:100%;}
 
         <button onclick="showComp();" class="btn" id="companion" data-toggle="tab">
           <input type="radio" />Companion</button>
-
-
       </div>
+
     </div>
-    </div>
+  </div>
+
+
+
   <div class = "z-depth-1" id = "map"></div>
+  <div id="find">
+  <button type="submit" class="btn btn-success" id="findBtn"><a href="request.html">Find me a service provider now!</a></button>
+  </div>
 
   <!--footer-->
   <footer id="footer-bg" class="footer">
-  <div class="container-fluid">
+  <div class="container-fluid"> 
   <div class="row">
 
   <!--Contact No-->
