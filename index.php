@@ -197,7 +197,7 @@ text-align:center;}
     </ul>
 	<!--Log Out-->
    <div class="collapse navbar-collapse center_btn" >
-		<button id="btn-logout" class="btn navbar-btn navbar-right log-out" data-toggle="modal" data-target="#modalLoginForm" >Log Out</button>
+		<a href="logout.php" id="btn-logout" class="btn navbar-btn navbar-right log-out" data-toggle="modal" data-target="#modalLoginForm">Log Out</a>
 	</div>
   </div>
 </nav>
@@ -320,7 +320,9 @@ of service providers which will bring about convenience and comfort in their liv
   </div>
 
 </div>
+<br><br>
 </div>
+<br><br>
 <!--First Card-->
 <div class="col-lg-6 col-md-12 col-sm-12">
 <!-- Card -->
@@ -343,10 +345,12 @@ of service providers which will bring about convenience and comfort in their liv
     <a href="#" class="btn purple-gradient">Book Now !</a>
 
   </div>
+</div>
+<br><br>
+</div>
+<br><br>
+</div>
 
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -386,11 +390,12 @@ of service providers which will bring about convenience and comfort in their liv
             </div>
 </form>
 
-            </div>,...............
+            </div>
             
         </div>
     </div>
 </div>
+
 <div id="view_requests" class="tab-pane fade">
 <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
 <div></div>
@@ -429,14 +434,15 @@ padding-right:0">View More</button>
 	</div>
   
 </div>
-</div>';
-}}?>
+</div>
+
 <!-- Card -->
 <!-- Card -->
 </div>
 </div>
 </div>
-<!--Edit Details Model-->
+<!--Edit Details Model-->';
+						echo'
 <div class="modal fade" id="detailsModal" role="dialog">
 <div class="modal-dialog" >
 
@@ -467,7 +473,7 @@ padding-right:0">View More</button>
 			  <button type="button" class="btn btn-warning btn-xs" style="margin-top:5%">Completed</button></div>
           </div>
           <div style="padding-bottom: 20px;">
-            <label for="notes">notes: </label> <br> 
+            <label for="notes">';echo"$requestID_selected_service[$i]";echo' </label> <br> 
 			<textarea name="notes" rows="3" cols="30" required ></textarea>
           </div>
         </div>
@@ -478,7 +484,8 @@ padding-right:0">View More</button>
       </div>
     </div>
   </div>
-</div>
+</div>';
+}}?>
 
 <!-- Modal that shows the details of requests made -->
 <div class="modal fade" id="myModal" role="dialog">
