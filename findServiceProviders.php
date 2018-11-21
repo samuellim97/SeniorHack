@@ -179,30 +179,32 @@ width:100%;}
 </div>
 </header>
 
-<div class="container-fluid" id="contentDiv">
-  <h1 id="title">Find Service Providers</h1>
-  <div id="buttons">
-    <p>Click either one of the following types to find the corresponding service providers:</p>
+  <div class="container-fluid" id="contentDiv">
+    <h1 id="title">Find Service Providers</h1>
+      <p>Click either one of the following types to find the corresponding service providers:</p>
+
+    <div id = "buttons">
     <div id="tab" class="btn-group-toggle" data-toggle="buttons">
-        <button class="btn active" id="cleaning" data-toggle="tab">
+        <button onclick="showAll();" class="btn active" id="all" data-toggle="tab">
           <input type="radio" />All</button>
 
-        <button class="btn" id="cleaning" data-toggle="tab">
+        <button onclick="showCleaning();" class="btn" id="cleaning" data-toggle="tab">
           <input type="radio" />Cleaning</button>
 
-        <button class="btn"  id="mealPreparation" data-toggle="tab">
-          <input type="radio" />Cooking</button>
+        <button onclick="showMeal();" class="btn"  id="mealPreparation" data-toggle="tab">
+          <input type="radio" />Meal Preparation</button>
 
-        <button class="btn"  id="driver" data-toggle="tab">
+        <button onclick="showDriver();" class="btn"  id="driver" data-toggle="tab">
           <input type="radio" />Driver</button>
 
-        <button class="btn" id="companion" data-toggle="tab">
+        <button onclick="showComp();" class="btn" id="companion" data-toggle="tab">
           <input type="radio" />Companion</button>
 
-        </div>
+
       </div>
     </div>
-    <div class = "z-depth-1" id = "map"></div>
+    </div>
+  <div class = "z-depth-1" id = "map"></div>
 
   <!--footer-->
   <footer id="footer-bg" class="footer">
@@ -210,7 +212,7 @@ width:100%;}
   <div class="row">
 
   <!--Contact No-->
-    <div class="col-xs-4 pull-left1">
+  <div class="col-xs-4 pull-left1">
         <p class="footer-left" style="text-indent:10px">Contact Us At <br><span style="font-size:18px;font-weight:bold;"> 1300-88-2525</span></p>
         </div>
 
@@ -219,9 +221,9 @@ width:100%;}
       </div>
 
   <!--Links to Social Media-->
-      <div class="col-xs-4">
+    <div class="col-xs-4">
       <ul class="social-network social-circle footer-right ">
-  	<a style="color:black">Join Us At </a> <br>
+  	     <a style="color:black">Join Us At </a> <br>
          <a href="https://facebook.com/"><i class="fa fa-facebook-square" style="font-size:2em;color:black;margin-right:18%"></i></a>
   		<a href="https://twitter.com/"><i class="fa fa-twitter" style="font-size:2em;color:black"></i></a>
        </ul>
@@ -250,18 +252,18 @@ width:100%;}
     })
   </script>
 
+  <!--for the button group-->
 
   <script type = "text/javascript" src = "https://maps.google.com/maps/api/js?sensor=false"></script>
   <script>
-
     //converts php array to javascript
     var serviceProviders = <?php echo json_encode($datas)?>
 
-    // Note: This example requires that you consent to location sharing when
-    // prompted by your browser. If you see the error "The Geolocation service
-    // failed.", it means you probably did not give permission for the browser to
-    // locate you.
-    var map, infoWindow, address, label;
+    var map, infoWindow;
+    //user variables
+    var name, address, label, serviceType;
+    var markers = [];
+
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -34.397, lng: 150.644},
@@ -292,12 +294,19 @@ width:100%;}
 
 
       for(var i=0; i<serviceProviders.length; i++){
+        name = serviceProviders[i][0];
         address = serviceProviders[i][2];
         label = serviceProviders[i][4];
-        geocodeAddress(geocoder, map, address, label);
+        var contentString = '<div id = "content">'+
+          '<strong>'+name+'</strong>'+
+          '<br>'+label+
+          '<br>'+address+'</div>';
+
+        var infoForWindow = new google.maps.InfoWindow({
+          content:contentString
+        });
+        geocodeAddress(geocoder, map, address, label, infoForWindow);
       }
-
-
     }
 
     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -315,12 +324,12 @@ width:100%;}
 			map.setCenter(center);
 		});
 
-	google.maps.event.addDomListener(window, 'load', initialize);
 
+	google.maps.event.addDomListener(window, 'load', initialize);
 
   //this function geocodes the address input of service providers and
   //adds the corresponding markers on the maps
-  function geocodeAddress(geocoder, resultsMap, address, labels) {
+  function geocodeAddress(geocoder, resultsMap, address, labels, infoWindow) {
     geocoder.geocode({'address': address}, function(results, status) {
       if (status === 'OK') {
         var marker = new google.maps.Marker({
@@ -328,13 +337,125 @@ width:100%;}
           label: labels,
           position: results[0].geometry.location
         });
+        markers.push(marker);
+        marker.addListener('click', function() {
+                infoWindow.open(map, marker);
+              });
       } else {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
   }
 
+  function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+  }
 
+  function showAll(){
+    setMapOnAll = (null);
+    markers = [];
+    for(var i=0; i<serviceProviders.length; i++){
+      name = serviceProviders[i][0];
+      address = serviceProviders[i][2];
+      label = serviceProviders[i][4];
+      var contentString = '<div id = "content">'+
+        '<strong>'+name+'</strong>'+
+        '<br>'+label+
+        '<br>'+address+'</div>';
+
+      var infoForWindow = new google.maps.InfoWindow({
+        content:contentString
+      });
+      geocodeAddress(geocoder, map, address, label, infoForWindow);
+    }
+  }
+
+  function showCleaning(){
+    setMapOnAll = (null);
+    markers = [];
+    for(var i=0; i<serviceProviders.length; i++){
+      label = serviceProviders[i][4];
+        if(label == 'CL'){
+          name = serviceProviders[i][0];
+          address = serviceProviders[i][2];
+          var contentString = '<div id = "content">'+
+            '<strong>'+name+'</strong>'+
+            '<br>'+label+
+            '<br>'+address+'</div>';
+
+          var infoForWindow = new google.maps.InfoWindow({
+            content:contentString
+          });
+          geocodeAddress(geocoder, map, address, label, infoForWindow);
+      }
+    }
+  }
+
+  function showMeal(){
+    setMapOnAll = (null);
+    markers = [];
+    for(var i=0; i<serviceProviders.length; i++){
+      label = serviceProviders[i][4];
+        if(label == 'MP'){
+          name = serviceProviders[i][0];
+          address = serviceProviders[i][2];
+          var contentString = '<div id = "content">'+
+            '<strong>'+name+'</strong>'+
+            '<br>'+label+
+            '<br>'+address+'</div>';
+
+          var infoForWindow = new google.maps.InfoWindow({
+            content:contentString
+          });
+          geocodeAddress(geocoder, map, address, label, infoForWindow);
+      }
+    }
+
+  }
+
+  function showDriver(){
+    setMapOnAll = (null);
+    markers = [];
+    for(var i=0; i<serviceProviders.length; i++){
+      label = serviceProviders[i][4];
+        if(label == 'DR'){
+          name = serviceProviders[i][0];
+          address = serviceProviders[i][2];
+          var contentString = '<div id = "content">'+
+            '<strong>'+name+'</strong>'+
+            '<br>'+label+
+            '<br>'+address+'</div>';
+
+          var infoForWindow = new google.maps.InfoWindow({
+            content:contentString
+          });
+          geocodeAddress(geocoder, map, address, label, infoForWindow);
+      }
+    }
+  }
+
+  function showComp(){
+    setMapOnAll = (null);
+    markers = [];
+    for(var i=0; i<serviceProviders.length; i++){
+      label = serviceProviders[i][4];
+        if(label == 'CP'){
+          name = serviceProviders[i][0];
+          address = serviceProviders[i][2];
+          var contentString = '<div id = "content">'+
+            '<strong>'+name+'</strong>'+
+            '<br>'+label+
+            '<br>'+address+'</div>';
+
+          var infoForWindow = new google.maps.InfoWindow({
+            content:contentString
+          });
+          geocodeAddress(geocoder, map, address, label, infoForWindow);
+      }
+    }
+  }
 
 
   </script>
