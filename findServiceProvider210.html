@@ -4,11 +4,8 @@
   <title>Manage Requests</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/seniorhack.css">
-  
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/findserviceprovider.css">
-  
+  <link rel="stylesheet" href="seniorhack.css">
+  <link rel="stylesheet" href="findserviceprovider.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -46,14 +43,10 @@
   }
   }
   #banner{
- background:url(img/findsp-banner.png) no-repeat top center fixed;
+ background:url(findsp-banner.png) no-repeat top center fixed;
  background-size:cover;
 	height:500px;
 	width:100%;}
-	
-	.navbar .navbar-toggle .icon-bar {
-}
-.navbar .navbar-header{margin-left:80%;}
  </style>
 </head>
 
@@ -63,7 +56,7 @@
 <div id="banner">
 <nav class="navbar navbar-default nav_style navbar-fixed-top" role="navigation">
   <div class="navbar-header">
-    <button type="button" class="navbar-toggle this_btn" data-toggle="collapse" data-target=".navbar-collapse">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -71,17 +64,17 @@
   </div>
   <div class="navbar-collapse collapse">
     <ul class="nav navbar-nav logo">
-        <li><a href="#"><img src="img/logo.png" alt="SeniorHack Logo" class="logo"></a></li>
+        <li><a href="#"><img src="logo.png" alt="SeniorHack Logo" class="logo"></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-center topnav">
-        <li><a href="" id="defaultSelected">Service Providers</a></li>
-		<li><a href="requestforseniors.php" > Requests</a></li>
+        <li><a href="findserviceprovider210" id="defaultSelected">Service Providers</a></li>
+		<li><a href="request.html" > Requests</a></li>
 		<li><a href="#">Contact Us</a></li>
 		<li><a href="helpcentre.html">Help</a></li>
     </ul>
 	<!--Log Out-->
    <div class="collapse navbar-collapse" id="cl-mainNavbar">
-		<a href="logout.php" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+		<a href="homepage.html" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
 	</div>
   </div>
 </nav>
@@ -123,26 +116,23 @@
       </div>
       <div id="providers" class="row">
         <div class="col-xs-12 col-md-4">
-          <a href="Request.html">
           <div id="idcard" class="card">
-            <img src="img/img_avatar.png" alt="Avatar" style="width:100%">
+            <img src="img_avatar.png" alt="Avatar" style="width:100%">
             <div id="card-content">
               <h4><b>Johnny English</b></h4>
               <p>Cleaning</p>
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
+              <span class="fa fa-star checked"></span>
               <span class="fa fa-star"></span>
             </div>
           </div>
-        </a>
-      </div>
+        </div>
 
         <div class="col-xs-12 col-md-4">
-          <a href="Request.html">
           <div id="idcard" class="card">
-            <img src="img/img_avatar.png" alt="Avatar" style="width:100%">
+            <img src="img_avatar.png" alt="Avatar" style="width:100%">
             <div id="card-content">
               <h4><b>Steven</b></h4>
               <p>Cooking</p>
@@ -153,13 +143,11 @@
               <span class="fa fa-star"></span>
             </div>
           </div>
-        </a>
         </div>
 
         <div class="col-xs-12 col-md-4">
-          <a href="Request.html">
           <div id="idcard" class="card">
-            <img src="img/img_avatar.png" alt="Avatar" style="width:100%">
+            <img src="img_avatar.png" alt="Avatar" style="width:100%">
             <div id="card-content">
               <h4><b>Muhammad Ali</b></h4>
               <p>Companion</p>
@@ -170,14 +158,12 @@
               <span class="fa fa-star"></span>
             </div>
           </div>
-        </a>
         </div>
 
 
         <div class="col-xs-12 col-md-4">
-          <a href="Request.html">
           <div id="idcard" class="card">
-            <img src="img/img_avatar.png" alt="Avatar" style="width:100%">
+            <img src="img_avatar.png" alt="Avatar" style="width:100%">
             <div id="card-content">
               <h4><b>Ah Kau</b></h4>
               <p>Interior Designer</p>
@@ -185,10 +171,9 @@
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
             </div>
           </div>
-        </a>
         </div>
 
     </div>

@@ -397,36 +397,52 @@ of service providers which will bring about convenience and comfort in their liv
 </div>
 
 <div id="view_requests" class="tab-pane fade">
-<div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
-<div></div>
-<div class="col-lg-6 col-md-12 col-sm-12">
-<!--Requests info displayed in notes form-->
-<?php if ($row_count_select_service == 0) {
-					//echo "<p>No services have been created yet</p>";
-				}
-				else{
-					for ($i = 1; $i <=$row_count_select_service; $i++) {
 
-echo'<div  class="card request_card" >
+
+<div class="col-lg-6 col-md-12 col-sm-12">
+
+
+<div  class="card request_card" >
 <div class="view" id="card-hover" >
-  <img class="card-img-top zoomed " id="type_img"  alt="Card image">';
-  echo"<script type='text/javascript'>
-		 document.getElementById('type_img').src = 'img/driver.jpg';
-</script>";
-  echo '<div class="mask flex-center rgba-black-strong">
+  <img class="card-img-top zoomed " src='img/driver.jpg' id="type_img"  alt="Card image">
+		<div class="mask flex-center rgba-black-strong">
   <div class="dark-overlay "></div>
-  <div class="card-img-overlay white-text zoomed card-style">';
-    echo"<h3 class='card-title font-weight-bold'>Cleaning</h3>";
+  <div class="card-img-overlay white-text zoomed card-style">
+    <h3 class='card-title font-weight-bold'>Cleaning</h3>
 	
-	echo'<p style="font-size:12px;margin-top:3%"><span class="card-text" id="statusColor" style="padding: 3px 14px">PENDING</span></p>';
-	if($status_selected_service[$i] == 'Pending'){
-	echo"<script type='text/javascript'>
-		 document.getElementById('statusColor').style.backgroundColor = 'lightblue';
-</script>";}
-	echo"<p style='margin-top:3%' >$date_selected_service[$i], $time_selected_service[$i]</p>";
-    echo'<h3 class="font-weight-bold sp-name" style="margin-top:1%">Aaron Tan</h3>';
+	<p style="font-size:12px;margin-top:3%"><span class="card-text" id="statusColor" style="padding: 3px 14px">PENDING</span></p>
+		<script> document.getElementById('statusColor').style.backgroundColor = 'lightblue';
+</script>
+	<p style='margin-top:3%' >"$date_selected_service[$i], $time_selected_service[$i]"</p><h3 class="font-weight-bold sp-name" style="margin-top:1%">Aaron Tan</h3>
 	
-	echo'</div>
+	</div>
+	<button type="button" data-toggle="modal" data-target="#myModal"  class="btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
+margin-right:0;
+padding-left:0;
+padding-right:0">View More</button>
+	</div>
+  
+</div>
+</div>
+
+</div>
+<div class="col-lg-6 col-md-12 col-sm-12">
+
+
+<div  class="card request_card" >
+<div class="view" id="card-hover" >
+  <img class="card-img-top zoomed " src='img/driver.jpg' id="type_img"  alt="Card image">
+		<div class="mask flex-center rgba-black-strong">
+  <div class="dark-overlay "></div>
+  <div class="card-img-overlay white-text zoomed card-style">
+    <h3 class='card-title font-weight-bold'>Cleaning</h3>
+	
+	<p style="font-size:12px;margin-top:3%"><span class="card-text" id="statusColor" style="padding: 3px 14px">PENDING</span></p>
+		<script> document.getElementById('statusColor').style.backgroundColor = 'lightblue';
+</script>
+	<p style='margin-top:3%' >"$date_selected_service[$i], $time_selected_service[$i]"</p><h3 class="font-weight-bold sp-name" style="margin-top:1%">Aaron Tan</h3>
+	
+	</div>
 	<button type="button" data-toggle="modal" data-target="#myModal"  class="btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
 margin-right:0;
 padding-left:0;
@@ -439,9 +455,10 @@ padding-right:0">View More</button>
 <!-- Card -->
 <!-- Card -->
 </div>
+<!--end of first card-->
+
 </div>
-</div>
-<!--Edit Details Model-->';
+<!--Edit Details Model--><?php
 						echo'
 <div class="modal fade" id="detailsModal" role="dialog">
 <div class="modal-dialog" >
@@ -485,7 +502,7 @@ padding-right:0">View More</button>
     </div>
   </div>
 </div>';
-}}?>
+?>
 
 <!-- Modal that shows the details of requests made -->
 <div class="modal fade" id="myModal" role="dialog">

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Help Centre</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/seniorhack.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  body{background-color:#f0f3f5;
+  }
+
+  #banner {
+  	background:url(banner10.jpg) no-repeat top center fixed;
+  	background-size:cover;
+  	height:500px;
+  	width:100%;
+    opacity:0.6;}
+
+  .banner-title {
+    text-align:center;
+    font-family:serif;
+    color:white;
+    font-size:130px;
+    margin-top:7%;
+  }
+
+  .banner-description p{
+    text-align:center;
+    font-family:serif;
+    color:white;
+    font-size:20px;
+  }
+
+
+  #content{
+    text-align:center;
+    max-width:850px;
+    margin-top:70px;
+  }
+
+
+  .accordion {
+     background-color: #0B7A75;
+     color: #ffffff;
+     cursor: pointer;
+     padding: 18px;
+     width: 100%;
+     border: none;
+     text-align: left;
+     outline: none;
+     font-size: 15px;
+     transition: 0.4s;
+     height:80px;
+  }
+  .active, .accordion:hover {
+     background-color: #35a39a;
+  }
+  .accordion:after {
+     content: '\002B';
+     color: white;
+     font-weight: bold;
+     float: right;
+     margin-left: 5px;
+  }
+  .active:after {
+     content: "\2212";
+  }
+  .panel {
+     padding: 0 25px;
+     background-color: white;
+     max-height: 0;
+     overflow: hidden;
+     transition: max-height 0.2s ease-out;
+     border-top-radius:0;
+     font-family:'Verdana', 'Arial', sans-serif;
+  }
+  .panel p{
+     text-align:justify;
+  }
+    @media (min-width: 768px) {
+      .navbar-nav.navbar-center {
+        position: absolute;
+        left: 47%;
+        transform: translatex(-50%);
+      }
+    }
+    .button_style {
+      background-color: limegreen;
+      color: white;
+      border-color: limegreen;}
+
+    @media(min-width: 900px){
+      .banner-title {
+      text-align:right;
+      font-family:serif;
+      color:white;
+      font-size:100px;
+      margin-top:70px;
+      margin-right:0;
+      padding-right:0;
+    }
+
+      .banner-description p{
+        text-align:right;
+        font-family:serif;
+        color:white;
+        font-size:20px;
+      }
+    }
+
+    .overall-grid{
+      height:100%;
+      width:100%;
+      position: fixed;
+      overflow-x:hidden;
+      margin: 0;
+      padding: 0;
+      max-width:2000px;
+    }
+
+      nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+         color:white;
+         background-color:#0B7A75;}
+     .nav_style {
+     	background-color:#0B7A75;
+     	border:none;}
+      .topnav li a{
+     	text-align:center;
+     	color:white !important;
+     	padding-right: 35px;
+     	padding-left: 35px;}
+     .logo {
+       margin-top:-1%;
+       height:50px;}
+      .button.active {
+     	background-color:#7b2d26 !important;
+     	color:white;
+     	border: 2px solid white;
+     }
+     @media only screen and (max-width: 750px)
+       {.log-out { margin:auto;
+       display:block;
+       width:25%;
+       }}
+     @media only screen and (min-width: 750px){
+      .log-out {
+       margin-right:2%;
+       }
+       }
+
+       .footer-left {
+       	margin-top:4%;
+       	text-align:left;
+       	margin-left:10%;}
+
+       .footer-right {
+         margin-top:3%;
+       	float: right;
+       	text-align:right;
+       	margin-right:10%;}
+		
+		@media only screen and (max-width: 1000px)
+       {.footer-left{ text-align:center;margin-right:10%;
+       }}
+	   
+	   @media only screen and (max-width: 1000px)
+       {.footer-right{ margin-right:40%;
+       }}
+		#banner{
+ background:url(img/sp-banner.png) no-repeat top center fixed;
+ background-size:cover;
+	height:500px;
+	width:100%;}
+    </style>
+</head>
+
+
+  <body>
+  <!-- Navigation bar-->
+  <header>
+
+  <nav class="navbar navbar-default nav_style navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav logo">
+          <li><a href=""><img src="img/logo.png" alt="SeniorHack Logo" class="logo"></a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-center topnav">
+          <li><a href="findServiceProvider210">Service Providers</a></li>
+  		<li><a href="request.html"> Requests</a></li>
+  		<li><a href="#">Contact Us</a></li>
+  		<li><a href="helpcentre.html" id="defaultSelected">Help</a></li>
+      </ul>
+  	<!--Log Out-->
+     <div class="collapse navbar-collapse" id="cl-mainNavbar">
+  		<a href="homepage.html" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+  	</div>
+    </div>
+  </nav>
+  <div id="banner">
+  <div class="container">
+  <div class="row"><br><br><br>
+  <div class="banner-title"><p style="margin-top:-3%">Help Center<br></p></div>
+  <div class="banner-description"><p>Simple Guidelines to Using SeniorHack</p></div>
+  </div>
+  </div>
+  </div>
+  </header>
+
+    <!--Content-->
+    <div class="container" id="content">
+      <h4>FREQUENTLY ASKED QUESTIONS:</h4>
+	  <br>
+        <button class="accordion">How do I create a new request?</button>
+        <div class="panel">
+          <p>
+          <br>A few simple steps:<br>
+          1. Go to the Service Request page.<br>
+          2. You can see that 'New Request' has been selected by default.<br>
+          3. Choose the type of service you wish to request for, fill in the date,
+          time and any additional notes you may want the servicer to take note of.<br>
+          4. Click the submit button and you're good to go!<br><br></p>
+        </div>
+
+        <button class="accordion">Where can I view my list of request? </button>
+        <div class="panel">
+          <p><br>At the Service Request page, select 'View Request' and a list of all
+          pending, accepted, cancelled and completed request will be displayed.<br><br></p>
+        </div>
+
+        <button class="accordion">How do I find service providers around me?</button>
+        <div class="panel">
+          <p><br>Few simple steps:<br>
+          1. Go to the Service Provider page<br>
+          2. Scroll down and you'll see a list of service providers with their ratings<br>
+          3. You can sort by the type of service by clicking on the types of services button.<br>
+          4. Clicking on the Service provider's profile will direct you to the new Request page if you
+          wish to create new requests.<br>
+          </p>
+        </div>
+
+        <button class="accordion">How many types of services can I have per request?</button>
+        <div class="panel">
+          <p><br>Only one type of service per request.<br><br></p>
+        </div>
+
+        <button class="accordion">What happens to my request if nobody accepts it?</button>
+        <div class="panel">
+          <p><br>Your request will automatically be cancelled if it's not accepted within 7 days,
+            you will then have to make another request for service after cancellation.<br><br></p>
+        </div>
+    </div>
+
+
+
+
+
+  <footer id="footer-bg" class="footer">
+    <div class="container-fluid">
+      <div class="row">
+
+        <!--Contact No-->
+        <div class="col-sm-4 pull-left1">
+          <p class="footer-left" style="text-indent:10px">Contact Us At <br><span style="font-size:18px;font-weight:bold;"> 1300-88-2525</span></p>
+        </div>
+
+        <div class="col-sm-4 dropup">
+          <p class="footer_mid">&copy;Copyright SeniorHack 2018 <br>All rights reserved</p>
+        </div>
+
+        <!--Links to Social Media-->
+        <div class="col-sm-4">
+          <ul class="social-network social-circle footer-right ">
+    	     <a style="color:black">Join Us At </a> <br>
+           <a href="https://facebook.com/"><i class="fa fa-facebook-square" style="font-size:2em;color:black;margin-right:18%"></i></a>
+    		   <a href="https://twitter.com/"><i class="fa fa-twitter" style="font-size:2em;color:black"></i></a>
+          </ul>
+       </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <!--Accordion-->
+  <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    for (i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight){
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    }
+  </script>
+
+  <!--Request anchor and New Request Tab are selected by default-->
+  <script>
+    document.getElementById("defaultSelected").focus();
+    document.getElementById("defaultOpen").click();
+    <!--function to make sure that no element will lose focus unless other button is chosen-->
+    $('.button').click(function() {
+        $('button').removeClass('active');
+        $(this).addClass('active');
+    })
+    $('#defaultSelected').on('blur',function () {
+        var blurEl = $(this);
+        setTimeout(function() {
+            blurEl.focus()
+        }, 10);
+    });
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="js/bootstrap/min.js"></script>
+</body>
+</html>
+

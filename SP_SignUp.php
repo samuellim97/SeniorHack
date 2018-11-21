@@ -34,7 +34,7 @@ session_start();
 	  $service_fk = mysqli_query($con,"SELECT * FROM servicetype where serviceDescription = '$servicetype'");
 	  $row = $service_fk->fetch_array();
 	  $service_info = $row['serviceCode'];
-	  mysqli_query($con,"INSERT INTO providerInfo (username,serviceCode) values ('$last_id','$service_info')");
+	  mysqli_query($con,"INSERT INTO providerInfo (username,serviceCode) values ('$sp_username','$service_info')");
 	}
 
 		  $message = "Account Registered!";

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Manage Requests</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="Request.css">
+  <link rel="stylesheet" href="SeniorHack.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <style>
+ body{background-color:#f0f3f5;}
+
+ .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color:white;
+    background-color:#0B7A75;}
+
+.nav_style {
+	background-color:#0B7A75;
+	border:none;}
+
+ .topnav li a{
+	text-align:center;
+	color:white !important;
+	padding-right: 35px;
+	padding-left: 35px;}
+
+.logo {
+  margin-top:-1%;
+  height:50px;}
+
+.button.active {
+	background-color:#7b2d26 !important;
+	color:white;
+	border: 2px solid white;}
+
+@media only screen and (max-width: 750px)
+  {.log-out { margin:auto;
+  display:block;
+  width:25%;
+  }}
+
+@media only screen and (min-width: 750px){
+ .log-out {
+  margin-right:2%;
+  }}
+
+</style>
+</head>
+<!-- Navigation bar-->
+<header>
+<div id="banner">
+<nav class="navbar navbar-default nav_style navbar-fixed-top" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav logo">
+        <li><a href=""><img src="logo.png" alt="SeniorHack Logo" class="logo"></a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-center topnav">
+        <li><a href="findServiceProvider210.html">Service Providers</a></li>
+		<li><a href="#" id="defaultSelected"> Requests</a></li>
+		<li><a href="#">Contact Us</a></li>
+		<li><a href="HelpCentre.html">Help</a></li>
+    </ul>
+	<!--Log Out-->
+   <div class="collapse navbar-collapse" id="cl-mainNavbar">
+		<a href="homepage.html" type="button" id="btn-logout" class="btn btn-default navbar-btn navbar-right log-out" >Log Out</a>
+	</div>
+  </div>
+</nav>
+<div class="container">
+<!--Banner title and description-->
+<div class="row"><br><br><br>
+<div class="banner-title col-lg-9 col-md-9 col-sm-10"><p>We Give Seniors The Love </p><p style="margin-top:-3%">They Deserve</p></div>
+
+<div class="banner-description col-lg-5 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-7 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+<p>SeniorHack ameliorates the living standards of senior citizens by providing a platform
+of service providers which will bring about convenience and comfort in their lives.</p><br>
+<a href="#new_request" class="btn btn-info" id="next" role="button">Request a Service Now</a></div>
+</div>
+</div>
+
+</header>
+
+<body>
+<div class="container"  style="margin-top:3%">
+  <div class="row">
+<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
+<!--New Request and View Requests Tabs-->
+  <ul class="tab nav nav-pills">
+
+    <li style="width:46%; padding-right: 5%" ><a class="btn btn-lg btn-default" id="defaultOpen" data-toggle="tab" href="#new_request">New Request</a></li>
+
+    <li style="width:53%; padding-left: 3%"><a class="btn btn-lg btn-default" data-toggle="tab" href="#view_requests">View Requests</a></li>
+
+  </ul>
+</div>
+<br>
+
+<div class="tab-content" id="open">
+<!--Make New Request Tab-->
+	
+    <div id="new_request" class="tab-pane fade in active ">
+	<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 shadow col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+	<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
+<br>
+<form action="#">
+<div id="open">
+  <div class="form-group">
+    <label for="type">Service Type</label>
+	<br>
+    <button type="button" class="btn top-btn button ">Driver</button>
+	<button type="button" class="btn top-btn button">Companion</button>
+	<br>
+    <button type="button" class="btn bottom-btn button">Cleaning</button>
+	<button type="button" class="btn bottom-btn button">Meal Preparation</button>
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="date">Date</label>
+    <input type="date" class="form-control" id="date">
+  </div>
+
+  <div class="form-group">
+    <label for="time">Time</label>
+    <input type="time" class="form-control" id="time">
+  </div>
+
+  <div class="form-group">
+    <label for="notes">Notes</label>
+	<textarea name="notes" rows="3" cols="21" class="form-control" id="notes"></textarea>
+  </div>
+
+</form>
+<br>
+<a href="#" class="pull-right btn btn-block btn-success" style="margin-bottom:10%"> Submit </a>
+
+    </div>
+</div>
+</div>
+</div>
+<!--End of New Request-->
+<!--View Request Tab-->
+<div id="view_requests" class="tab-pane fade">
+<div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
+	<br>
+	<div style="text-align:center">
+<h5><b>Sort by:</b></h5><form>
+    <label class="radio-inline">
+      <input type="radio" name="optradio" checked>Service ID
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="optradio">Date
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="optradio">Status
+    </label>
+  </form></div>
+	<div style="color:black">
+	<br>
+	<br>
+<!--Requests info displayed in notes form-->
+<div class="col-lg-6 col-md-6 col-sm-6" >
+<table id="tblOne" class="tbl ">
+	<tr>
+		<td>
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
+		<p style="margin:8px 13px"><span class="statusPending">pending</span>
+		<span style="float:right">1/9/18, 12:00pm</span>
+		<br><span style="font-size:12px">Request ID S0001</span>
+		<br>Service Provider:Adam
+		<div class="bottom-info">
+		<span style="font-size:12px">Cleaning</span>
+		<p class="view-info">view</p></div></p>
+		</a>
+		</td>
+	</tr>
+</table>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6">
+<table id="tblOne"class="tbl ">
+	<tr>
+		<td>
+		<a href="myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
+		<p style="margin:8px 13px"><span class="statusPending">pending</span>
+		<span style="float:right">1/9/18, 12:00pm</span>
+		<br><span style="font-size:12px">Request ID S0001</span>
+		<br>Service Provider:Adam
+		<div class="bottom-info">
+		<span style="font-size:12px">Cleaning</span>
+		<p class="view-info">view</p></div></p>
+		</a>
+		</td>
+	</tr>
+</table>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6">
+<table id="tblOne"class="tbl">
+	<tr>
+		<td>
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
+		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
+
+<span style="float:right">1/9/18, 12:00pm</span>
+		<br><span style="font-size:12px">Request ID S0001</span>
+		<br>Service Provider:Adam
+		<div class="bottom-info">
+		<span style="font-size:12px">Cleaning</span>
+		<p class="view-info">view</p></div></p>
+		</a>
+		</td>
+	</tr>
+</table>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6" >
+<table id="tblOne"class="tbl">
+	<tr>
+		<td>
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
+		<p style="margin:8px 13px"><span class="statusAccepted">accepted</span>
+		<span style="float:right">1/9/18, 12:00pm</span>
+		<br><span style="font-size:12px">Request ID S0001</span>
+		<br>Service Provider:Adam
+		<div class="bottom-info">
+		<span style="font-size:12px">Cleaning</span>
+		<p class="view-info">view</p></div></p>
+		</a>
+		</td>
+	</tr>
+</table>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6" >
+<table id="tblOne"class="tbl">
+	<tr>
+		<td>
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
+		<p style="margin:8px 13px"><span class="statusCancelled">cancelled</span>
+		<span style="float:right">1/9/18, 12:00pm</span>
+		<br><span style="font-size:12px">Request ID S0001</span>
+		<br>Service Provider:Adam
+		<div class="bottom-info">
+		<span style="font-size:12px">Cleaning</span>
+		<p class="view-info">view</p></div></p>
+		</a>
+		</td>
+	</tr>
+</table>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-6" >
+<table id="tblOne"class="tbl">
+	<tr>
+		<td>
+		<a href="#myModal" data-target="#myModal" data-toggle="modal" style="color:black;text-decoration:none">
+		<p style="margin:8px 13px"><span class="statusCompleted">completed</span>
+		<span style="float:right">1/9/18, 12:00pm</span>
+		<br><span style="font-size:12px">Request ID S0001</span>
+		<br>Service Provider:Adam
+		<div class="bottom-info">
+		<span style="font-size:12px">Cleaning</span>
+		<p class="view-info">view</p></div></p>
+		</a>
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+</div>
+
+    </div>
+<!--End of View Requests-->
+<!-- Modal that shows the details of requests made -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding:10px 35px;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <p class="modal-title"><span class="statusPending" style="float:left;margin-top:1%;">pending</span><p style="float:initial;margin-top:1.5%;">1/9/18, 12:00PM</p></</p>
+      </div>
+      <div style="padding: 1% 5%; background-color: #AAAAAA;">
+        Request ID S0001
+      </div>
+      <p><span style="float:left;padding:1% 5%;">Service Provider</span><a href="#detailsModal" data-target="#detailsModal" id="edit">edit</a></p>
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row" style="padding-top:10px; padding-bottom: 20px;">
+            <div class="col-md-1 col-xs-2">
+              <image style="height:64px; width:64px;" src="profile_pic.png"></image>
+            </div>
+            <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-1">
+              <b>Adam</b>
+              <br>012-3456789
+              <br>4.5 stars
+            </div>
+          </div>
+          <div style="padding-bottom: 20px;">
+            notes: pick me up at Entrance A
+          </div>
+        </div>
+      <div class="modal-footer" style="text-Align: left;">
+        Type: Cleaning
+        <button type="button" class="btn btn-default" style="float: right;"
+        data-dismiss="modal">Close</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Edit Details Model-->
+<div class="modal fade" id="detailsModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Edit Details Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="padding:10px 35px;">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <p class="modal-title"><span class="statusPending" style="float:left;margin-top:1%;">pending</span><p style="float:initial;margin-top:1.5%;">1/9/18, 12:00PM</p></</p>
+      </div>
+      <div style="padding: 1% 5%; background-color: #AAAAAA;">
+        Request ID S0001
+      </div>
+      <p><span style="float:left;padding:1% 5%;">Service Provider</span></p>
+      <div class="modal-body">
+
+        <div class="container">
+          <div class="row" style="padding-top:10px; padding-bottom: 20px;">
+            <div class="col-md-1 col-xs-12">
+              <image style="height:64px; width:64px;" src="profile_pic.png"></image>
+            </div>
+            <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-0">
+              <b>Adam</b>
+              <br><p>012-3456789
+              <br><button onclick="window.location.href='userreview.html'" type="button" class="btn btn-primary btn-xs" >View Rating</button></p>
+			  </div>
+			  <div class="col-lg-1 col-md-2 col-sm-2 col-xs-3 col-xs-offset-4" style="margin-top:0%;margin-left:-5%;float-right;text-align:center">
+			  <button type="button" class="btn btn-info btn-xs" style="margin-top:25%;padding-left:22%;padding-right:22%">Cancel Service</button><br>
+			  <button type="button" class="btn btn-warning btn-xs" style="margin-top:5%">Service Completed</button></div>
+
+			</div>
+          </div>
+          <div style="margin-left:3%" >
+            <label for="notes">notes: </label> <br>
+			<textarea name="notes" rows="3" cols="30" ></textarea>
+          </div>
+        </div>
+
+      <div class="modal-footer" style="text-Align: left;width:100%">
+        Type: Cleaning
+        <button type="button" class="btn btn-sm btn-default" data-dismiss="modal" style="float: right"
+        >Save</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+<footer id="footer-bg" class="footer" style="width:100%">
+<div class="container">
+<div class="row">
+
+<!--Contact No-->
+  <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-4">
+      <p class="footer-left" style="text-indent:10px">Contact Us At <br><span style="font-size:18px;font-weight:bold;"> 1300-88-2525</span></p>
+      </div>
+
+    <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1 ">
+      <p class="footer_mid">&copy;Copyright SeniorHack 2018 <br>All rights reserved</p>
+    </div>
+
+<!--Links to Social Media-->
+    <div class="col-lg-4 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-4 col-sm-offset-0 col-xs-6 col-xs-offset-1 ">
+    <ul class="social-network social-circle footer-right ">
+	<a style="color:black">Join Us At </a> <br>
+       <a href="https://facebook.com/"><i class="fa fa-facebook-square" style="font-size:2em;color:black;margin-right:18%"></i></a>
+		<a href="https://twitter.com/"><i class="fa fa-twitter" style="font-size:2em;color:black"></i></a>
+     </ul>
+  </div>
+</div>
+</div>
+</footer>
+
+<script>
+<!--Request anchor and New Request Tab are selected by default-->
+document.getElementById("defaultOpen").click();
+<!--function to make sure that no element will lose focus unless other button is chosen-->
+$('.button').click(function() {
+    $('button').removeClass('active');
+    $(this).addClass('active');
+})
+
+
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+})
+
+<!--Open New Request Tab and Scroll to New Request Form upon clicking 'request now' button-->
+$("#next").on("click", function(){
+    $('#defaultOpen[href="#new_request"]').tab('show');
+	document.getElementById("open").scrollIntoView();
+});
+
+<!--show second pop up window after closing the first pop up window-->
+$("#edit").on("click", function(){
+    $("#myModal").modal("hide");
+    $("#myModal").on("hidden.bs.modal",function(){
+    $("#detailsModal").modal("show");
+    });
+});
+
+
+</script>
+</body>
+</html>

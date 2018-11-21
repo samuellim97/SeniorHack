@@ -4,7 +4,7 @@ session_start();
  $username = "root";
  $password = "";
  $dbname = "SeniorHack";
- $con = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
+ $con = new mysqli($servername, $username, $password, $dbname);
 
 $date = $_POST['date'];
 $time = $_POST['time'];
@@ -12,13 +12,13 @@ $notes = htmlspecialchars($_POST['notes']);
 //get logged in username
 $currentUser = $_SESSION['username'];
 //get service type
-$serviceCode = $_POST['serviceCode'];
+$serviceCode = $_POST['service_type'];
 //get serviceID from database
 $service_fk = mysqli_query($con,"SELECT serviceCode FROM servicetype where serviceDescription = '$serviceCode'");
 $row = $service_fk->fetch_array();
-$service_info = $row['serviceDescription'];
+$service_info = $row['serviceCode'];
 
-$sql = "INSERT INTO servicerequest(date,time,notes,status,serviceCode,sID) VALUES ('$date','$time','$notes','Pending','$service_info','$currentUser')";
+$sql = "INSERT INTO servicerequest(date,time,notes,status,serviceCode,sID,spID) VALUES ('$date','$time','$notes','Pending','$service_info','$currentUser','')";
 
 
 if(mysqli_query($con, $sql)){

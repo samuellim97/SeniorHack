@@ -1,0 +1,198 @@
+ 
+
+  .container-fluid{
+    margin-right:0;
+    padding:0;
+    overflow-x:hidden;
+  }
+
+  .view{
+    height:100%;
+    opacity:0.8;
+  }
+
+  .the-form{
+    background-color:silver;
+    padding:20px 20px 20px 20px;
+    border-radius:15px;
+  }
+
+  #loginbtn a{
+    text-decoration:none;
+    color:white;
+  }
+
+  #registerbtn a{
+    text-decoration:none;
+    color:white;
+  }
+
+  hr.style-two {
+      border: 0;
+      height: 1px;
+      background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  }
+
+  .overall-grid{
+    height:100%;
+    width:100%;
+    position:fixed;
+    overflow-x:hidden;
+    margin: 0;
+    padding: 0;
+    max-width:2000px;}
+
+  
+  
+
+  @font-face {
+    font-family: "uni_sans_thin";
+    src: url("Assignment/fonts/uni_sans_thin.eot");
+    src:
+    url("Assignment/fonts/uni_sans_thin.woff") format("woff"),
+    url("Assignment/fonts/uni_sans_thin.otf") format("opentype"),
+    url("Assignment/fonts/uni_sans_thin.svg#filename") format("svg");
+  }
+
+  @media (max-width: 991px) {
+
+    .container-fluid{
+      margin:0;
+      padding:0;
+    }
+
+    .view {
+      width: 100%;
+      height: 400px;
+      background-image: url('banner1.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      z-index: -1;
+    }
+    .something img{
+      margin: 30px 0 0 30px;
+    }
+
+    .something h3{
+      text-align:left;
+      margin-top:140px;
+      margin-left:30px;
+      margin-bottom: 0;
+      font-size: 50px;
+      font-style:"Georgia", sans-serif;
+    }
+
+    .something p{
+      text-align:left;
+      margin-left:30px;
+      color:white;
+    }
+
+    .something h3, p{
+      color:white;
+    }
+
+    .something input{
+      text-align:center;
+      border:2px solid red;
+      width:200px;
+      background-color:red;
+      float:left;
+      margin-left:30px;
+    }
+
+
+ 
+
+
+    /*CSS for why choose seniorHack*/
+    .why{
+      margin-left:60px;
+      margin-top:100px;
+      position:relative;
+      width:90%;
+      text-align:center;
+      font-family:"uni sans thin",Arial,sans-serif;
+      color: black;
+
+    }
+    .text1 h3, p{
+      text-align:center;
+      font-family:"uni sans thin",sans-serif;
+      color: black;
+    }
+    .row{
+      text-align:center;
+      display:"inline-block"
+    }
+
+  }
+  @media(min-width: 1170px){
+
+
+    .container-fluid{
+      margin:0;
+      padding:0;
+    }
+
+    .view {
+      width: 100%;
+      height: 500px;
+      background-image: url('banner1.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .something img{
+      margin: 50px 0 0 100px;
+    }
+
+    .something h3{
+      text-align:right;
+      margin-top:170px;
+      margin-right:100px;
+      margin-bottom: 0;
+      font-size: 90px;
+      font-style:"Georgia", sans-serif;
+    }
+
+    .something p{
+      text-align:right;
+      margin-right:100px;
+      font-size:18px;
+      color:white;
+    }
+
+    .something h3, p{
+      color:white;
+    }
+
+    .something input{
+      text-align:center;
+      border:2px solid red;
+      width:200px;
+      background-color:red;
+      float:right;
+      margin-right:100px;
+    }
+
+    /*Css for intro to seniorhack*/
+    .intro{
+      margin-top:150px;
+      margin-left:70px;
+    }
+
+    .text p{text-align:justify;}
+
+    .the-form{
+      margin-left:70px;
+      margin-right:50px;
+      text-align:left;
+    }
+
+    

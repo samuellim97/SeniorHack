@@ -8,7 +8,7 @@ session_start();
  $s_username=$_POST['s_username'];
  $s_password=$_POST['s_password'];
  $s_fullName=$_POST['s_fullName'];
- $s_mobileNo=$_POST['s_mobileNo'];
+ $s_mobileNo=$_POST['s_contact'];
  $s_address=htmlspecialchars($_POST['s_address']);
  // first check the database to make sure
  // a user does not already exist with the same username
@@ -20,7 +20,7 @@ session_start();
 	 $message = "This username is already taken";
          echo "<script type='text/javascript'>
 		 alert('$message');
-		 window.location.href='SignUp.php';
+		 window.location.href='homepage.php';
         </script>";
  }
 
