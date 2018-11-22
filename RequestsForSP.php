@@ -172,7 +172,7 @@ margin-left:auto;}}
   <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
   <br>
   <div style="text-align:center">
-  <h5><b>Sort by:</b></h5><form action"" method="post">
+  <h5><b>Sort by:</b></h5><form action="" method="post">
       <label class="radio-inline">
         <input type="radio" name="sortByRB" value="date" checked>Date
       </label>

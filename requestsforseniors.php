@@ -82,7 +82,7 @@ header,
 overflow-x: hidden;
     height: 100%;
 }
- @media only screen and (max-width: 1400px){
+ @media only screen and (max-width: 1300px){
  header,#banner{
   width:100%;
   height:500px;
@@ -222,13 +222,10 @@ of service providers which will bring about convenience and comfort in their liv
   </ul>
 </div>
 </div>
-
-</div>
 <div class="tab-content" id="open">
 <!--Make New Request Tab-->
 
     <div id="new_request" class="tab-pane fade in active ">
-	<div class="container" >
 	<div class="row justify-content-lg-center">
 <div class="col-lg-10 col-lg-offset-0 col-md-12 col-sm-12 col-xs-12">
 <div id="open">
@@ -337,11 +334,10 @@ of service providers which will bring about convenience and comfort in their liv
 </div>
 <br><br>
 </div>
-</div>
-</div>
-</div>
-</div>
 
+</div>
+</div>
+</div>
 <!-- Card -->
 
 <div class="modal fade" id="requestForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -382,9 +378,9 @@ of service providers which will bring about convenience and comfort in their liv
     </div>
 </div>
 
-<div id="view_requests" class="tab-pane fade">
-<div class="container" id="container-view">
-<div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-xs-12 row  justify-content-center">
+<div id="view_requests" class="tab-pane fade in active ">
+	<div class="row justify-content-lg-center">
+<div class="col-lg-10 col-lg-offset-0 col-md-12 col-sm-12 col-xs-12">
 <div style="text-align:center">
 <h5><br><b>Sort by:</b></h5>
 <form action="" method="post">
@@ -395,7 +391,7 @@ of service providers which will bring about convenience and comfort in their liv
       <input type="radio" name="optradio" value="date">Date
     </label>
 	<button class="btn btn-default" type="submit" >Submit</button>
-  </form></div></div><br><br>
+  </form></div><br><br>
 <?php 
 $answer = $_POST['optradio'];
 $currentUser = $_SESSION['username'];
@@ -421,36 +417,40 @@ if ($result_select_service = $con->query($sql_select_service)) {
 	}
 } else {
 	$row_count_select_service = 0;
-}?><?php
+}
 if ($row_count_select_service == 0) {
 					//echo "<p>No services have been created yet</p>";
 				}
 				else{
 				
 					for ($i = 1; $i <=$row_count_select_service; $i++) {
-						?>
+						
+					echo'
 					
-<div class="col-lg-6 col-md-12 col-sm-12">
+<div class="col-lg-6 col-md-12 col-sm-12">';
 
 
-<div  class="card request_card" >
+echo'<div  class="card request_card" >
 <div class="view" id="card-hover" >
 
-  <img class="card-img-top zoomed " src = "img/driver.jpg" alt="Card image">
+  <img class="card-img-top zoomed " src = "img/driver.jpg" alt="Card image">';
   
-  <div class="mask flex-center rgba-black-strong">
+  echo '<div class="mask flex-center rgba-black-strong">
   <div class="dark-overlay "></div>
-  <div class="card-img-overlay white-text zoomed card-style">
-    <h3 class='card-title font-weight-bold'>Cleaning</h3>
+  <div class="card-img-overlay white-text zoomed card-style">';
+    echo"<h3 class='card-title font-weight-bold'>Cleaning</h3>";
 	
-	<p style="font-size:12px;margin-top:3%"><span class="card-text" id="statusColor" style="padding: 3px 14px">PENDING</span></p>
+	echo'<p style="font-size:12px;margin-top:3%"><span class="card-text" id="statusColor" style="padding: 3px 14px">PENDING</span></p>';
+	if($status_selected_service[$i] == 'pending'){
+	echo"<script type='text/javascript'>
+		 document.getElementById('statusColor').style.backgroundColor = 'lightblue';
+</script>";}
+	echo"<p style='margin-top:3%' id='spname'>$date_selected_service[$i]</p>";
+    echo'<h3  class="font-weight-bold sp-name" style="margin-top:1%">$sp_selected_service[$i]</h3>';
 	
-	<p style='margin-top:3%' class='spname'><?php echo "$date_selected_service[$i]" ?></p>
-   <h3  class="font-weight-bold sp-name" style="margin-top:1%">$sp_selected_service[$i]</h3>
-	
-	</div> 
+	echo'</div> 
 
-	<button  id="viewModal" data-toggle="modal" data-target="#viewModal" data-whatever="<?php echo $row_select_service['requestID']; ?>" class=" btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
+	<button  id="viewmore" data-toggle="modal" data-target="#detailsModal" class=" btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
 margin-right:0;
 padding-left:0;
 padding-right:0">View More</button>
@@ -459,9 +459,8 @@ padding-right:0">View More</button>
 </div>
 </div>
 </div>
-<?php }}?>
-</div>
-
+</div>';
+}}?>
 </div>
 </div>
 <!--Edit Details Model-->
@@ -553,7 +552,8 @@ padding-right:0">View More</button>
   </div>
 </div>
 <!--Endddddd-->
-
+</div>
+</div>
 <!--MODAL-->
 
 <!--End of modal-->
@@ -651,26 +651,13 @@ function validations(){
 	}
 
 }
- $('#viewModal').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget) // Button that triggered the modal
-          var recipient = button.data('whatever') // Extract info from data-* attributes
-          var modal = $(this);
-          var dataString = 'id=' + recipient;
-
-            $.ajax({
-                type: "GET",
-                url: "viewModal.php",
-                data: dataString,
-                cache: false,
-                success: function (data) {
-                    console.log(data);
-                    modal.find('.dash').html(data);
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-    })
+$(document).ready(function() {
+	var sppname = $("#spname").text();
+   $("#viewmore").click(function() {
+     $("#servicename").text(sppname);
+     $("#detailsModal").modal("show");
+  });
+});
 
 
     //testing pop up
