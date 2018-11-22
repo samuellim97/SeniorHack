@@ -4,7 +4,7 @@
     $username = $_SESSION['username'];
 
     $p_sql = "SELECT* FROM servicerequest INNER JOIN servicetype ON servicerequest.serviceCode = servicetype.serviceCode
-    INNER JOIN account ON servicerequest.sID = account.username AND status = 'pending' ORDER BY date DESC";
+    INNER JOIN account ON servicerequest.sID = account.username WHERE spID IS NULL AND status = 'pending' ORDER BY date DESC";
     $p_result = mysqli_query($con, $p_sql);
     $p_row_count = mysqli_num_rows($p_result);
 
@@ -61,6 +61,9 @@ body{background-color:#f0f3f5;}
  background-color:#7b2d26 !important;
  color:white;
  border: 2px solid white;}
+ .btn-sort {
+  background-color: #D8CACA;
+  color:black;}
 @media only screen and (max-width: 750px)
  {.log-out { margin:auto;
  display:block;
@@ -159,9 +162,9 @@ margin-left:auto;}}
   <div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
   <!--Pending Requests, Upcoming Requests and History Tabs-->
     <ul class="tab nav nav-pills">
-      <li style="width:30%; padding-right: 2%" ><a class="btn btn-lg btn-default" id="defaultOpen" data-toggle="tab" href="#pending">Pending</a></li>
-  	  <li style="width:34%; padding-right: 2%"><a class="btn btn-lg btn-default" data-toggle="tab" href="#upcoming">Upcoming</a></li>
-      <li style="width:28%; padding-right: 2%"><a class="btn btn-lg btn-default" data-toggle="tab" href="#history">History</a></li>
+      <li style="width:33%; padding-right: 2%" ><a class="btn btn-lg btn-default" id="defaultOpen" data-toggle="tab" href="#pending">Pending</a></li>
+  	  <li style="width:33%; padding-right: 2%"><a class="btn btn-lg btn-default" data-toggle="tab" href="#upcoming">Upcoming</a></li>
+      <li style="width:33%; padding-right: 2%"><a class="btn btn-lg btn-default" data-toggle="tab" href="#history">History</a></li>
     </ul>
   </div>
   <br>
@@ -171,21 +174,16 @@ margin-left:auto;}}
   <div id="pending" class="tab-pane fade in active ">
   <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
   <br>
-  <div style="text-align:center">
-  <h5><b>Sort by:</b></h5><form action="" method="post">
-      <label class="radio-inline">
-        <input type="radio" name="sortByRB" value="date" checked>Date
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="sortByRB" value="serviceType">Service Type
-      </label>
-    </form></div>
+  <div style="text-align:center; margin-top: -20px; margin-bottom: 10px">
+    <h5><b>Sort by:</b></h5>
+        <button type="button" class="btn btn-sort" name="sortDate">Date</button>
+        <button type="button" class="btn btn-sort" name="sortType">Service Type</button></div>
     <?php
 
-    $sortByRB= $_POST ['sortByRB'];
-    if ($sortByRB == 'serviceType')
-    $p_sql = "SELECT* FROM servicerequest INNER JOIN servicetype ON servicerequest.serviceCode = servicetype.serviceCode
-    INNER JOIN account ON servicerequest.sID = account.username AND status = 'pending' ORDER BY serviceCode DESC";
+    //$sortByRB= $_POST ['sortByRB'];
+    //if ($sortByRB == 'serviceType')
+    //$p_sql = "SELECT* FROM servicerequest INNER JOIN servicetype ON servicerequest.serviceCode = servicetype.serviceCode
+    //INNER JOIN account ON servicerequest.sID = account.username AND status = 'pending' ORDER BY serviceCode DESC";
     ?>
         	<?php if ($p_row_count == 0) {
   					echo "<p style='text-align:center'>No pending requests at the moment</p>";
@@ -229,21 +227,16 @@ margin-left:auto;}}
 <div id="upcoming" class="tab-pane fade">
 <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
 <br>
-<div style="text-align:center">
-<h5><b>Sort by:</b></h5><form>
-    <label class="radio-inline">
-      <input type="radio" name="sortByRB"  value="date" checked>Date
-    </label>
-    <label class="radio-inline">
-      <input type="radio" name="sortByRB" value="serviceType">Service Type
-    </label>
-  </form></div>
+<div style="text-align:center; margin-top: -40px; margin-bottom: 10px">
+<h5><b>Sort by:</b></h5>
+    <button type="button" class="btn btn-sort" name="sortDate">Date</button>
+    <button type="button" class="btn btn-sort" name="sortType">Service Type</button></div>
   <?php
 
-  $sortByRB= $_POST ['sortByRB'];
-  if ($sortByRB == 'serviceType')
-  $u_sql = "SELECT* FROM servicerequest INNER JOIN servicetype ON servicerequest.serviceCode = servicetype.serviceCode
-  INNER JOIN account ON servicerequest.sID = account.username AND status = 'accepted' ORDER BY serviceCode DESC";
+  //$sortByRB= $_POST ['sortByRB'];
+  //if ($sortByRB == 'serviceType')
+  //$u_sql = "SELECT* FROM servicerequest INNER JOIN servicetype ON servicerequest.serviceCode = servicetype.serviceCode
+  //INNER JOIN account ON servicerequest.sID = account.username AND status = 'accepted' ORDER BY serviceCode DESC";
   ?>
 
         <?php if ($u_row_count == 0) {
@@ -287,15 +280,10 @@ margin-left:auto;}}
 <div id="history" class="tab-pane fade">
 <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
 <br>
-<div style="text-align:center">
-<h5><b>Sort by:</b></h5><form>
-    <label class="radio-inline">
-      <input type="radio" name="sortByRB" checked>Date
-    </label>
-    <label class="radio-inline">
-      <input type="radio" name="sortByRB">Service Type
-    </label>
-  </form></div>
+<div style="text-align:center; margin-top: -60px; margin-bottom: 10px">
+  <h5><b>Sort by:</b></h5>
+      <button type="button" class="btn btn-sort" name="sortDate">Date</button>
+      <button type="button" class="btn btn-sort" name="sortType">Service Type</button></div>
         <?php if ($h_row_count == 0) {
           echo "<p style='text-align:center'>No upcoming requests at the moment</p>";
         }
@@ -308,7 +296,7 @@ margin-left:auto;}}
         <?php $requestID = $row['requestID']; ?>
 
 <div class="col-lg-6 col-md-6 col-sm-6" >
-<table id="tblUpcoming" class="tbl">
+<table id="tblHistory" class="tbl">
   <tr>
     <td>
     <p style="margin:8px 13px">
@@ -324,7 +312,6 @@ margin-left:auto;}}
     <br>
     <div class="bottom-info">
     <span style="font-size:12px"> <?php echo $row["serviceDescription"]; ?></span>
-    <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#editModal" data-whatever="<?php echo $row['requestID']; ?>" style="float:right; margin-bottom:10px">edit</a>
     <a class="btn btn-sm btn-default" data-toggle="modal" data-target="#viewModal" data-whatever="<?php echo $row['requestID']; ?>" style="float:right; margin-bottom:10px">view</a>
 
     </div></p>
@@ -343,8 +330,6 @@ margin-left:auto;}}
 </div>
 
 
-
-
 <!-- Request Edit Details Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -353,9 +338,7 @@ margin-left:auto;}}
                 <h4 class="modal-title" id="editModalLabel">Edit Service Request</h4>
             </div>
             <div class="dash">
-
             </div>
-
         </div>
     </div>
 </div>
@@ -365,15 +348,12 @@ margin-left:auto;}}
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="dash">
-
             </div>
-
         </div>
     </div>
 </div>
 
-
-
+</body>
 
 <!-- Footer -->
 <footer class="page-footer" style="color:black">
@@ -398,6 +378,13 @@ margin-left:auto;}}
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
+
+<!--function to make sure that no element will lose focus unless other button is chosen-->
+  $('.button').click(function() {
+      $('.button').removeClass('active');
+      $(this).addClass('active');
+    })
+
     $('#editModal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget) // Button that triggered the modal
           var recipient = button.data('whatever') // Extract info from data-* attributes
@@ -418,6 +405,8 @@ margin-left:auto;}}
                 }
             });
     })
+
+    //To open View Request Details Card
     $('#viewModal').on('show.bs.modal', function (event) {
           var button = $(event.relatedTarget) // Button that triggered the modal
           var recipient = button.data('whatever') // Extract info from data-* attributes
@@ -438,7 +427,5 @@ margin-left:auto;}}
                 }
             });
     })
-    //testing pop up
 </script>
-</body>
 </html>

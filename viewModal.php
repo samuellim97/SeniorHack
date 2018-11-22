@@ -3,10 +3,8 @@
     $requestID = $_GET['id'];
 
     if (isset($_POST['submit'])) {
-    	$requestID = $_POST['id'];
-    	$status = $_POST['status'];
-    	$notes = $_POST['notes'];
-    	$con->query("UPDATE `servicerequest` SET `status`='$status', `notes`='$notes' WHERE `requestID`=$requestID");
+    	$acceptID = $_POST['acceptID'];
+    	$con->query("UPDATE `servicerequest` SET `status`='accepted' WHERE `requestID`='$acceptID'");
     	header("location:RequestsForSP.php");
     }
 
@@ -128,13 +126,13 @@ th, td {
       <?php
       if ($req['status'] == 'pending') {
       echo '<div class="reqCard-buttons">';
-      echo '<div class="reqCard-btn">Accept</div>';
-      echo '<div class="reqCard-btn">Reject</div></div>';
+      echo '<form method="post" action="viewModal.php" id="accept_form" role="form">';
+      echo '<input class="reqCard-btn" type="submit" name="submit" value="Accept"/>';
+      echo '<input type="hidden" name="acceptID" value="'.$req['requestID'].'"/></form>';
+      echo '<input class="reqCard-btn" type="submit" name="reject" value="Reject"/>';
       } ?>
     </div>
   </div> <!-- end wrapper -->
    <!-- end Request Details Card -->
-</body>
-</html>
 </body>
 </html>
