@@ -5,7 +5,10 @@
   $dbName = "seniorhack";
   $conn = mysqli_connect($dbservername, $dbusername, $dbpassword, $dbName);
   //$username = $_SESSION['username'];
-  $sql = "SELECT * FROM serviceprovider";
+  $sql = "SELECT account.username, account.address, providerInfo.serviceCode
+          FROM providerInfo
+          INNER JOIN account ON providerInfo.username = account.username
+          WHERE account.type = 'SP'";
   $result = mysqli_query($conn, $sql);
   $datas = array();
   if(mysqli_num_rows($result) > 0){
@@ -206,7 +209,7 @@ width:100%;}
 
   <div class = "z-depth-1" id = "map"></div>
   <div id="find">
-  <button type="submit" class="btn btn-success" id="findBtn"><a href="RequestForSeniors.php">Find me a service provider now!</a></button>
+  <button type="submit" class="btn btn-success" id="findBtn"><a href="request.html">Find me a service provider now!</a></button>
   </div>
 
   <!--footer-->
@@ -298,8 +301,8 @@ width:100%;}
 
       for(var i=0; i<serviceProviders.length; i++){
         name = serviceProviders[i][0];
-        address = serviceProviders[i][2];
-        label = serviceProviders[i][4];
+        address = serviceProviders[i][1];
+        label = serviceProviders[i][2];
 
         var contentString = '<div id = "content">'+
           '<strong>'+name+'</strong>'+
@@ -362,3 +365,4 @@ width:100%;}
 
 </body>
 </html>
+
