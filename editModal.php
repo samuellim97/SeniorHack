@@ -36,9 +36,14 @@
   		</div>
 			<label for="status">Status</label>
       <select name="status" id="status" class="form-control">
-        <option value="<?php echo $req['status']; ?>" selected="selected"><?php echo $req['status']; ?></option>
-        <option value="pending">pending</option>
-        <option value="completed">completed</option>
+        <?php
+        if ($req['status'] == 'pending') {
+          echo '<option value="pending" selected="selected">pending</option>';
+          echo '<option value="completed">completed</option>';
+        } else if ($req['status'] == 'accepted') {
+          echo '<option value="accepted" selected="selected">accepted</option>';
+          echo '<option value="completed">completed</option>';
+        } ?>
       </select>
 		</div>
     <div class="form-group">
