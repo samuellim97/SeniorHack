@@ -17,18 +17,18 @@ $username = $_SESSION['username'];
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Request</title>
-
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/mdb.css" rel="stylesheet">
   <link href="css/bootstrap.css" rel="stylesheet">
   <link rel="stylesheet" href="css/Request.css">
   <link rel="stylesheet" href="css/SeniorHack.css" rel="stylesheet">
-
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+  
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 </body>
@@ -72,7 +72,7 @@ margin-left:auto;
   }
   @media only screen and (max-width: 1000px){
  .center_btn{
-  text-align:center;
+  text-align:center; 
   }
   }
   html,
@@ -86,13 +86,13 @@ overflow-x: hidden;
  header,#banner{
   width:100%;
   height:500px;
-
+  
   }
   }
   #banner{
  background:url(img/request-banner.png) no-repeat top center fixed;
     background-size: cover;}
-
+	
 	.navbar .navbar-toggle .icon-bar {
 }
 #btn-logout {
@@ -104,17 +104,17 @@ overflow-x: hidden;
 .banner-title {
 	margin-top:15%;
   }
-  @media only screen and (max-width: 700px)
-  {.banner-title {
+  @media only screen and (max-width: 700px) 
+  {.banner-title { 
   margin-top:40%;
   }}
-
+  
 .font {font-size:17px;}
 .page-footer{
 background-size:cover;
 	width:100%;
 	text-align:center;
-	background-color:#d7c9aa;}
+	background-color:#d7c9aa;}	
 	#defaultOpen{background-color:}
 .card{margin-top:10%;
 text-align:center;}
@@ -139,27 +139,20 @@ text-align:center;}
   background-color: rgba(0,0,0,0.5);
 }
 
-
+  
   .request_card{width:500px;}
   .card-style{margin-top:12%;}
-  @media only screen and (max-width: 450px)
+  @media only screen and (max-width: 450px) 
   {
   .card-style{margin-top:5%;}
   .card-title,  .sp-name{font-size:15px;}
   }
-  @media only screen and (max-width: 600px)
-  {.request_card {
+  @media only screen and (max-width: 600px) 
+  {.request_card { 
   width:auto;}
   }
-
-  .modal-dialog{
-    max-width:300px;
-  }
-  .modal-content{
-    max-width:300px;
-  }
-
-
+  
+  
 
  </style>
 </head>
@@ -167,7 +160,7 @@ text-align:center;}
 <body>
 <header>
   <!-- Start your project here-->
-
+  
   <nav class="navbar navbar-default nav_style navbar-fixed-top" role="navigation">
   <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -368,7 +361,7 @@ of service providers which will bring about convenience and comfort in their liv
     <label for="formGroupExampleInputMD" style="font-size:12px;margin-top:-5%">Date</label>
 	<input type="text" hidden name="service_type" id="service_type" >
   </div>
-
+  
   <!-- Material input -->
   <div class="md-form form-group mt-5">
     <input type="time" class="form-control" id="formGroupExampleInput2MD" name="time" required placeholder="Another input">
@@ -384,7 +377,7 @@ of service providers which will bring about convenience and comfort in their liv
 </form>
 
             </div>
-
+            
         </div>
     </div>
 </div>
@@ -395,21 +388,23 @@ of service providers which will bring about convenience and comfort in their liv
 <div style="text-align:center">
 <h5><br><b>Sort by:</b></h5>
 <form action="" method="post">
-    <label class="radio-inline">
-      <input type="radio" name="optradio" checked value="service">Service Type
-    </label>
-    <label class="radio-inline">
-      <input type="radio" name="optradio" value="date">Date
-    </label>
-	<button class="btn btn-default" type="submit" >Submit</button>
+    <button type="submit" class="btn btn-blue-grey" name="sortType" >Service Type</button>
+    <button type="submit" class="btn btn-blue-grey" name="sortDate" >Date</button>
+	<button type="submit" class="btn btn-blue-grey" name="sortStatus" >Status</button>
   </form></div></div><br><br>
-<<?php
-//$answer = $_POST['optradio'];
+<?php 
 $currentUser = $_SESSION['username'];
-//if ($answer == "service")
- $sql_select_service = "SELECT * FROM servicerequest where serviceCode='DR' ORDER BY requestID desc" ;
-//if ($answer == "date")
-	//$sql_select_service = "SELECT requestID, date, time,notes,status,service_type, sp_ID FROM servicerequest WHERE username ='$currentUser' ORDER BY requestID " ;
+$sql_select_service = "SELECT * FROM servicerequest " ;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['sortType'])){
+$sql_select_service = "SELECT * FROM servicerequest  ORDER BY serviceCode " ;}
+if (isset($_POST['sortDate'])){
+	$sql_select_service = "SELECT * FROM servicerequest  ORDER BY date " ;
+}
+if (isset($_POST['sortStatus'])){
+	$sql_select_service = "SELECT * FROM servicerequest  ORDER BY status " ;
+}
+}
 if ($result_select_service = $con->query($sql_select_service)) {
 	$row_count_select_service =mysqli_num_rows($result_select_service);
 	if ($row_count_select_service>0) {
@@ -422,8 +417,18 @@ if ($result_select_service = $con->query($sql_select_service)) {
 			$status_selected_service[$i] = $row_select_service['status'];
 			$service_type_selected_service[$i] = $row_select_service['serviceCode'];
 			$sp_selected_service[$i] = $row_select_service['spID'];
+			
+			$service_fk = mysqli_query($con,"SELECT serviceDescription FROM servicetype where serviceCode = '$service_type_selected_service[$i]'");
+			$row = $service_fk->fetch_array();
+			$service_info[$i] = $row['serviceDescription'];
+			
+			$sp_fk = mysqli_query($con,"SELECT fullName FROM account where username = '$sp_selected_service[$i]'");
+			$row = $sp_fk->fetch_array();
+			$sp_info[$i] = $row['fullName'];
+	
+			
 			$i++;
-
+			
 		}
 	}
 } else {
@@ -433,40 +438,50 @@ if ($row_count_select_service == 0) {
 					//echo "<p>No services have been created yet</p>";
 				}
 				else{
-
+				
 					for ($i = 1; $i <=$row_count_select_service; $i++) {
 						?>
-
+					
 <div class="col-lg-6 col-md-12 col-sm-12">
 
 
 <div  class="card request_card" >
 <div class="view" id="card-hover" >
-
-  <img class="card-img-top zoomed " src = "img/driver.jpg" alt="Card image">
-
+  <?php
+  if($service_type_selected_service[$i] == 'DR')
+   echo '<img class="card-img-top zoomed " src = "img/driver.jpg" alt="Card image">';
+  if($service_type_selected_service[$i] == 'CL')
+   echo '<img class="card-img-top zoomed " src = "img/cleaning.jpg" alt="Card image">';
+  if($service_type_selected_service[$i] == 'CO')
+    echo '<img class="card-img-top zoomed " src = "img/companion.jpg" alt="Card image">';
+  if($service_type_selected_service[$i] == 'MP')
+    echo '<img class="card-img-top zoomed " src = "img/meal.jpg" alt="Card image">';
+  ?>
   <div class="mask flex-center rgba-black-strong">
   <div class="dark-overlay "></div>
   <div class="card-img-overlay white-text zoomed card-style">
-    <h3 class='card-title font-weight-bold'>Cleaning</h3>
+    <h3 class='card-title font-weight-bold'><?php echo "$service_info[$i]" ?></h3>
+	<?php
+	if ($status_selected_service[$i] == "pending"){
+	echo'<p style="font-size:12px;margin-top:3%"><span class="card-text"  style="padding: 3px 14px; background-color:red">PENDING</span></p>';}
+	if ($status_selected_service[$i] == "accepted"){
+	echo'<p style="font-size:12px;margin-top:3%"><span class="card-text"  style="padding: 3px 14px; background-color:green">ACCEPTED</span></p>';}
+	if ($status_selected_service[$i] == "cancelled"){
+	echo'<p style="font-size:12px;margin-top:3%"><span class="card-text"  style="padding: 3px 14px; background-color:grey">CANCELLED</span></p>';}
+	if ($status_selected_service[$i] == "completed"){
+	echo'<p style="font-size:12px;margin-top:3%"><span class="card-text"  style="padding: 3px 14px; background-color:blue">COMPLETED</span></p>';}
+	?>
+	<p style='margin-top:3%' class='spname'><?php echo "$date_selected_service[$i], $time_selected_service[$i]" ?></p>
+   <h3  class="font-weight-bold sp-name" style="margin-top:1%"><?php echo "$sp_info[$i]" ?></h3>
+	
+	</div> 
 
-	<p style="font-size:12px;margin-top:3%"><span class="card-text" id="statusColor" style="padding: 3px 14px">PENDING</span></p>
-
-	<p style='margin-top:3%' class='spname'><?php echo "$date_selected_service[$i]" ?></p>
-   <h3  class="font-weight-bold sp-name" style="margin-top:1%"><?php echo $sp_selected_service[$i]; ?></h3>
-
-	</div>
-
-<<<<<<< HEAD
-	<button  data-toggle="modal" data-target="#detailsModal" data-id="<?php echo $requestID_selected_service[$i]; ?>" class=" btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
-=======
-	<button data-toggle="modal" data-target="#viewModal" data-whatever="<?php echo $requestID_selected_service[$i] ?>" class=" btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
->>>>>>> 9ed8700c78fd2141252a9aebac64778d75ceb149
+	<button  data-toggle="modal" data-target="#myModal" data-id="<?php echo $requestID_selected_service[$i]; ?>" data-id2="<?php echo 'hello'; ?>"class=" btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
 margin-right:0;
 padding-left:0;
 padding-right:0">View More</button>
 	</div>
-
+  
 </div>
 </div>
 </div>
@@ -477,68 +492,26 @@ padding-right:0">View More</button>
 </div>
 <!--Edit Details Model-->
 
-<div class="modal fade" id="detailsModal" role="dialog">
+
+				
+
+<!-- Modal that shows the details of requests made -->
+<div class="modal fade" id="myModal" role="dialog">
 <div class="modal-dialog" >
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div class="modal-header " style="padding:5px 35px;">
-        <p class="modal-title"><span class="statusPending" style="float:left;margin-top:10%">pending</span><p style="margin-left:auto;margin-right:auto;margin-top:3.5%;">1/9/18, 12:00PM</p></</p>
-
-         <button type="button" class="close" data-dismiss="modal">&times;</button>
-	 </div>
-      <div style="padding: 1% 5%; background-color: #AAAAAA;">
-        Request ID S0001
-      </div>
-      <div class="modal-body">
-<input type="text" name="user_name" id="user_name" value=""/>
-        <div class="container">
-          <div class="row" style="padding-top:10px; padding-bottom: 20px;margin-right:2px">
-            <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2">
-              <image style="height:64px; width:63px;" src="img/profile_pic.png"></image>
-            </div>
-            <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-1 col-xs-6 col-xs-offset-1">
-              <h5 class="fetched-data"></h5>
-              <br>012-3456789
-              <br>4.5 stars
-            </div>
-			<div class="col-lg-1 col-lg-offset-0 col-md-1 col-md-offset-2 col-sm-2 col-xs-3 col-xs-offset-2" style="margin-top:0%;margin-left:-2%;float-right;text-align:center">
-			  <button type="button" class="btn btn-info btn-xs" style="margin-top:25%;padding-left:22%;padding-right:22%">Cancel</button><br>
-			  <button type="button" class="btn btn-warning btn-xs" style="margin-top:5%">Completed</button></div>
-          </div>
-          <div style="padding-bottom: 20px;">
-
-
-            <label for="notes"></label> <br>
-			<textarea name="notes" rows="3" cols="30" required ></textarea>
-          </div>
-        </div>
-      <div class="modal-footer" style="text-Align:left">
-	  <p class=" mr-auto">Type: Cleaning</p>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-      </div>
-    </div>
-  </div>
-					</div>
-
-
-<!-- Modal that shows the details of requests made -->
-<div class="modal fade" id="myModal" role="dialog">
-<div class="modal-dialog" style="width:350px">
-
-    <!-- Modal content-->
-    <div class="modal-content">
+	<form action="cancelService.php" method="post">
       <div class="modal-header" style="padding:5px 35px;">
-        <p class="modal-title"><span class="statusPending" style="float:left;margin-top:10%">pending</span><p style="margin-left:auto;margin-right:auto;margin-top:3.5%;">1/9/18, 12:00PM</p></</p>
-
+        <p class="modal-title"><span class="status" style="float:left;margin-top:20%">pending</span><p class="dateAndTime" style="margin-left:auto;margin-right:auto;margin-top:3.5%;">1/9/18, 12:00PM</p></</p>
+      
          <button type="button" class="close" data-dismiss="modal">&times;</button>
 	 </div>
       <div style="padding: 1% 5%; background-color: #AAAAAA;">
-        Request ID S0001
-      </div>
-      <p><span style="float:left;padding:1% 5%;">Service Provider</span><a href="#detailsModal" data-toggle="modal" data-target="#detailsModal" data-dismiss="modal" id="edit">edit</a></p>
-      <div class="modal-body">
+       <span class="requestid" > Request ID S0001</span>
+      <input type="text" hidden name="requestid" class="hiddenid">
+	  </div>
+       <div class="modal-body">
 
         <div class="container">
           <div class="row" style="padding-top:10px; padding-bottom: 20px;">
@@ -546,20 +519,21 @@ padding-right:0">View More</button>
               <image style="height:64px; width:64px;" src="img/profile_pic.png"></image>
             </div>
             <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-1 col-xs-6 col-xs-offset-1">
-              <h5></h5>
-              <br>012-3456789
-              <br>4.5 stars
+              <span class="fullName"></span>
+              <br><span class="mobileNo">012-3456789</span><br>
+              <button type="button" class="btn btn-primary"> 4.5 stars</button>
             </div>
           </div>
-          <div style="padding-bottom: 20px;">
+          <div class="notes" style="padding-bottom: 20px;">
             notes: pick me up at Entrance A
           </div>
         </div>
       <div class="modal-footer" style="text-Align:left">
-	  <p class=" mr-auto">Type: Cleaning</p>
-        <button type="button" id="close_btn" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	  <p class="type mr-auto">Type: Cleaning</p>
+        <button type="submit" id="close_btn" name="cancelService" class="btn btn-danger">Cancel Service</button></form>
       </div>
       </div>
+	  </div>
     </div>
   </div>
 </div>
@@ -571,19 +545,6 @@ padding-right:0">View More</button>
 <!-- Card -->
 
 <!-- Card -->
-
-//Testing Jean's viewModal
-<!-- Request View Details Modal -->
-<div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="viewModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="dash">
-
-            </div>
-
-        </div>
-    </div>
-</div>
 </main>
 <!--footer-->
 <!-- Footer -->
@@ -620,7 +581,7 @@ $(document).ready(function() {
    if (hash == '#new_request' || hash == '' ){
 	   $('#defaultOpen').click();
 	   $('#requestForm').modal('hide');
-
+	   
    }
    if (hash == '#view_requests')
    hash && $('ul.nav a[href="' + hash + '"]').tab('show');
@@ -637,8 +598,8 @@ $("#next").on("click", function(){
 $('#defaultOpen[href="#new_request"]').tab('show');
 	document.getElementById("defaultOpen").click();
 	document.getElementById("open").scrollIntoView();
-
-
+	
+     
 });
 
 document.getElementById('cleaning').onclick = function() {
@@ -676,17 +637,43 @@ function validations(){
 
 }
 $(document).ready(function(){
-    $('#detailsModal').on('show.bs.modal', function (e) {
+    $('#myModal').on('show.bs.modal', function (e) {
         var rowid = $(e.relatedTarget).data('id');
+		var rowid2 = $(e.relatedTarget).data('id2');
         $.ajax({
             type : 'post',
             url : 'fetch_record.php', //Here you will fetch records 
-            data :  'rowid='+ rowid, //Pass $id
+			data : {rowid: rowid, rowid2: rowid2},
             success : function(data){
-            $('.fetched-data').html(data);//Show fetched data from database
+			var data1 = data.split(",");
+            $('.requestid').html("RequestID " +data1[0]);
+			$('.hiddenid').val(data1[0]);
+            $('.dateAndTime').html(data1[1]+","+ data1[2]);
+			$('.mobileNo').html(data1[3]);
+			$('.notes').html("Notes: " +data1[4]);
+			$('.type').html("Type: " +data1[6]);
+			$('.fullName').html(data1[7]);
+			if(data1[5] == 'pending'){
+				$('.status').html(data1[5]);
+				$('.status').css("background-color", "red");
+			}
+			if(data1[5] == 'accepted'){
+				$('.status').html(data1[5]);
+				$('.status').css("background-color", "green");
+			}
+			if(data1[5] == 'cancelled'){
+				$('.status').html(data1[5]);
+				$('.status').css("background-color", "grey");
+			}
+			if(data1[5] == 'completed'){
+				$('.status').html(data1[5]);
+				$('.status').css("background-color", "blue");
+			}
             }
         });
      });
 });
+
+
 </script>
 </html>
