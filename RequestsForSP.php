@@ -135,9 +135,9 @@ margin-left:auto;}}
           <li><a href="#"><img src="img/logo.png" alt="SeniorHack Logo" class="logo"></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-center topnav">
-  		<li><a href="#" id="defaultSelected"> Requests</a></li>
-  		<li><a href="#">Contact Us</a></li>
-  		<li><a href="helpcentre.html">Help</a></li>
+  		<li><a href="#" id="defaultSelected">Requests</a></li>
+  		<li><a href="ContactUsForSP.html">Contact Us</a></li>
+      <li><a href="userReviewForSP.php">Profile</a></li>
     </ul>
     <!--Log Out-->
      <div class="collapse navbar-collapse" id="cl-mainNavbar">
@@ -178,13 +178,6 @@ margin-left:auto;}}
     <h5><b>Sort by:</b></h5>
         <button type="button" class="btn btn-sort" name="sortDate">Date</button>
         <button type="button" class="btn btn-sort" name="sortType">Service Type</button></div>
-    <?php
-
-    //$sortByRB= $_POST ['sortByRB'];
-    //if ($sortByRB == 'serviceType')
-    //$p_sql = "SELECT* FROM servicerequest INNER JOIN servicetype ON servicerequest.serviceCode = servicetype.serviceCode
-    //INNER JOIN account ON servicerequest.sID = account.username AND status = 'pending' ORDER BY serviceCode DESC";
-    ?>
         	<?php if ($p_row_count == 0) {
   					echo "<p style='text-align:center'>No pending requests at the moment</p>";
   				}
@@ -231,13 +224,6 @@ margin-left:auto;}}
 <h5><b>Sort by:</b></h5>
     <button type="button" class="btn btn-sort" name="sortDate">Date</button>
     <button type="button" class="btn btn-sort" name="sortType">Service Type</button></div>
-  <?php
-
-  //$sortByRB= $_POST ['sortByRB'];
-  //if ($sortByRB == 'serviceType')
-  //$u_sql = "SELECT* FROM servicerequest INNER JOIN servicetype ON servicerequest.serviceCode = servicetype.serviceCode
-  //INNER JOIN account ON servicerequest.sID = account.username AND status = 'accepted' ORDER BY serviceCode DESC";
-  ?>
 
         <?php if ($u_row_count == 0) {
           echo "<p style='text-align:center'>No upcoming requests at the moment</p>";
