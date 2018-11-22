@@ -206,7 +206,7 @@ width:100%;}
 
   <div class = "z-depth-1" id = "map"></div>
   <div id="find">
-  <button type="submit" class="btn btn-success" id="findBtn"><a href="request.html">Find me a service provider now!</a></button>
+  <button type="submit" class="btn btn-success" id="findBtn"><a href="RequestForSeniors.php">Find me a service provider now!</a></button>
   </div>
 
   <!--footer-->
