@@ -414,7 +414,7 @@ if ($result_select_service = $con->query($sql_select_service)) {
 	$row_count_select_service =mysqli_num_rows($result_select_service);
 	if ($row_count_select_service>0) {
 		$i = 1;
-		while($row_select_service=mysqli_fetch_assoc($result_select_service)) {
+		while($row_select_service=mysqli_fetch_array($result_select_service)) {
 			$requestID_selected_service[$i] = $row_select_service['requestID'];
 			$date_selected_service[$i] = $row_select_service['date'];
 			$time_selected_service[$i] = $row_select_service['time'];
@@ -457,7 +457,11 @@ if ($row_count_select_service == 0) {
 
 	</div>
 
+<<<<<<< HEAD
+	<button  data-toggle="modal" data-target="#detailsModal" data-id="<?php echo $requestID_selected_service[$i]; ?>" class=" btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
+=======
 	<button data-toggle="modal" data-target="#viewModal" data-whatever="<?php echo $requestID_selected_service[$i] ?>" class=" btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
+>>>>>>> 9ed8700c78fd2141252a9aebac64778d75ceb149
 margin-right:0;
 padding-left:0;
 padding-right:0">View More</button>
@@ -494,7 +498,7 @@ padding-right:0">View More</button>
               <image style="height:64px; width:63px;" src="img/profile_pic.png"></image>
             </div>
             <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-1 col-xs-6 col-xs-offset-1">
-              <h5 id="servicename"></h5>
+              <h5 class="fetched-data"></h5>
               <br>012-3456789
               <br>4.5 stars
             </div>
@@ -671,28 +675,18 @@ function validations(){
 	}
 
 }
- $('#viewModal').on('show.bs.modal', function (event) {
-          var button = $(event.relatedTarget) // Button that triggered the modal
-          var recipient = button.data('whatever') // Extract info from data-* attributes
-          var modal = $(this);
-          var dataString = 'id=' + recipient;
-
-            $.ajax({
-                type: "GET",
-                url: "viewModal.php",
-                data: dataString,
-                cache: false,
-                success: function (data) {
-                    console.log(data);
-                    modal.find('.dash').html(data);
-                },
-                error: function(err) {
-                    console.log(err);
-                }
-            });
-    })
-
-
-    //testing pop up
+$(document).ready(function(){
+    $('#detailsModal').on('show.bs.modal', function (e) {
+        var rowid = $(e.relatedTarget).data('id');
+        $.ajax({
+            type : 'post',
+            url : 'fetch_record.php', //Here you will fetch records 
+            data :  'rowid='+ rowid, //Pass $id
+            success : function(data){
+            $('.fetched-data').html(data);//Show fetched data from database
+            }
+        });
+     });
+});
 </script>
 </html>
