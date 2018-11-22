@@ -4,4 +4,5 @@ session_start();
  $username = "root";
  $password = "";
  $dbname = "SeniorHack";
- $con = new mysqli($servername, $username, $password, $dbname);?>
+ $con = new mysqli($servername, $username, $password, $dbname);
+ ?>
