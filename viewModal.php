@@ -99,6 +99,7 @@ th, td {
         echo '<span class="statusCancelled" style="float:left;margin: 3%;">';
       } ?>
         <?php echo $req['status']; ?></span>
+        <button class="btn" style="background-color: #EC9B3B; float: right; margin: 3%" data-dismiss="modal"><i class="fa fa-close"></i></button>
       </div>
       <div class="reqCard-reqID">Req ID <?php echo $req['requestID']; ?></div>
       <div class="reqCard-name"><?php echo $req['fullName']; ?></div>
