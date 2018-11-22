@@ -12,8 +12,7 @@ session_start();
  $spID=$_POST['spID'];
 
  //get logged in UserName
- //$currentUser = $_SESSION['username'];
- $currentUser = "madeline1";
+ $currentUser = $_SESSION['username'];
 
 
   $sql = "INSERT INTO review (sID, spID, rating, comments)

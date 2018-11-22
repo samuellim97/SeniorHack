@@ -256,7 +256,7 @@ of service providers which will bring about convenience and comfort in their liv
 
         <div class="form-group">
           <label for="comments"></label>
-              <textarea type="textarea" class="form-control" id="comments" name="comments" rows=4 cols="40" placeholder="What do you think?" form="review_form"></textarea>
+              <textarea type="textarea" class="form-control" id="comments" name="comments" rows="4" cols="40" placeholder="What do you think?" form="review_form"></textarea>
         </div>
           <input type="hidden" name="spID" id="spID" value="<?php echo $spID; ?>">
       <br/>
