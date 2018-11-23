@@ -18,7 +18,7 @@ $service_fk = mysqli_query($con,"SELECT serviceCode FROM servicetype where servi
 $row = $service_fk->fetch_array();
 $service_info = $row['serviceCode'];
 
-$sql = "INSERT INTO servicerequest(date,time,notes,status,serviceCode,sID,spID) VALUES ('$date','$time','$notes','Pending','$service_info','$currentUser','')";
+$sql = "INSERT INTO servicerequest(date,time,notes,status,serviceCode,sID,spID) VALUES ('$date','$time','$notes','pending','$service_info','$currentUser','')";
 
 
 if(mysqli_query($con, $sql)){

@@ -241,7 +241,7 @@ background-size:cover;
 				
 				<div class="md-form" style="margin-top:10%">
                     <i class="fa fa-map-marker prefix grey-text"></i>
-                    <input type="password" id="s_address" name="s_address" form="s_form" class="form-control ">
+                    <input type="text" id="s_address" name="s_address" form="s_form" class="form-control ">
                     <label for="defaultForm-pass"><p style="font-size:13px">Address</p></label>
                 </div>
 				<div class="d-flex justify-content-center" style="margin-bottom:5%" >

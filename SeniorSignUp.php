@@ -12,7 +12,7 @@ session_start();
  $s_address=htmlspecialchars($_POST['s_address']);
  // first check the database to make sure
  // a user does not already exist with the same username
- $sql_check = "SELECT * from user where username = '$s_username'";
+ $sql_check = "SELECT * from account where username = '$s_username'";
  $checkUser = mysqli_query($con, $sql_check);
  if (mysqli_num_rows($checkUser) >= 1) //user is already registered
  {
@@ -27,12 +27,12 @@ session_start();
  else {
   $sql = "INSERT INTO account (username,password,fullName,mobileNo,address,type)
          VALUES ('$s_username','$s_password','$s_fullName','$s_mobileNo','$s_address','S')";
+		 mysqli_query($con, $sql);
 		 $message = "Account Registered!";
          echo "<script type='text/javascript'>
 		 alert('$message');
 		 window.location.href='homepage.php';
         </script>";
-		mysqli_query($con, $sql);
  }
 
  mysqli_close($con);

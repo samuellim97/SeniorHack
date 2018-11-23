@@ -9,7 +9,7 @@ session_start();
  $password=$_POST['login-password'];
  // first check the database to make sure 
  // a user does not already exist with the same username 
-  $sql_login = mysqli_query($con, "SELECT * from user where username = '$username'");
+  $sql_login = mysqli_query($con, "SELECT * from account where username = '$username'");
   $row_cnt = $sql_login->num_rows;
   $pwdInvalid = False;
  if ($row_cnt > 0) {
@@ -25,7 +25,7 @@ session_start();
            header("location: requestforseniors.php");
          }
          elseif ($_SESSION['type'] === 'SP') {
-           header("location: requestsforsp.html");
+           header("location: requestsforsp.php");
          }
          
          }

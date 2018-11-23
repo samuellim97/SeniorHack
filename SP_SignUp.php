@@ -12,14 +12,14 @@ session_start();
  $sp_address=htmlspecialchars($_POST['sp_address']);
  // first check the database to make sure
  // a user does not already exist with the same username
- $sql_check = "SELECT * from user where username = '$sp_username'";
+ $sql_check = "SELECT * from account where username = '$sp_username'";
  $checkUser = mysqli_query($con, $sql_check);
  if (mysqli_num_rows($checkUser) >= 1) //user is already registered
  {
 	 $message = "This username is already taken";
          echo "<script type='text/javascript'>
 		 alert('$message');
-		 window.location.href='SignUp.php';
+		 window.location.href='homepage.php';
         </script>";
 
  }
@@ -27,9 +27,8 @@ session_start();
  else {
   $sql = "INSERT INTO account (username,password,fullName,mobileNo,address,type)
          VALUES ('$sp_username','$sp_password','$sp_fullName','$sp_mobileNo','$sp_address','SP')";
-	if(mysqli_query($con, $sql)){
-		$last_id = mysqli_insert_id($con);
-	}
+	mysqli_query($con, $sql);
+		
  	foreach($_POST["servicetype"] as $servicetype){
 	  $service_fk = mysqli_query($con,"SELECT * FROM servicetype where serviceDescription = '$servicetype'");
 	  $row = $service_fk->fetch_array();

@@ -152,7 +152,6 @@ text-align:center;}
   width:auto;}
   }
   
-  
 
  </style>
 </head>
@@ -174,9 +173,9 @@ text-align:center;}
         <li><a href="#"><img src="img/logo.png" alt="SeniorHack Logo" class="logo"></a></li>
     </ul>
     <ul class="nav navbar-nav navbar-center topnav">
-        <li><a href="">Service Providers</a></li>
+        <li><a href="findServiceProviders.php">Service Providers</a></li>
 		<li><a id="defaultSelected" > Requests</a></li>
-		<li><a href="#">Contact Us</a></li>
+		<li><a href="ContactUsForSenior.html">Contact Us</a></li>
 		<li><a href="helpcentre.html">Help</a></li>
     </ul>
 	<!--Log Out-->
@@ -192,15 +191,16 @@ text-align:center;}
  <!-- Heading -->
 	<div class="container">
 <!--Banner title and description-->
-<div class="row"><br><br><br>
-<div class="banner-title col-lg-9 col-md-9 col-sm-12"><p>We Give Seniors The Love </p><p style="margin-top:-3%">They Deserve</p></div>
+		<div class="row"><br><br><br>
+			<div class="banner-title col-lg-9 col-md-9 col-sm-12"><p>We Give Seniors The Love </p><p style="margin-top:-3%">They Deserve</p></div>
 
-<div class="banner-description col-lg-5 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12col-xs-offset-0">
-<p>SeniorHack ameliorates the living standards of senior citizens by providing a platform
-of service providers which will bring about convenience and comfort in their lives.</p><br>
-<button class="btn btn-info" id="next" role="button">Request a Service Now</button></div>
-</div>
-</div>
+			<div class="banner-description col-lg-5 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-12 col-sm-offset-0 col-xs-12col-xs-offset-0">
+				<p>SeniorHack ameliorates the living standards of senior citizens by providing a platform
+					of service providers which will bring about convenience and comfort in their lives.</p><br>
+				<button class="btn btn-info" id="next" role="button">Request a Service Now</button>
+			</div>
+		</div>
+	</div>
 
   </div>
 
@@ -210,7 +210,7 @@ of service providers which will bring about convenience and comfort in their liv
 <main>
 <br><br>
 <div class="container" >
-  <div class="row justify-content-center">
+<div class="row justify-content-center">
 <div class="col-lg-6 col-lg-offset-0 col-md-12 col-sm-12 " >
 <!--New Request and View Requests Tabs-->
   <ul class="tab nav nav-pills" >
@@ -357,18 +357,18 @@ of service providers which will bring about convenience and comfort in their liv
                 <form action="request.php" method="post" id="request_form">
   <!-- Material input -->
   <div class="md-form form-group mt-5" >
-    <input type="date" class="form-control" id="formGroupExampleInputMD" name="date" required placeholder="Example input" >
-    <label for="formGroupExampleInputMD" style="font-size:12px;margin-top:-5%">Date</label>
+    <input type="date" class="form-control" id="date" name="date" required placeholder="Example input" >
+    <label for="date" style="font-size:12px;margin-top:-5%">Date</label>
 	<input type="text" hidden name="service_type" id="service_type" >
   </div>
   
   <!-- Material input -->
   <div class="md-form form-group mt-5">
-    <input type="time" class="form-control" id="formGroupExampleInput2MD" name="time" required placeholder="Another input">
-    <label for="formGroupExampleInput2MD" style="font-size:12px;margin-top:-5%">Time</label>
+    <input type="time" class="form-control" id="time" name="time" required placeholder="Another input">
+    <label for="time" style="font-size:12px;margin-top:-5%">Time</label>
   </div>
   <div class="md-form form-group mt-5" style="padding-top:5%" >
-    <input type="text" class="form-control" id="formGroupExampleInput2MD" name="notes" required placeholder="*Optional*">
+    <input type="text" class="form-control" id="formGroupExampleInput2MD" name="notes" placeholder="*Optional*">
     <label for="formGroupExampleInput2MD" style="font-size:12px;margin-top:3%">Notes</label>
   </div>
   <div class="d-flex justify-content-center" style="margin-bottom:5%">
@@ -387,24 +387,37 @@ of service providers which will bring about convenience and comfort in their liv
 <div class="col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-xs-12 row  justify-content-center">
 <div style="text-align:center">
 <h5><br><b>Sort by:</b></h5>
-<form action="" method="post">
-    <button type="submit" class="btn btn-blue-grey" name="sortType" >Service Type</button>
-    <button type="submit" class="btn btn-blue-grey" name="sortDate" >Date</button>
-	<button type="submit" class="btn btn-blue-grey" name="sortStatus" >Status</button>
+<form id="sorting-form" action="" method="post">
+    <button type="submit" class="btn" name="sortType" id="sortType" style="color:black">Service Type</button>
+    <button type="submit" class="btn" name="sortDate" id="sortDate" style="color:black">Date</button>
+	<button type="submit" class="btn" name="sortStatus" id="sortStatus" style="color:black">Status</button>
   </form></div></div><br><br>
 <?php 
 $currentUser = $_SESSION['username'];
-$sql_select_service = "SELECT * FROM servicerequest " ;
+$sql_select_service = "SELECT * FROM servicerequest  where sID = '$currentUser'" ;
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_POST['sortType'])){
-$sql_select_service = "SELECT * FROM servicerequest  ORDER BY serviceCode " ;}
+$sql_select_service = "SELECT * FROM servicerequest where sID = '$currentUser' ORDER BY serviceCode " ;
+echo "<script>
+document.getElementById('sortType').style.backgroundColor = 'grey';
+document.getElementById('sortType').style.color = 'white';
+</script>";
+}
 if (isset($_POST['sortDate'])){
-	$sql_select_service = "SELECT * FROM servicerequest  ORDER BY date " ;
+	$sql_select_service = "SELECT * FROM servicerequest where sID = '$currentUser'  ORDER BY date " ;
+	echo "<script>document.getElementById('sortDate').style.backgroundColor = 'grey';
+	document.getElementById('sortDate').style.color = 'white';</script>";
 }
 if (isset($_POST['sortStatus'])){
-	$sql_select_service = "SELECT * FROM servicerequest  ORDER BY status " ;
+	$sql_select_service = "SELECT * FROM servicerequest where sID = '$currentUser' ORDER BY status " ;
+	echo "<script>document.getElementById('sortStatus').style.backgroundColor = 'grey';
+	document.getElementById('sortStatus').style.color = 'white';</script>";
 }
 }
+if ($sql_select_service == "")
+echo "No request made yet.";
+
 if ($result_select_service = $con->query($sql_select_service)) {
 	$row_count_select_service =mysqli_num_rows($result_select_service);
 	if ($row_count_select_service>0) {
@@ -476,7 +489,7 @@ if ($row_count_select_service == 0) {
 	
 	</div> 
 
-	<button  data-toggle="modal" data-target="#myModal" data-id="<?php echo $requestID_selected_service[$i]; ?>" data-id2="<?php echo 'hello'; ?>"class=" btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
+	<button  data-toggle="modal" data-target="#myModal" data-id="<?php echo $requestID_selected_service[$i]; ?>" class=" btn purple-gradient" style="margin-top:50%;width:100%;display:block;margin-left:0;
 margin-right:0;
 padding-left:0;
 padding-right:0">View More</button>
@@ -519,9 +532,9 @@ padding-right:0">View More</button>
               <image style="height:64px; width:64px;" src="img/profile_pic.png"></image>
             </div>
             <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-1 col-xs-6 col-xs-offset-1">
-              <span class="fullName"></span>
+              <span class="fullName">Adam</span>
               <br><span class="mobileNo">012-3456789</span><br>
-              <button type="button" class="btn btn-primary"> 4.5 stars</button>
+              <a href="userreview.php" type="button" class="btn btn-primary btn-md" > View Rating</a>
             </div>
           </div>
           <div class="notes" style="padding-bottom: 20px;">
@@ -583,8 +596,10 @@ $(document).ready(function() {
 	   $('#requestForm').modal('hide');
 	   
    }
-   if (hash == '#view_requests')
-   hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+   if (hash == '#view_requests'){
+	   $('#defaultOpen[href="#view_requests"]').tab('show');
+   document.getElementById("openView").click();
+   document.getElementById("open").scrollIntoView();}
 });
 
 
@@ -615,22 +630,26 @@ document.getElementById('driver').onclick = function() {
    document.getElementById("service_type").value = "Driver";
 }
 function validations(){
+	
 	var value = document.getElementById("date").value;
 	var mytime = document.getElementById("time").value;
 	var today = new Date();
 	var mydate = new Date(value);
 	var currentdate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 	var userdate = mydate.getFullYear()+'-'+(mydate.getMonth()+1)+'-'+mydate.getDate();
-	if (currentdate > userdate){
-		alert("Please enter future date");
+	
+	var currenttime = today.getHours() + ":" + today.getMinutes();
+	if(today.setHours(0,0,0,0) == mydate.setHours(0,0,0,0)) {
+		if (currentdate == userdate && currenttime > mytime){
+    alert("Please enter future time");
 		document.getElementById("date").focus();
 		event.preventDefault();
-		return false;
-	}
-	var currenttime = today.getHours() + ":" + today.getMinutes();
-	if (currentdate == userdate && currenttime > mytime){
-		alert("Please enter future time");
-		document.getElementById("time").focus();
+		return false;}
+}
+	
+	if (today > mydate){
+		alert("Please enter future date");
+		document.getElementById("date").focus();
 		event.preventDefault();
 		return false;
 	}
@@ -674,6 +693,11 @@ $(document).ready(function(){
      });
 });
 
-
+$("#sorting-form").submit(function(e) {
+	window.location.hash = 'view_requests';
+    document.getElementById("openView").click();
+	$('#openView[href="#view_requests"]').tab('show');
+	document.getElementById("open").scrollIntoView();
+});
 </script>
 </html>
