@@ -5,7 +5,10 @@
   $dbName = "seniorhack";
   $conn = mysqli_connect($dbservername, $dbusername, $dbpassword, $dbName);
   //$username = $_SESSION['username'];
-  $sql = "SELECT * FROM serviceprovider";
+  $sql = "SELECT account.username, account.address, providerInfo.serviceCode
+          FROM providerInfo
+          INNER JOIN account ON providerInfo.username = account.username
+          WHERE account.type = 'SP'";
   $result = mysqli_query($conn, $sql);
   $datas = array();
   if(mysqli_num_rows($result) > 0){
@@ -193,30 +196,33 @@ width:100%;}
 </div>
 </header>
 
+
+
   <div class="container-fluid" id="contentDiv">
     <h1 id="title">Find Service Providers</h1>
-      <p>Click either one of the following types to find the corresponding service providers:</p>
+      <p>These are the service providers around you</p>
+      <div id="buttons">
+      <div id="tab" class="btn-group-toggle" data-toggle="buttons">
+          <button id="all" onclick="showAll();" class="btn active" id="all" data-toggle="tab">
+            <input id="all" onclick="showAll();" type="radio" />All</button>
 
-    <div id = "buttons">
-    <div id="tab" class="btn-group-toggle" data-toggle="buttons">
-        <button onclick="showAll();" class="btn active" id="all" data-toggle="tab">
-          <input type="radio" />All</button>
+          <button id="clean" onclick="showCleaning();" class="btn" id="cleaning" data-toggle="tab">
+            <input id="clean" onclick="showCleaning();" type="radio" />Cleaning</button>
 
-        <button onclick="showCleaning();" class="btn" id="cleaning" data-toggle="tab">
-          <input type="radio" />Cleaning</button>
+          <button onclick="showMeal();" class="btn"  id="mealPreparation" data-toggle="tab">
+            <input type="radio" />Meal Preparation</button>
 
-        <button onclick="showMeal();" class="btn"  id="mealPreparation" data-toggle="tab">
-          <input type="radio" />Meal Preparation</button>
+          <button onclick="showDriver();" class="btn"  id="driver" data-toggle="tab">
+            <input type="radio" />Driver</button>
 
-        <button onclick="showDriver();" class="btn"  id="driver" data-toggle="tab">
-          <input type="radio" />Driver</button>
+          <button onclick="showComp();" class="btn" id="companion" data-toggle="tab">
+            <input type="radio" />Companion</button>
+        </div>
 
-        <button onclick="showComp();" class="btn" id="companion" data-toggle="tab">
-          <input type="radio" />Companion</button>
       </div>
 
-    </div>
   </div>
+
 
 
 
@@ -227,7 +233,7 @@ width:100%;}
 
   <!--footer-->
   <footer id="footer-bg" class="footer">
-  <div class="container-fluid"> 
+  <div class="container-fluid">
   <div class="row">
 
   <!--Contact No-->
@@ -314,8 +320,9 @@ width:100%;}
 
       for(var i=0; i<serviceProviders.length; i++){
         name = serviceProviders[i][0];
-        address = serviceProviders[i][2];
-        label = serviceProviders[i][4];
+        address = serviceProviders[i][1];
+        label = serviceProviders[i][2];
+
         var contentString = '<div id = "content">'+
           '<strong>'+name+'</strong>'+
           '<br>'+label+
@@ -356,7 +363,6 @@ width:100%;}
           label: labels,
           position: results[0].geometry.location
         });
-        markers.push(marker);
         marker.addListener('click', function() {
                 infoWindow.open(map, marker);
               });
@@ -370,11 +376,11 @@ width:100%;}
         for (var i = 0; i < markers.length; i++) {
           markers[i].setMap(map);
         }
+        markers = [];
   }
-
+  
   function showAll(){
-    setMapOnAll = (null);
-    markers = [];
+    setMapOnAll = (null)
     for(var i=0; i<serviceProviders.length; i++){
       name = serviceProviders[i][0];
       address = serviceProviders[i][2];
@@ -383,17 +389,19 @@ width:100%;}
         '<strong>'+name+'</strong>'+
         '<br>'+label+
         '<br>'+address+'</div>';
-
+  
       var infoForWindow = new google.maps.InfoWindow({
         content:contentString
       });
-      geocodeAddress(geocoder, map, address, label, infoForWindow);
+      var marker = geocodeAddress(geocoder, map, address, label, infoForWindow);
+      markers.push(marker);
     }
   }
-
+  
   function showCleaning(){
     setMapOnAll = (null);
-    markers = [];
+  
+    var marker;
     for(var i=0; i<serviceProviders.length; i++){
       label = serviceProviders[i][4];
         if(label == 'CL'){
@@ -403,18 +411,18 @@ width:100%;}
             '<strong>'+name+'</strong>'+
             '<br>'+label+
             '<br>'+address+'</div>';
-
+  
           var infoForWindow = new google.maps.InfoWindow({
             content:contentString
           });
-          geocodeAddress(geocoder, map, address, label, infoForWindow);
+          marker = geocodeAddress(geocoder, map, address, label, infoForWindow);
+          markers.push(marker);
       }
     }
   }
-
+  
   function showMeal(){
     setMapOnAll = (null);
-    markers = [];
     for(var i=0; i<serviceProviders.length; i++){
       label = serviceProviders[i][4];
         if(label == 'MP'){
@@ -424,16 +432,16 @@ width:100%;}
             '<strong>'+name+'</strong>'+
             '<br>'+label+
             '<br>'+address+'</div>';
-
+  
           var infoForWindow = new google.maps.InfoWindow({
             content:contentString
           });
           geocodeAddress(geocoder, map, address, label, infoForWindow);
       }
     }
-
+  
   }
-
+  
   function showDriver(){
     setMapOnAll = (null);
     markers = [];
@@ -446,7 +454,7 @@ width:100%;}
             '<strong>'+name+'</strong>'+
             '<br>'+label+
             '<br>'+address+'</div>';
-
+  
           var infoForWindow = new google.maps.InfoWindow({
             content:contentString
           });
@@ -454,7 +462,7 @@ width:100%;}
       }
     }
   }
-
+  
   function showComp(){
     setMapOnAll = (null);
     markers = [];
@@ -467,7 +475,7 @@ width:100%;}
             '<strong>'+name+'</strong>'+
             '<br>'+label+
             '<br>'+address+'</div>';
-
+  
           var infoForWindow = new google.maps.InfoWindow({
             content:contentString
           });
@@ -475,6 +483,9 @@ width:100%;}
       }
     }
   }
+
+
+
 
 
   </script>
@@ -486,3 +497,4 @@ width:100%;}
 
 </body>
 </html>
+
